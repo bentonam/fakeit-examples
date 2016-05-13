@@ -77,7 +77,7 @@ Generating 56 documents for Contacts model
 
 ---
 
----Generate YAML files and output them to a `output/` directory
+Generate YAML files and output them to a `output/` directory
 
 ```bash
 [contacts]$ fakeit -m models/ -d output/ -o yaml
