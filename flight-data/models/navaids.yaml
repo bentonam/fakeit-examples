@@ -1,0 +1,116 @@
+name: Navaids
+type: object
+key: _id
+data:
+  pre_run: >
+    if (!inputs.navaids) {
+      throw new Error('navaids must be provided as an input');
+    }
+    this.data.fixed = inputs.navaids.length;
+properties:
+  _id:
+    type: string
+    description: The document id
+    data:
+      post_build: "return 'navaid_' + this.navaid_id"
+  navaid_id:
+    type: string
+    description: The navaid id
+    data:
+      build: "return chance.guid()"
+  doc_type:
+    type: string
+    description: The document type
+    data:
+      value: navaid
+  navaid_ident:
+    type: string
+    description: The The navaid identifer code
+    data:
+      pre_build: "return inputs.navaids[document_index].ident"
+  navaid_name:
+    type: string
+    description: The name of the navaid
+    data:
+      pre_build: "return inputs.navaids[document_index].name"
+  type:
+    type: string
+    description: The type of navaid
+    data:
+      pre_build: "return inputs.navaids[document_index].type || null"
+  frequency_khz:
+    type: float
+    description: The frequency in khz of the navaid
+    data:
+      pre_build: "return inputs.navaids[document_index].frequency_khz || null"
+  geo:
+    type: object
+    properties:
+      latitude:
+        type: float
+        description: The latitude of the navaid
+        data:
+          pre_build: "return inputs.navaids[document_index].latitude_deg || null"
+      longitude:
+        type: float
+        description: The longitude in khz of the navaid
+        data:
+          pre_build: "return inputs.navaids[document_index].longitude_deg || null"
+  elevation:
+    type: integer
+    description: The elevation of the navaid
+    data:
+      pre_build: "return inputs.navaids[document_index].elevation_ft || null"
+  iso_country:
+    type: string
+    description: The country the navaid is in
+    data:
+      pre_build: "return inputs.navaids[document_index].iso_country"
+  dme:
+    type: object
+    properties:
+      frequency_khz:
+        type: float
+        description: The frequency in khz an associated DME
+        data:
+          pre_build: "return inputs.navaids[document_index].dme_frequency_khz || null"
+      channel:
+        type: string
+        description: The DME channel
+        data:
+          pre_build: "return inputs.navaids[document_index].dme_channel || null"
+      latitude:
+        type: float
+        description: The latitude of the navaid
+        data:
+          pre_build: "return inputs.navaids[document_index].dme_latitude_deg || null"
+      longitude:
+        type: float
+        description: The longitude in khz of the navaid
+        data:
+          pre_build: "return inputs.navaids[document_index].dme_longitude_deg || null"
+      elevation:
+        type: float
+        description: The elevation of the DME in ft
+        data:
+          pre_build: "return inputs.navaids[document_index].dme_elevation_ft || null"
+  magnetic_variation:
+    type: float
+    description: The magnetic variation at the navaid's location
+    data:
+      pre_build: "return inputs.navaids[document_index].magnetic_variation_deg || null"
+  usage_type:
+    type: string
+    description: The usage type of the navaid
+    data:
+      pre_build: "return inputs.navaids[document_index].usageType || null"
+  power:
+    type: string
+    description: The navaid's power
+    data:
+      pre_build: "return inputs.navaids[document_index].power || null"
+  associated_airport_icao_code:
+    type: string
+    description: An airport icao_code that the navaid is associated with
+    data:
+      pre_build: "return inputs.navaids[document_index].associated_airport || null"
