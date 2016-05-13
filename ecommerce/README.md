@@ -216,7 +216,7 @@ Generating 806 documents for Reviews model
 
 ---
 
----Generate CSON files and output them to a `output/` directory
+Generate CSON files and output them to a `output/` directory
 
 ```bash
 [ecommerce]$ fakeit -m models/ -d output/ -o cson
