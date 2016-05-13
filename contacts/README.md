@@ -1,6 +1,9 @@
 ## Contacts Example
 
-This data model demonstrates how to use [Model References](https://github.com/bentonam/fakeit#model-references) with [fakeit](https://github.com/bentonam/fakeit).
+These data models demonstrate the following:
+
+-  [Model References](https://github.com/bentonam/fakeit#model-references) with [fakeit](https://github.com/bentonam/fakeit)
+- Using `build` and `post_build` functions
 
 Below is a sample JSON output that this model would generate:
 
