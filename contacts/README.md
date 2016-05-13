@@ -89,7 +89,7 @@ Generating 77 documents for Contacts model
 
 ---
 
----Generate CSON files and output them to a `output/` directory
+Generate CSON files and output them to a `output/` directory
 
 ```bash
 [contacts]$ fakeit -m models/ -d output/ -o cson
@@ -118,7 +118,6 @@ Generating 72 documents for Contacts model
 Generate a CSV file for the contacts model and save it to the output directory
 
 ```bash
-[~]$ cd examples/contacts
 [contacts]$ fakeit -m models/ -d output/ -o csv
 Generating 64 documents for Contacts model
 [contacts]$ ls output | awk '{print "\011",$NF}'
@@ -131,6 +130,7 @@ Generate a CSV file for the contacts model and save it to a zip archived named `
 
 ```bash
 [contacts]$ fakeit -m models/ -d output/ -o csv -a export.zip
+Generating 88 documents for Contacts model
 [contacts]$ ls output | awk '{print "\011",$NF}'
 	 export.zip
 ```
@@ -141,6 +141,7 @@ Generate JSON documents and output them to a Couchbase Server using the defaults
 
 ```bash
 [contacts]$ fakeit -m models/ -d couchbase
+Generating 93 documents for Contacts model
 ```
 
 ---
@@ -149,6 +150,7 @@ Generate JSON documents and output them to Couchbase Server running at `192.168.
 
 ```bash
 [contacts]$ fakeit -m models/ -d couchbase -s 192.168.1.101 -b contacts -p secret
+Generating 87 documents for Contacts model
 ```
 
 ---
@@ -157,6 +159,7 @@ Generate JSON documents and output them to a Couchbase Sync Gateway running at `
 
 ```bash
 [contacts]$ fakeit -m models/ -d sync-gateway -s http://localhost:4984 -b contacts
+Generating 63 documents for Contacts model
 ```
 
 ---
@@ -165,4 +168,5 @@ Generate JSON documents and output them to a Couchbase Sync Gateway running at `
 
 ```bash
 [contacts]$ fakeit -m models/ -d sync-gateway -s http://localhost:4984 -b contacts -g http://localhost:4985 -u jdoe -p supersecret
+Generating 97 documents for Contacts model
 ```
