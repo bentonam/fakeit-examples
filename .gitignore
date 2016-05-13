@@ -1,0 +1,15 @@
+*.apdisk
+*.ap_
+*.log
+*.DS_Store
+*.bak
+.TemporaryItems
+Thumbs.db
+thumbs.db
+node_modules/
+*/output/*.json
+*/output/*.cson
+*/output/*.yaml
+*/output/*.yml
+*/output/*.csv
+*/output/*.zip

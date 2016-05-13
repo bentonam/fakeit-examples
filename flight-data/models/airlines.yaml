@@ -1,0 +1,51 @@
+name: Airlines
+type: object
+key: _id
+data:
+  pre_run: >
+    if (!inputs.airlines) {
+      throw new Error('airlines must be provided as an input');
+    }
+    this.data.fixed = inputs.airlines.length;
+properties:
+  _id:
+    type: string
+    description: The document id
+    data:
+      post_build: "return 'airline_' + (this.airline_icao || this.airline_iata || chance.guid())"
+  doc_type:
+    type: string
+    description: The document type
+    data:
+      value: airline
+  airline_name:
+    type: string
+    description: The name of the airline
+    data:
+      build: "return inputs.airlines[document_index].name"
+  airline_iata:
+    type: string
+    description: The airlines iata code if availabe
+    data:
+      build: "return inputs.airlines[document_index].iata_code"
+  airline_icao:
+    type: string
+    description: The airlines icao code if available
+    data:
+      build: "return inputs.airlines[document_index].icao_code"
+  callsign:
+    type: string
+    description: The airlines icao code if available
+    data:
+      build: "return inputs.airlines[document_index].callsign"
+  iso_country:
+    type: string
+    description: The airlines country
+    data:
+      build: "return inputs.airlines[document_index].iso_country"
+  active:
+    type: boolean
+    description: The airlines icao code if available
+    data:
+      pre_build: "return inputs.airlines[document_index].active === 'Y'"
+      post_build: "return this.active && Boolean(this.airline_icao) && Boolean(this.airline_iata)"
