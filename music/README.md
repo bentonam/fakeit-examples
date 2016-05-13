@@ -5,6 +5,7 @@ These data models demonstrate the following:
 - Providing input to the model
 - Setting the number of documents to generate dynamically
 - Using the `globals` variable as a counter
+- Using the `inputs` to make external data available to the model
 - Using the `documents` variable to use data from a previously generated model
 
 There are 4 types of models that will be generated
