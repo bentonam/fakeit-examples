@@ -5,7 +5,7 @@ This data model demonstrate the following:
 - Providing the minimum model definitions to generate data
 - Using the `document_index` variable
 
-There is 1 type of models that will be generated
+There is 1 type of model that will be generated
 
 - [Users](#users)
 
