@@ -1,0 +1,5 @@
+types: [
+  "Home",
+  "Work",
+  "Other"
+]
