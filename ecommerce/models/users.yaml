@@ -21,7 +21,7 @@ properties:
     type: integer
     description: The users id
     data:
-        build: "return ++globals.user_counter;"
+      build: "return ++globals.user_counter;"
   first_name:
     type: string
     description: The users first name
@@ -31,34 +31,34 @@ properties:
     type: string
     description: The users last name
     data:
-        fake: "{{name.lastName}}"
+      fake: "{{name.lastName}}"
   username:
     type: string
     description: The users username
     data:
-        fake: "{{internet.userName}}"
+      fake: "{{internet.userName}}"
   password:
     type: string
     description: The users password
     data:
-        fake: "{{internet.password}}"
+      fake: "{{internet.password}}"
   email_address:
     type: string
     description: The users email address
     data:
-        fake: "{{internet.email}}"
+      fake: "{{internet.email}}"
   home_phone:
     type: string
     description: The users home phone
     data:
-        fake: "{{phone.phoneNumber}}"
-        post_build: "return this.home_phone.replace(/x[0-9]+$/, '')"
+      fake: "{{phone.phoneNumber}}"
+      post_build: "return this.home_phone.replace(/x[0-9]+$/, '')"
   mobile_phone:
     type: string
     description: The users mobile phone
     data:
-        fake: "{{phone.phoneNumber}}"
-        post_build: "return this.mobile_phone.replace(/x[0-9]+$/, '')"
+      fake: "{{phone.phoneNumber}}"
+      post_build: "return this.mobile_phone.replace(/x[0-9]+$/, '')"
   addresses:
     type: array
     description: An array of addresses
