@@ -52,12 +52,12 @@ properties:
     type: boolean
     description: Whether or not the runway is lighted
     data:
-      build: "return inputs.runways[document_index].lighted || null"
+      build: "return inputs.runways[document_index].lighted == '1'"
   closed:
     type: boolean
     description: Whether or not the runway is closed
     data:
-      build: "return inputs.runways[document_index].closed || null"
+      build: "return inputs.runways[document_index].closed == '1'"
   low_bearing:
     type: object
     properties:

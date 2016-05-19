@@ -17,7 +17,7 @@ properties:
     type: integer
     description: The route id
     data:
-      pre_build: "return documents.Airports[document_index].airport_id"
+      build: "return documents.Airports[document_index].airport_id"
   doc_type:
     type: string
     description: The document type
@@ -27,30 +27,40 @@ properties:
     type: string
     description: The airports iata / icao code
     data:
-      pre_build: "return documents.Airports[document_index].airport_ident"
+      build: "return documents.Airports[document_index].airport_ident"
   airlines:
     type: array
-    description: The airlines at the airport
+    description: An array of airline codes at the airport
     data:
       build: >
         var airlines = [];
         var airline_code;
         for (var i = 0; i < documents.Routes.length; i++) {
-          airline_code = null;
           if (
-            documents.Routes[i].source_airport_code === documents.Airports[document_index].airport_icao_code ||
-            documents.Routes[i].source_airport_code === documents.Airports[document_index].airport_iata_code
-          ) {
-            airline_code = documents.Routes[i].airline_code;
-          }
-          if (
-            documents.Routes[i].destination_airport_code === documents.Airports[document_index].airport_icao_code ||
-            documents.Routes[i].destination_airport_code === documents.Airports[document_index].airport_iata_code
+            documents.Routes[i].source_airport_code &&
+            (
+              documents.Routes[i].source_airport_code === documents.Airports[document_index].airport_icao ||
+              documents.Routes[i].source_airport_code === documents.Airports[document_index].airport_iata
+            )
           ) {
             airline_code = documents.Routes[i].airline_code;
           }
           if (airline_code && airlines.indexOf(airline_code) === -1) {
             airlines.push(airline_code);
+            airline_code = null;
+          }
+          if (
+            documents.Routes[i].destination_airport_code &&
+            (
+              documents.Routes[i].destination_airport_code === documents.Airports[document_index].airport_icao ||
+              documents.Routes[i].destination_airport_code === documents.Airports[document_index].airport_iata
+            )
+          ) {
+            airline_code = documents.Routes[i].airline_code;
+          }
+          if (airline_code && airlines.indexOf(airline_code) === -1) {
+            airlines.push(airline_code);
+            airline_code = null;
           }
         }
         return airlines;

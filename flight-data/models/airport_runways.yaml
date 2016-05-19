@@ -25,12 +25,12 @@ properties:
       value: airport-runways
   airport_ident:
     type: string
-    description: The airports iata / icao code
+    description: The airports identifer
     data:
       build: "return documents.Airports[document_index].airport_ident"
   runways:
     type: array
-    description: The runways used at the airport
+    description: An array of runway ids that belong to the airport
     data:
       build: >
         var runways = [];

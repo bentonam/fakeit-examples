@@ -15,7 +15,7 @@ properties:
       post_build: "return 'airport_' + this.airport_id + '_navaids'"
   airport_id:
     type: integer
-    description: The route id
+    description: The airport id
     data:
       pre_build: "return documents.Airports[document_index].airport_id"
   doc_type:
@@ -25,17 +25,23 @@ properties:
       value: airport-navaids
   airport_ident:
     type: string
-    description: The airports iata / icao code of the source airport
+    description: The airports identifier
     data:
       pre_build: "return documents.Airports[document_index].airport_ident"
   navaids:
     type: array
-    description: Whether or not the route is active
+    description: An array of navaid_ids
     data:
       build: >
         var navaids = [];
         for (var i = 0; i < documents.Navaids.length; i++) {
-          if (documents.Navaids[i].associated_airport_icao_code == documents.Airports[document_index].airport_icao_code) {
+          if (
+            documents.Navaids[i].associated_airport_icao_code &&
+            (
+              (documents.Airports[document_index].airport_icao && documents.Navaids[i].associated_airport_icao_code === documents.Airports[document_index].airport_icao) ||
+              (documents.Airports[document_index].airport_ident && documents.Navaids[i].associated_airport_icao_code === documents.Airports[document_index].airport_ident)
+            )
+          ) {
             navaids.push(documents.Navaids[i].navaid_id);
           }
         }
