@@ -8,21 +8,21 @@ These are example N1QL queries that may can performed to retrieve airport freque
 
 This query uses the previously created `idx_airport_codes` index.
 
-##### Query 
+##### Query
 
 This query will find the available runways and information by the 3 character IATA / FAA code of the airport
 
 ```sql
 SELECT runways.runway_id, runways.low_bearing, runways.high_bearing, runways.lighted,
     runways.runway_length, runways.runway_width, runways.surface
-FROM `flight-data` AS c
-INNER JOIN `flight-data` AS lookup ON KEYS 'airport_' || TOSTRING(c.id) || '_runways'
-UNNEST lookup.runways AS runway_ids
-INNER JOIN `flight-data` AS runways ON KEYS 'runway_' || TOSTRING(runway_ids)
-WHERE c.code = 'ICT'
-    AND c.designation = 'airport'
-    AND c.doc_type = 'code'
-    AND runways.closed = false
+FROM `flight-data` AS airport_codes
+USE KEYS 'airport_code_ICT'
+INNER JOIN `flight-data` AS airport_runways
+    ON KEYS 'airport_' || TOSTRING( airport_codes.id ) || '_runways'
+UNNEST airport_runways.runways AS runways_lookup
+INNER JOIN `flight-data` AS runways
+    ON KEYS 'runway_' || TOSTRING( runways_lookup )
+WHERE runways.closed = false
 ```
 
 This query will find the available runways and information by the 4 character ICAO code of the airport
@@ -30,14 +30,14 @@ This query will find the available runways and information by the 4 character IC
 ```sql
 SELECT runways.runway_id, runways.low_bearing, runways.high_bearing, runways.lighted,
     runways.runway_length, runways.runway_width, runways.surface
-FROM `flight-data` AS c
-INNER JOIN `flight-data` AS lookup ON KEYS 'airport_' || TOSTRING(c.id) || '_runways'
-UNNEST lookup.runways AS runway_ids
-INNER JOIN `flight-data` AS runways ON KEYS 'runway_' || TOSTRING(runway_ids)
-WHERE c.code = 'KICT'
-    AND c.designation = 'airport'
-    AND c.doc_type = 'code'
-    AND runways.closed = false
+FROM `flight-data` AS airport_codes
+USE KEYS 'airport_code_KICT'
+INNER JOIN `flight-data` AS airport_runways
+    ON KEYS 'airport_' || TOSTRING( airport_codes.id ) || '_runways'
+UNNEST airport_runways.runways AS runways_lookup
+INNER JOIN `flight-data` AS runways
+    ON KEYS 'runway_' || TOSTRING( runways_lookup )
+WHERE runways.closed = false
 ```
 
 Both queries will yield the same exact result.
@@ -118,34 +118,34 @@ Both queries will yield the same exact result.
 ]
 ```
 
-##### Query 
+##### Query
 
 This query will find the available runways by the 3 character IATA / FAA code of the airport
 
 ```sql
 SELECT runways.low_bearing.ident || '/' || runways.high_bearing.ident AS runway
-FROM `flight-data` AS c
-INNER JOIN `flight-data` AS lookup ON KEYS 'airport_' || TOSTRING(c.id) || '_runways'
-UNNEST lookup.runways AS runway_ids
-INNER JOIN `flight-data` AS runways ON KEYS 'runway_' || TOSTRING(runway_ids)
-WHERE c.code = 'ICT'
-    AND c.designation = 'airport'
-    AND c.doc_type = 'code' 
-    AND runways.closed = false
+FROM `flight-data` AS airport_codes
+USE KEYS 'airport_code_ICT'
+INNER JOIN `flight-data` AS airport_runways
+    ON KEYS 'airport_' || TOSTRING( airport_codes.id ) || '_runways'
+UNNEST airport_runways.runways AS runways_lookup
+INNER JOIN `flight-data` AS runways
+    ON KEYS 'runway_' || TOSTRING( runways_lookup )
+WHERE runways.closed = false
 ```
 
 This query will find the available runways and information by the 4 character ICAO code of the airport
 
 ```sql
 SELECT runways.low_bearing.ident || '/' || runways.high_bearing.ident AS runway
-FROM `flight-data` AS c
-INNER JOIN `flight-data` AS lookup ON KEYS 'airport_' || TOSTRING(c.id) || '_runways'
-UNNEST lookup.runways AS runway_ids
-INNER JOIN `flight-data` AS runways ON KEYS 'runway_' || TOSTRING(runway_ids)
-WHERE c.code = 'KICT'
-    AND c.designation = 'airport'
-    AND c.doc_type = 'code' 
-    AND runways.closed = false
+FROM `flight-data` AS airport_codes
+USE KEYS 'airport_code_ICT'
+INNER JOIN `flight-data` AS airport_runways
+    ON KEYS 'airport_' || TOSTRING( airport_codes.id ) || '_runways'
+UNNEST airport_runways.runways AS runways_lookup
+INNER JOIN `flight-data` AS runways
+    ON KEYS 'runway_' || TOSTRING( runways_lookup )
+WHERE runways.closed = false
 ```
 
 Both queries will yield the same exact result.

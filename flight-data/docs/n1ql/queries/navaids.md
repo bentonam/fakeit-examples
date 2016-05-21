@@ -6,13 +6,13 @@ These are example N1QL queries that may can performed to retrieve navaid related
 
 ## Navaid By ID
 
-The following query will get a Navaid by its ID.
+The following query will get a Navaid by its Document ID.
 
 ##### Query
 
 ```sql
-SELECT n.*
-FROM `flight-data` AS n
+SELECT navaids.*
+FROM `flight-data` AS navaids
 USE KEYS 'navaid_89137'
 ```
 
@@ -49,13 +49,13 @@ USE KEYS 'navaid_89137'
 ]
 ```
 
-The following query will retrieve many Navaids by their ID.
+The following query will retrieve multiple Navaids by their Document ID.
 
 ##### Query
 
 ```sql
-SELECT n.*
-FROM `flight-data` AS n
+SELECT navaids.*
+FROM `flight-data` AS navaids
 USE KEYS ['navaid_89137', 'navaid_88592']
 ```
 
@@ -127,17 +127,19 @@ The following index and queries allows for finding airports based in a given cou
 ##### Index
 
 ```sql
-CREATE INDEX idx_navaids_iso_country ON `flight-data`(iso_country)
-WHERE doc_type = 'navaid' AND iso_country IS NOT NULL
+CREATE INDEX idx_navaids_iso_country ON `flight-data`( iso_country )
+WHERE doc_type = 'navaid'
+    AND iso_country IS NOT NULL
+USING GSI
 ```
 
 ##### Query
 
 ```sql
-SELECT n.*
-FROM `flight-data` AS n
-WHERE n.doc_type = 'navaid' AND
-      n.iso_country = 'DE'
+SELECT navaids.*
+FROM `flight-data` AS navaids
+WHERE navaids.iso_country = 'DE'
+    AND navaids.doc_type = 'navaid'
 LIMIT 1
 ```
 
@@ -179,11 +181,12 @@ Now that we know we can retrieve all navaids in a given country by querying on t
 ##### Query
 
 ```sql
-SELECT n.navaid_id, n.navaid_ident, n.navaid_name, n.type, n.frequency_khz, n.geo, n.elevation, n.usage_type
-FROM `flight-data` AS n
-WHERE n.doc_type = 'navaid' AND
-      n.iso_country = 'DE'
-ORDER BY n.navaid_name ASC
+SELECT navaids.navaid_id, navaids.navaid_ident, navaids.navaid_name, navaids.type,
+    navaids.frequency_khz, navaids.geo, navaids.elevation, navaids.usage_type
+FROM `flight-data` AS navaids
+WHERE navaids.doc_type = 'navaid'
+    AND navaids.iso_country = 'DE'
+ORDER BY navaids.navaid_name ASC
 ```
 
 ##### Results
@@ -225,10 +228,10 @@ Additionally we can retrieve an aggregate count of the number of navaids in a gi
 ##### Query
 
 ```sql
-SELECT COUNT(1) AS navaids
-FROM `flight-data` AS n
-WHERE n.doc_type = 'navaid' AND
-      n.iso_country = 'DE'
+SELECT COUNT(1) AS total_navaids
+FROM `flight-data` AS navaids
+WHERE navaids.iso_country = 'DE'
+    AND navaids.doc_type = 'navaid'
 ```
 
 ##### Result
@@ -236,7 +239,7 @@ WHERE n.doc_type = 'navaid' AND
 ```json
 [
   {
-    "navaids": 215
+    "total_navaids": 215
   }
 ]
 ```
@@ -245,28 +248,20 @@ WHERE n.doc_type = 'navaid' AND
 
 ## Navaid Codes
 
-The following index and queries allows for finding navaids by their Ident Codes. By creating an index on `code` attribute where the `doc_type = 'code'` and the `designation = 'navaid'.
+The following queries allows for finding navaids by their Ident Code.
 
-##### Index 
+Just like Airlines and Airports, our [Codes](/flight-data/docs/models/codes.md) model is keyed by `{{designation}}_code_{{code}}` i.e. `navaid_code_ATL`.  Because of how these documents are keyed, we do not even need an index.  Using this predictive key pattern we use the code as part of the key name on the codes document.
 
-This is using the previously created `idx_codes` index
+##### Query
 
-```sql
-CREATE INDEX idx_codes ON `flight-data`(code, designation)
-WHERE doc_type = 'code'
-```
-
-##### Query 
-
-This query will find the navaid by the 4 character Ident code
+Query by the Ident code
 
 ```sql
-SELECT n.navaid_id, n.navaid_ident, n.navaid_name, n.type, n.frequency_khz, n.geo, n.elevation, n.usage_type
-FROM `flight-data` AS c
-INNER JOIN `flight-data` AS n ON KEYS 'navaid_' || TOSTRING(c.id)
-WHERE c.code = 'ATL'
-      AND c.designation = 'navaid' 
-      AND c.doc_type = 'code'
+SELECT navaids.navaid_id, navaids.navaid_ident, navaids.navaid_name, navaids.type,
+    navaids.frequency_khz, navaids.geo, navaids.elevation, navaids.usage_type
+FROM `flight-data` AS codes
+USE KEYS 'navaid_code_ATL'
+INNER JOIN `flight-data` AS navaids ON KEYS 'navaid_' || TOSTRING( codes.id )
 LIMIT 1
 ```
 
@@ -292,18 +287,19 @@ LIMIT 1
 
 ## Navaids Near a Given Airport
 
-For this query we want to find all navaids within a given radius of a given airport code.  
+For this query we want to find all navaids within a given radius of a given airport code.
 
 Since we are going to be querying on the ISO Country, Latitude and Longitude of a given airport we need to create an index.
 
 ##### Index
 
 ```sql
-CREATE INDEX idx_navaid_distance ON `flight-data`(iso_country, geo.latitude, geo.longitude)
-WHERE doc_type = 'navaid' 
-    AND iso_country IS NOT NULL 
-    AND geo.latitude IS NOT NULL 
+CREATE INDEX idx_navaid_distance ON `flight-data`( iso_country, geo.latitude, geo.longitude )
+WHERE doc_type = 'navaid'
+    AND iso_country IS NOT NULL
+    AND geo.latitude IS NOT NULL
     AND geo.longitude IS NOT NULL
+USING GSI
 ```
 
 This query is based on a MySQL example provided by [Ollie Jones](http://www.plumislandmedia.net/mysql/haversine-mysql-nearest-loc/).
@@ -313,7 +309,7 @@ To perform this query we need to provide 5 pieces of information to the query, t
 ##### Input
 
 - The `iso_country`
-- The Source Airports 
+- The Source Airports
   - `latitude` i.e. `36.09780121`
   - `longitude` i.e. `-79.93730164`
 - A `distance_unit`
@@ -324,7 +320,7 @@ To perform this query we need to provide 5 pieces of information to the query, t
 ##### Radius Query
 
 ```sql
-SELECT results.navaid_ident, results.navaid_code, results.type, results.frequency_khz, results.usage_type, 
+SELECT results.navaid_ident, results.navaid_code, results.type, results.frequency_khz, results.usage_type,
     results.associated_airport_code, ROUND( results.distance, 2 ) AS distance
 FROM (
     SELECT navaids.navaid_ident AS navaid_code, navaids.type, navaids.frequency_khz, navaids.usage_type,
@@ -336,28 +332,27 @@ FROM (
         + SIN(RADIANS( {{source_latitude}} ))
         * SIN(RADIANS( navaids.geo.latitude )))) AS distance
     FROM `flight-data` AS navaids
-    WHERE navaids.iso_country = '{{iso_country}}' 
+    WHERE navaids.iso_country = '{{iso_country}}'
         /* limit results to latitudes within {{distance}} north or south of the source latitude, degree of latitude is {{distance_unit}} */
-        AND navaids.geo.latitude BETWEEN {{source_latitude}} - ({{radius}} / {{distance_unit}}) AND {{source_latitude}} + ({{radius}} / {{distance_unit}}) 
+        AND navaids.geo.latitude BETWEEN {{source_latitude}} - ({{radius}} / {{distance_unit}}) AND {{source_latitude}} + ({{radius}} / {{distance_unit}})
         /* limit results to longitudes within {{distance}} east or west of the source longitude, degree of longitude is {{distance_unit}} */
         AND navaids.geo.longitude BETWEEN {{source_longitude}} - ({{radius}} / ( {{distance_unit}} * COS(RADIANS( {{source_latitude}} )))) AND {{source_longitude}} + ({{radius}} / ( {{distance_unit}} * COS(RADIANS( {{source_latitude}} ))))
-        AND navaids.doc_type = 'navaid' 
+        AND navaids.doc_type = 'navaid'
     ) AS results
 WHERE results.distance <= {{radius}} /* remove any of the results that are not within the radius */
 ORDER BY results.distance ASC /* sort the results by closest distance */
 ```
 
-To provide the source airports `iso_country`, `latitude`, and `longitude` we can use the Airport Codes query. 
+To provide the source airports `iso_country`, `latitude`, and `longitude` we can use the Airport Codes query.
 
 ##### Source Airport Query
 
 ```sql
-SELECT a.iso_country, a.geo.latitude AS latitude, a.geo.longitude AS longitude
-FROM `flight-data` AS c
-INNER JOIN `flight-data` AS a ON KEYS 'airport_' || TOSTRING(c.id)
-WHERE c.code = 'ICT'
-      AND c.designation = 'airport'
-      AND c.doc_type = 'code'
+SELECT airports.iso_country, airports.geo.latitude AS latitude, airports.geo.longitude AS longitude
+FROM `flight-data` AS codes
+USE KEYS 'airport_code_ICT'
+INNER JOIN `flight-data` AS airports
+    ON KEYS 'airport_' || TOSTRING( codes.id )
 LIMIT 1
 ```
 
@@ -380,7 +375,7 @@ Next we replace the tokens from our base radius query with the returned values.
 For our example we want to find any airports within 100 miles of "ICT". Our `{{distance_unit}}` is miles, this value needs to be `69` and our `{{radius}}` is `100`.  Replace the `{{source_latitude}}`, `{{source_longitude}}` and `{{iso_country}}` with the values from the previous query.
 
 ```sql
-SELECT results.navaid_ident, results.navaid_code, results.type, results.frequency_khz, results.usage_type, 
+SELECT results.navaid_ident, results.navaid_code, results.type, results.frequency_khz, results.usage_type,
     results.associated_airport_code, ROUND( results.distance, 2 ) AS distance
 FROM (
     SELECT navaids.navaid_ident AS navaid_code, navaids.type, navaids.frequency_khz, navaids.usage_type,
@@ -391,10 +386,10 @@ FROM (
         + SIN(RADIANS( 37.64989853 ))
         * SIN(RADIANS( navaids.geo.latitude )))) AS distance
     FROM `flight-data` AS navaids
-    WHERE navaids.iso_country = 'US' 
-        AND navaids.geo.latitude BETWEEN 37.64989853 - ( 50 / 69 ) AND 37.64989853 + ( 50 / 69 ) 
+    WHERE navaids.iso_country = 'US'
+        AND navaids.geo.latitude BETWEEN 37.64989853 - ( 50 / 69 ) AND 37.64989853 + ( 50 / 69 )
         AND navaids.geo.longitude BETWEEN -97.43309784 - ( 50 / ( 69 * COS(RADIANS( 37.64989853 )))) AND -97.43309784 + ( 50 / ( 69 * COS(RADIANS( 37.64989853 ))))
-        AND navaids.doc_type = 'navaid' 
+        AND navaids.doc_type = 'navaid'
     ) AS results
 WHERE results.distance <= 50
 ORDER BY results.distance ASC
@@ -486,12 +481,11 @@ For our example we want to find any airports within 75 kilometers of "Berlin" (T
 ##### Source Airport Query
 
 ```sql
-SELECT a.iso_country, a.geo.latitude AS latitude, a.geo.longitude AS longitude
-FROM `flight-data` AS c
-INNER JOIN `flight-data` AS a ON KEYS 'airport_' || TOSTRING(c.id)
-WHERE c.code = 'TXL'
-    AND c.designation = 'airport' 
-    AND c.doc_type = 'code'
+SELECT airports.iso_country, airports.geo.latitude AS latitude, airports.geo.longitude AS longitude
+FROM `flight-data` AS codes
+USE KEYS 'airport_code_TXL'
+INNER JOIN `flight-data` AS airports
+    ON KEYS 'airport_' || TOSTRING( codes.id )
 LIMIT 1
 ```
 
@@ -506,10 +500,10 @@ LIMIT 1
   }
 ]
 ```
-##### Navaids Near a Given Airport in Kilometers Query 
+##### Navaids Near a Given Airport in Kilometers Query
 
 ```sql
-SELECT results.navaid_ident, results.navaid_code, results.type, results.frequency_khz, results.usage_type, 
+SELECT results.navaid_ident, results.navaid_code, results.type, results.frequency_khz, results.usage_type,
     results.associated_airport_code, ROUND( results.distance, 2 ) AS distance
 FROM (
     SELECT navaids.navaid_ident AS navaid_code, navaids.type, navaids.frequency_khz, navaids.usage_type,
@@ -520,10 +514,10 @@ FROM (
         + SIN(RADIANS( 52.55970001 ))
         * SIN(RADIANS( navaids.geo.latitude )))) AS distance
     FROM `flight-data` AS navaids
-    WHERE navaids.iso_country = 'DE' 
-        AND navaids.geo.latitude BETWEEN 52.55970001 - ( 75 / 111.045 ) AND 52.55970001 + ( 75 / 111.045 ) 
+    WHERE navaids.iso_country = 'DE'
+        AND navaids.geo.latitude BETWEEN 52.55970001 - ( 75 / 111.045 ) AND 52.55970001 + ( 75 / 111.045 )
         AND navaids.geo.longitude BETWEEN 13.2876997 - ( 75 / ( 111.045 * COS(RADIANS( 52.55970001 )))) AND 13.2876997 + ( 75 / ( 111.045 * COS(RADIANS( 52.55970001 ))))
-        AND navaids.doc_type = 'navaid' 
+        AND navaids.doc_type = 'navaid'
     ) AS results
 WHERE results.distance <= 75
 ORDER BY results.distance ASC

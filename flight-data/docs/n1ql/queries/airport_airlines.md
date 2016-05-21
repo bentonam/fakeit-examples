@@ -6,22 +6,21 @@ These are example N1QL queries that may can performed to retrieve airport airlin
 
 ## Airport Airlines by Code
 
-This query uses the previously created `idx_airport_codes` index.
+##### Query
 
-##### Query 
-
-This query will find the available frequencies by the 3 character IATA / FAA code of the airport
+This query will find the available airlines by the 3 character IATA / FAA code of the airport
 
 ```sql
 SELECT airlines.airline_id, airlines.airline_iata, airlines.airline_icao, airlines.airline_name
-FROM `flight-data` AS c
-INNER JOIN `flight-data` AS airport_lookup ON KEYS 'airport_' || TOSTRING(c.id) || '_airlines'
-UNNEST airport_lookup.airlines AS airline_codes
-INNER JOIN `flight-data` AS airline_lookup ON KEYS 'airline_code_' || TOSTRING(airline_codes)
-INNER JOIN `flight-data` AS airlines ON KEYS 'airline_' || TOSTRING(airline_lookup.id)
-WHERE c.code = 'GSO'
-    AND c.designation = 'airport' 
-    AND c.doc_type = 'code'
+FROM `flight-data` AS airport_codes
+USE KEYS 'airport_code_GSO'
+INNER JOIN `flight-data` AS airport_airlines
+    ON KEYS 'airport_' || TOSTRING( airport_codes.id ) || '_airlines'
+UNNEST airport_airlines.airlines AS airlines_lookup
+INNER JOIN `flight-data` AS airline_codes
+    ON KEYS 'airline_code_' || TOSTRING( airlines_lookup )
+INNER JOIN `flight-data` AS airlines
+    ON KEYS 'airline_' || TOSTRING( airline_codes.id )
 ORDER BY airlines.airline_name ASC
 ```
 
@@ -29,14 +28,15 @@ This query will find the available airlines by the 4 character ICAO code of the 
 
 ```sql
 SELECT airlines.airline_id, airlines.airline_iata, airlines.airline_icao, airlines.airline_name
-FROM `flight-data` AS c
-INNER JOIN `flight-data` AS airport_lookup ON KEYS 'airport_' || TOSTRING(c.id) || '_airlines'
-UNNEST airport_lookup.airlines AS airline_codes
-INNER JOIN `flight-data` AS airline_lookup ON KEYS 'airline_code_' || TOSTRING(airline_codes)
-INNER JOIN `flight-data` AS airlines ON KEYS 'airline_' || TOSTRING(airline_lookup.id)
-WHERE c.code = 'KGSO'
-    AND c.designation = 'airport' 
-    AND c.doc_type = 'code'
+FROM `flight-data` AS airport_codes
+USE KEYS 'airport_code_KGSO'
+INNER JOIN `flight-data` AS airport_airlines
+    ON KEYS 'airport_' || TOSTRING( airport_codes.id ) || '_airlines'
+UNNEST airport_airlines.airlines AS airlines_lookup
+INNER JOIN `flight-data` AS airline_codes
+    ON KEYS 'airline_code_' || TOSTRING( airlines_lookup )
+INNER JOIN `flight-data` AS airlines
+    ON KEYS 'airline_' || TOSTRING( airline_codes.id )
 ORDER BY airlines.airline_name ASC
 ```
 

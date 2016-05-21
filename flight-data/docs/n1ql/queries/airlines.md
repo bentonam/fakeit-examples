@@ -6,13 +6,13 @@ These are example N1QL queries that may can performed to retrieve airline relate
 
 ## Airline By ID
 
-The following query will get a Airline by its ID.
+The following query will get an Airline by its Document ID.
 
 ##### Query
 
 ```sql
-SELECT a.*
-FROM `flight-data` AS a
+SELECT airlines.*
+FROM `flight-data` AS airlines
 USE KEYS 'airline_2009'
 ```
 
@@ -34,13 +34,13 @@ USE KEYS 'airline_2009'
 ]
 ```
 
-The following query will retrieve multiple Airlines by their ID.
+The following query will retrieve multiple Airlines by their Document ID.
 
 ##### Query
 
 ```sql
-SELECT a.*
-FROM `flight-data` AS a
+SELECT airlines.*
+FROM `flight-data` AS airlines
 USE KEYS ['airline_2009', 'airline_24']
 ```
 
@@ -82,17 +82,19 @@ The following index and queries allows for finding airlines based in a given cou
 ##### Index
 
 ```sql
-CREATE INDEX idx_airlines_iso_country ON `flight-data`(iso_country)
-WHERE doc_type = 'airline' AND iso_country IS NOT NULL
+CREATE INDEX idx_airlines_iso_country ON `flight-data`( iso_country )
+WHERE doc_type = 'airline'
+    AND iso_country IS NOT NULL
+USING GSI
 ```
 
 ##### Query
 
 ```sql
-SELECT a
-FROM `flight-data` AS a
-WHERE a.doc_type = 'airline' AND
-      a.iso_country IS NOT NULL
+SELECT airlines.*
+FROM `flight-data` AS airlines
+WHERE airlines.iso_country = 'FI'
+    AND airlines.doc_type = 'airline'
 LIMIT 1
 ```
 
@@ -101,17 +103,15 @@ LIMIT 1
 ```json
 [
   {
-    "a": {
-      "_id": "airline_AAP",
-      "active": false,
-      "airline_iata": null,
-      "airline_icao": "AAP",
-      "airline_id": 27,
-      "airline_name": "Aerovista Airlines",
-      "callsign": "AEROVISTA GROUP",
-      "doc_type": "airline",
-      "iso_country": "AE"
-    }
+    "_id": "airline_14073",
+    "active": false,
+    "airline_iata": null,
+    "airline_icao": "FN1",
+    "airline_id": 14073,
+    "airline_name": "Finlandian",
+    "callsign": null,
+    "doc_type": "airline",
+    "iso_country": "FI"
   }
 ]
 ```
@@ -121,11 +121,11 @@ In the returned results there is an `active` attribute.  We will want to update 
 ##### Query
 
 ```sql
-SELECT a
-FROM `flight-data` AS a
-WHERE a.doc_type = 'airline' AND
-      a.iso_country IS NOT NULL AND
-      a.active = true
+SELECT airlines.*
+FROM `flight-data` AS airlines
+WHERE airlines.iso_country = 'FI'
+    AND airlines.doc_type = 'airline'
+    AND airlines.active = true
 LIMIT 1
 ```
 
@@ -134,32 +134,31 @@ LIMIT 1
 ```json
 [
   {
-    "a": {
-      "_id": "airline_EK",
-      "active": true,
-      "airline_iata": "EK",
-      "airline_icao": "UAE",
-      "airline_id": 2183,
-      "airline_name": "Emirates",
-      "callsign": "EMIRATES",
-      "doc_type": "airline",
-      "iso_country": "AE"
-    }
+    "_id": "airline_1427",
+    "active": true,
+    "airline_iata": "KF",
+    "airline_icao": "BLF",
+    "airline_id": 1427,
+    "airline_name": "Blue1",
+    "callsign": "BLUEFIN",
+    "doc_type": "airline",
+    "iso_country": "FI"
   }
 ]
 ```
 
-Now we can retrieve all airlines for a given country.
+Now we can retrieve all airlines for a given country.  Returning the `airline_id`,  `airline_name` and `airline_code`.  Some airlines may have an `airline_iata` code, while others may have an `airline_icao` code, and some may have both.  To normalize these values into a single `airline_code` we will use the `IFNULL` conditional statement
 
 ##### Query
 
 ```sql
-SELECT a._id, a.airline_iata, a.airline_icao, a.airline_name, a.callsign
-FROM `flight-data` AS a
-WHERE a.doc_type = 'airline' AND
-      a.iso_country = 'AE' AND
-      a.active = true
-ORDER BY a.airline_name ASC
+SELECT airlines.airline_id, airlines.airline_name,
+    IFNULL( airlines.airline_iata, airlines.airline_icao ) AS airline_code
+FROM `flight-data` AS airlines
+WHERE airlines.iso_country = 'AE'
+    AND airlines.doc_type = 'airline'
+    AND airlines.active = true
+ORDER BY airlines.airline_name ASC
 ```
 
 ##### Result
@@ -167,32 +166,34 @@ ORDER BY a.airline_name ASC
 ```json
 [
   {
-    "_id": "airline_G9",
-    "airline_iata": "G9",
-    "airline_icao": "ABY",
-    "airline_name": "Air Arabia",
-    "callsign": "ARABIA"
+    "airline_code": "MO",
+    "airline_id": 502,
+    "airline_name": "Abu Dhabi Amiri Flight"
   },
   {
-    "_id": "airline_EK",
-    "airline_iata": "EK",
-    "airline_icao": "UAE",
-    "airline_name": "Emirates",
-    "callsign": "EMIRATES"
+    "airline_code": "G9",
+    "airline_id": 329,
+    "airline_name": "Air Arabia"
   },
   {
-    "_id": "airline_EY",
-    "airline_iata": "EY",
-    "airline_icao": "ETD",
-    "airline_name": "Etihad Airways",
-    "callsign": "ETIHAD"
+    "airline_code": "8L",
+    "airline_id": 2942,
+    "airline_name": "Cargo Plus Aviation"
   },
   {
-    "_id": "airline_FZ",
-    "airline_iata": "FZ",
-    "airline_icao": "FDB",
-    "airline_name": "Fly Dubai",
-    "callsign": null
+    "airline_code": "EK",
+    "airline_id": 2183,
+    "airline_name": "Emirates"
+  },
+  {
+    "airline_code": "EY",
+    "airline_id": 2222,
+    "airline_name": "Etihad Airways"
+  },
+  {
+    "airline_code": "FZ",
+    "airline_id": 14485,
+    "airline_name": "Fly Dubai"
   }
 ]
 ```
@@ -201,55 +202,204 @@ ORDER BY a.airline_name ASC
 
 ## Airline Codes
 
-The following index and queries allows for finding airlines by their IATA, ICAO or Ident Codes. By creating an index on `code` attribute where the `doc_type = 'code'` and the `designation = 'airline'.
+Each Airline has 2 identifying codes a 2 character [IATA](http://www.iata.org/about/members/Pages/airline-list.aspx?All=true) / [FAA](http://www.faa.gov/) Code and a 3 character [ICAO](http://www.icao.int/) code.  Each of these attributes are stored as separate attributes on the airlines document as `airline_iata` and `airline_icao`.
 
 ##### Index
 
-This is using the previously created `idx_codes` index
-
 ```sql
-CREATE INDEX idx_codes ON `flight-data`(code, designation)
-WHERE doc_type = 'code'
+CREATE INDEX idx_airline_codes ON `flight-data`( airline_iata, airline_icao )
+WHERE doc_type = 'airline'
+USING GSI
 ```
 
-##### Query 
-
-This query will find the airline by the 2 character IATA code
+##### Query
 
 ```sql
-SELECT a._id, a.airline_iata, a.airline_icao, a.airline_name, a.callsign
-FROM `flight-data` AS c
-INNER JOIN `flight-data` AS a ON KEYS 'airline_' || TOSTRING(c.id)
-WHERE c.code = 'DL'
-      AND c.designation = 'airline' 
-      AND c.doc_type = 'code'
+SELECT airlines.airline_id, airlines.airline_name, airlines.airline_iata, airlines.airline_icao
+FROM `flight-data` AS airlines
+WHERE (
+        airlines.airline_iata = 'DL'
+        OR (
+            airlines.airline_iata IS NOT MISSING AND airlines.airline_icao = 'DL'
+        )
+    )
+    AND airlines.doc_type = 'airline'
 LIMIT 1
 ```
 
-This query will find the airline by the 3 character ICAO code
-
-```sql
-SELECT a._id, a.airline_iata, a.airline_icao, a.airline_name, a.callsign
-FROM `flight-data` AS c
-INNER JOIN `flight-data` AS a ON KEYS 'airline_' || TOSTRING(c.id)
-WHERE c.code = 'DAL'
-      AND c.designation = 'airline' 
-      AND c.doc_type = 'code'
-LIMIT 1
-```
-
-Both queries will yield the same exact result.
-
-##### Result
+##### Results
 
 ```json
 [
   {
-    "_id": "airline_2009",
     "airline_iata": "DL",
     "airline_icao": "DAL",
-    "airline_name": "Delta Air Lines",
-    "callsign": "DELTA"
+    "airline_id": 2009,
+    "airline_name": "Delta Air Lines"
+  }
+]
+```
+
+This works but is slow because of the `OR` statement that we have to use to attempt to match either code.  We can improve this by creating 2 separate indexes on each code the query using a `UNION` statement.
+
+##### Index
+
+Drop the index we just created, since it will no longer be used.
+
+```sql
+DROP INDEX `flight-data`.idx_airline_codes
+```
+
+Create index for Airline IATA codes
+
+```sql
+CREATE INDEX idx_airlines_iata_codes ON `flight-data`( airline_iata )
+WHERE doc_type = 'airline'
+    AND airline_iata IS NOT NULL
+USING GSI
+```
+
+Create index for Airline ICAO codes
+
+```sql
+CREATE INDEX idx_airlines_icao_codes ON `flight-data`( airline_icao )
+WHERE doc_type = 'airline'
+    AND airline_icao IS NOT NULL
+USING GSI
+```
+
+##### Query
+
+```sql
+SELECT airlines.airline_id, airlines.airline_name, airlines.airline_iata, airlines.airline_icao
+FROM `flight-data` AS airlines
+WHERE airlines.airline_iata = 'DL'
+    AND airlines.doc_type = 'airline'
+UNION
+SELECT airlines.airline_id, airlines.airline_name, airlines.airline_iata, airlines.airline_icao
+FROM `flight-data` AS airlines
+WHERE airlines.airline_icao = 'DL'
+    AND airlines.doc_type = 'airline'
+LIMIT 1
+```
+
+##### Results
+
+```json
+[
+  {
+    "airline_iata": "DL",
+    "airline_icao": "DAL",
+    "airline_id": 2009,
+    "airline_name": "Delta Air Lines"
+  }
+]
+```
+
+This performs much better as we are now using 2 different indexes for the IATA and ICAO codes.  However, we can improve this query even more.  One of our data models [Codes](/flight-data/docs/models/codes.md) is a lookup document for Airline, Airport, and Navaid IATA, ICAO and Ident Codes.
+
+##### Index
+
+Drop the previously created indexes as they will no longer be used.
+
+```sql
+DROP INDEX `flight-data`.idx_airlines_iata_codes
+```
+
+```sql
+DROP INDEX `flight-data`.idx_airlines_icao_codes
+```
+
+Create a new index on the `code` and `designation` attributes where the `doc_type = 'code'`
+
+```sql
+CREATE INDEX idx_codes ON `flight-data`( code, designation )
+WHERE doc_type = 'code'
+USING GSI
+```
+
+##### Query
+
+Query by the IATA code
+
+```sql
+SELECT airlines.airline_id, airlines.airline_name, airlines.airline_iata, airlines.airline_icao
+FROM `flight-data` AS codes
+INNER JOIN `flight-data` AS airlines ON KEYS 'airline_' || TOSTRING( codes.id )
+WHERE codes.code = 'DL'
+     AND codes.designation = 'airline'
+     AND codes.doc_type = 'code'
+LIMIT 1
+```
+
+Query by the ICAO code
+
+```sql
+SELECT airlines.airline_id, airlines.airline_name, airlines.airline_iata, airlines.airline_icao
+FROM `flight-data` AS codes
+INNER JOIN `flight-data` AS airlines ON KEYS 'airline_' || TOSTRING( codes.id )
+WHERE codes.code = 'DAL'
+     AND codes.designation = 'airline'
+     AND codes.doc_type = 'code'
+LIMIT 1
+```
+
+##### Results
+
+Both queries will yield the same exact result.
+
+```json
+[
+  {
+    "airline_iata": "DL",
+    "airline_icao": "DAL",
+    "airline_id": 2009,
+    "airline_name": "Delta Air Lines"
+  }
+]
+```
+
+Our [Codes](/flight-data/docs/models/codes.md) model is keyed by `{{designation}}_code_{{code}}` i.e. `airline_code_DL`.  Because of how these documents are keyed, we do not even need an index.  Using this predictive key pattern we use the code as part of the key name on the codes document.
+
+##### Index
+
+Drop the previously created index, as it will no longer be used.
+
+```sql
+DROP INDEX `flight-data`.idx_codes
+```
+
+##### Query
+
+Query by the IATA code
+
+```sql
+SELECT airlines.airline_id, airlines.airline_name, airlines.airline_iata, airlines.airline_icao
+FROM `flight-data` AS codes
+USE KEYS 'airline_code_DL'
+INNER JOIN `flight-data` AS airlines ON KEYS 'airline_' || TOSTRING( codes.id )
+LIMIT 1
+```
+
+Query by the ICAO code
+
+```sql
+SELECT airlines.airline_id, airlines.airline_name, airlines.airline_iata, airlines.airline_icao
+FROM `flight-data` AS codes
+USE KEYS 'airline_code_DAL'
+INNER JOIN `flight-data` AS airlines ON KEYS 'airline_' || TOSTRING( codes.id )
+LIMIT 1
+```
+
+##### Results
+
+```json
+[
+  {
+    "airline_iata": "DL",
+    "airline_icao": "DAL",
+    "airline_id": 2009,
+    "airline_name": "Delta Air Lines"
   }
 ]
 ```

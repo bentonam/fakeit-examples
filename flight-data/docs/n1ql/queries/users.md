@@ -76,8 +76,9 @@ The following query will get a User by their Username.
 ##### Index
 
 ```sql
-CREATE INDEX idx_users_username ON `flight-data`(account.username)
+CREATE INDEX idx_users_username ON `flight-data`( account.username )
 WHERE doc_type = 'user'
+USING GSI
 ```
 
 ##### Query
@@ -102,7 +103,7 @@ LIMIT 1
 ]
 ```
 
-The following query will retrieve a user by their `username` and `password`.
+The following index and query will retrieve a user by their `username` and `password`.
 
 ##### Index
 
@@ -113,8 +114,9 @@ DROP INDEX `flight-data`.idx_users_username
 ```
 
 ```sql
-CREATE INDEX idx_users_username ON `flight-data`(account.username, account.`password`)
+CREATE INDEX idx_users_username ON `flight-data`( account.username, account.`password` )
 WHERE doc_type = 'user'
+USING GSI
 ```
 
 ##### Query
@@ -251,6 +253,92 @@ WHERE flattened_addresses.`primary` = true
   }
 ]
 ```
+
+Building on the previous examples, we want to return the full country and region names as part of each address.
+
+##### Query
+
+```sql
+SELECT flattened_addresses.address_1, flattened_addresses.address_2, flattened_addresses.locality,
+    flattened_addresses.postal_code, flattened_addresses.`primary`, flattened_addresses.type,
+    flattened_addresses.iso_country, countries.country_name,
+    flattened_addresses.iso_region, regions.region_name
+FROM `flight-data` AS users
+USE KEYS 'user_197'
+UNNEST users.addresses AS flattened_addresses
+INNER JOIN `flight-data` AS countries
+    ON KEYS 'country_' || flattened_addresses.iso_country
+INNER JOIN `flight-data` AS regions
+    ON KEYS 'region_' || flattened_addresses.iso_region
+```
+
+##### Result
+
+```json
+[
+  {
+    "address_1": "98527 Tromp Light Lodge",
+    "address_2": null,
+    "country_name": "Equatorial Guinea",
+    "iso_country": "GQ",
+    "iso_region": "GQ-CS",
+    "locality": "South Selmerhaven",
+    "postal_code": "49540-9412",
+    "primary": true,
+    "region_name": "Centro Sur",
+    "type": "Home"
+  },
+  {
+    "address_1": "5783 Mathilde Vista Parkway",
+    "address_2": "Apt. 899",
+    "country_name": "Equatorial Guinea",
+    "iso_country": "GQ",
+    "iso_region": "GQ-CS",
+    "locality": "Schinnerside",
+    "postal_code": "78895",
+    "primary": false,
+    "region_name": "Centro Sur",
+    "type": "Home"
+  }
+]
+```
+
+And now with just the primary address information.
+
+##### Query
+
+```sql
+SELECT flattened_addresses.address_1, flattened_addresses.address_2, flattened_addresses.locality,
+    flattened_addresses.postal_code, flattened_addresses.type,
+    flattened_addresses.iso_country, countries.country_name,
+    flattened_addresses.iso_region, regions.region_name
+FROM `flight-data` AS users
+USE KEYS 'user_197'
+UNNEST users.addresses AS flattened_addresses
+INNER JOIN `flight-data` AS countries
+    ON KEYS 'country_' || flattened_addresses.iso_country
+INNER JOIN `flight-data` AS regions
+    ON KEYS 'region_' || flattened_addresses.iso_region
+WHERE flattened_addresses.`primary` = true
+```
+
+##### Result
+
+```json
+[
+  {
+    "address_1": "98527 Tromp Light Lodge",
+    "address_2": null,
+    "country_name": "Equatorial Guinea",
+    "iso_country": "GQ",
+    "iso_region": "GQ-CS",
+    "locality": "South Selmerhaven",
+    "postal_code": "49540-9412",
+    "region_name": "Centro Sur",
+    "type": "Home"
+  }
+]
+```
 ---
 
 ## Users Phones
@@ -288,7 +376,7 @@ USE KEYS 'user_197'
 ]
 ```
 
-Just like the addresses, we need to flatten these results to make them more useful. 
+Just like the addresses, we need to flatten these results to make them more useful.
 
 ##### Query
 
@@ -318,7 +406,7 @@ UNNEST users.phones AS flattened_phones
 ]
 ```
 
-We know that each of our users has a primary phone, we need to be able to return just that address.
+We know that each of our users has a primary phone, we need to be able to return just that phone.
 
 ##### Query
 
@@ -416,7 +504,7 @@ UNNEST users.emails AS flattened_emails
 ]
 ```
 
-We know that each of our users has a primary address, we need to be able to return just that address.
+We know that each of our users has a primary email address, we need to be able to return just that email.
 
 ##### Query
 
@@ -491,17 +579,19 @@ ORDER BY emails.`primary` DESC
 ]
 ```
 
-##### User By ID as Flat Object
+---
 
-Our user model uses nested properties, we need to retrieve a users record as a single level object with just the primary address, phone and email.
+## User By ID as Flat Object
+
+Our user model uses nested attributes, we need to retrieve a users record as a single level object with just the primary address, phone and email.
 
 
 ##### Query
 
 ```sql
-SELECT users.account.*, users.details.*, 
-    primary_email.email_address, 
-    primary_address.address_1, primary_address.address_2, primary_address.iso_country, 
+SELECT users.account.*, users.details.*,
+    primary_email.email_address,
+    primary_address.address_1, primary_address.address_2, primary_address.iso_country,
     primary_address.iso_region, primary_address.locality, primary_address.postal_code,
     primary_phone.phone_number, primary_phone.extension AS phone_extension
 FROM `flight-data` AS users
@@ -542,132 +632,6 @@ WHERE primary_email.`primary` = true
     "prefix": null,
     "suffix": null,
     "username": "Garett31"
-  }
-]
-```
-
-### User Airport Reviews
-
-The following indexes and queries show to retrieve which reviews for an airport a user has submitted.
-
-##### Index
-
-```sql
-CREATE INDEX idx_users_airport_reviews ON `flight-data`(user_id, airport_id)
-WHERE doc_type = 'airport-review'
-```
-
-##### Query
-
-```sql
-SELECT reviews.review_id, reviews.review_title, reviews.rating, MILLIS_TO_STR(reviews.review_date) AS review_date,
-    IFNULL(airports.airport_iata, airports.airport_icao, airports.airport_ident) AS airport_code, airports.airport_name
-FROM `flight-data` AS reviews
-INNER JOIN `flight-data` AS airports ON KEYS 'airport_' || TOSTRING(reviews.airport_id)
-WHERE reviews.user_id = 2097
-    AND reviews.doc_type = 'airport-review'
-ORDER BY reviews.review_date DESC
-```
-
-##### Results
-
-```json
-[
-  {
-    "airport_code": "LUX",
-    "airport_name": "Luxembourg",
-    "rating": 5,
-    "review_date": "2016-05-19T00:19:36.795Z",
-    "review_id": "bd5def2c-9e3b-48fd-94d1-83f95af0a358",
-    "review_title": "Sit est error autem aut vero quo consequatur consequatur."
-  },
-  {
-    "airport_code": "FCA",
-    "airport_name": "Glacier Park Intl",
-    "rating": 4,
-    "review_date": "2016-05-18T22:19:01.648Z",
-    "review_id": "663b9aed-3622-45d5-931b-d885d5a55edf",
-    "review_title": "Quis molestias aut eveniet consequatur omnis."
-  },
-  {
-    "airport_code": "VICX",
-    "airport_name": "Kanpur Chakeri",
-    "rating": 2,
-    "review_date": "2016-05-18T18:01:20.88Z",
-    "review_id": "7f9ce067-af32-4d77-9c54-d3b5e1debcd7",
-    "review_title": "Debitis est omnis aut quia ut repudiandae pariatur culpa."
-  },
-  {
-    "airport_code": "PLP",
-    "airport_name": "Captain Ramon Xatruch Airport",
-    "rating": 3,
-    "review_date": "2015-06-28T22:48:49.121Z",
-    "review_id": "c336ea6c-07b7-4746-9dc5-ddd9e0b89b07",
-    "review_title": "Neque sit expedita veritatis quia sed."
-  }
-]
-```
-
----
-
-### User Airline Reviews
-
-The following indexes and queries show to retrieve which reviews for an airline a user has submitted.
-
-##### Index
-
-```sql
-CREATE INDEX idx_users_airline_reviews ON `flight-data`(user_id, airline_id)
-WHERE doc_type = 'airline-review'
-```
-
-##### Query
-
-```sql
-SELECT reviews.review_id, reviews.review_title, reviews.rating, MILLIS_TO_STR(reviews.review_date) AS review_date,
-    IFNULL(airlines.airline_iata, airlines.airline_icao) AS airline_code, airlines.airline_name
-FROM `flight-data` AS reviews
-INNER JOIN `flight-data` AS airlines ON KEYS 'airline_' || TOSTRING(reviews.airline_id)
-WHERE reviews.user_id = 2097
-    AND reviews.doc_type = 'airline-review'
-ORDER BY reviews.review_date DESC
-```
-
-##### Results
-
-```json
-[
-  {
-    "airline_code": "MCX",
-    "airline_name": "Cargo Express",
-    "rating": 1,
-    "review_date": "2016-05-18T23:58:07.977Z",
-    "review_id": "b01f3273-2940-46a9-9ba6-bd7520eaa047",
-    "review_title": "Fuga ex libero rerum magni aliquid est reiciendis."
-  },
-  {
-    "airline_code": "ADP",
-    "airline_name": "Aerodiplomatic",
-    "rating": 1,
-    "review_date": "2016-05-18T13:36:43.956Z",
-    "review_id": "8962c9cf-114e-4610-88ee-4d6e373b655b",
-    "review_title": "Quasi quod nobis sint."
-  },
-  {
-    "airline_code": "WWI",
-    "airline_name": "Worldwide Jet Charter",
-    "rating": 2,
-    "review_date": "2016-01-23T02:10:54.48Z",
-    "review_id": "e7b18254-fe5e-4465-a0a2-56cdce476e77",
-    "review_title": "Qui itaque quasi exercitationem suscipit iste ipsum sint est commodi."
-  },
-  {
-    "airline_code": "SAG",
-    "airline_name": "SOS Flygambulans",
-    "rating": 3,
-    "review_date": "2015-06-10T20:35:44.116Z",
-    "review_id": "8398fc52-625c-4eb8-a4ae-559c02df9b8f",
-    "review_title": "Et sit amet sit voluptate eaque quasi voluptas quia illum."
   }
 ]
 ```

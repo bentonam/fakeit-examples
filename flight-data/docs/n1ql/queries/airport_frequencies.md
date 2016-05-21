@@ -1,40 +1,38 @@
-# Airport Frequency Queries
+# Airport Airline Queries
 
-These are example N1QL queries that may can performed to retrieve airport frequency related data.
+These are example N1QL queries that may can performed to retrieve airport airline related data.
 
 ---
 
 ## Airport Frequencies by Code
 
-This query uses the previously created `idx_airport_codes` index.
+##### Query
 
-##### Query 
-
-This query will find the available frequencies by the 3 character IATA / FAA code of the airport
+This query will find the available airlines by the 3 character IATA / FAA code of the airport
 
 ```sql
 SELECT frequencies.frequency_id, frequencies.description, frequencies.frequency_mhz, frequencies.type
-FROM `flight-data` AS c
-INNER JOIN `flight-data` AS lookup ON KEYS 'airport_' || TOSTRING(c.id) || '_frequencies'
-UNNEST lookup.frequencies AS frequency_id
-INNER JOIN `flight-data` AS frequencies ON KEYS 'frequency_' || TOSTRING(frequency_id)
-WHERE c.code = 'SLN'
-    AND c.designation = 'airport'
-    AND c.doc_type = 'code'
+FROM `flight-data` AS airport_codes
+USE KEYS 'airport_code_SLN'
+INNER JOIN `flight-data` AS airport_frequencies
+    ON KEYS 'airport_' || TOSTRING( airport_codes.id ) || '_frequencies'
+UNNEST airport_frequencies.frequencies AS frequencies_lookup
+INNER JOIN `flight-data` AS frequencies
+    ON KEYS 'frequency_' || TOSTRING( frequencies_lookup )
 ORDER BY frequencies.type ASC
 ```
 
-This query will find the available frequencies by the 4 character ICAO code of the airport
+This query will find the available airlines by the 4 character ICAO code of the airport
 
 ```sql
 SELECT frequencies.frequency_id, frequencies.description, frequencies.frequency_mhz, frequencies.type
-FROM `flight-data` AS c
-INNER JOIN `flight-data` AS lookup ON KEYS 'airport_' || TOSTRING(c.id) || '_frequencies'
-UNNEST lookup.frequencies AS frequency_id
-INNER JOIN `flight-data` AS frequencies ON KEYS 'frequency_' || TOSTRING(frequency_id)
-WHERE c.code = 'KSLN'
-    AND c.designation = 'airport'
-    AND c.doc_type = 'code'
+FROM `flight-data` AS airport_codes
+USE KEYS 'airport_code_KSLN'
+INNER JOIN `flight-data` AS airport_frequencies
+    ON KEYS 'airport_' || TOSTRING( airport_codes.id ) || '_frequencies'
+UNNEST airport_frequencies.frequencies AS frequencies_lookup
+INNER JOIN `flight-data` AS frequencies
+    ON KEYS 'frequency_' || TOSTRING( frequencies_lookup )
 ORDER BY frequencies.type ASC
 ```
 

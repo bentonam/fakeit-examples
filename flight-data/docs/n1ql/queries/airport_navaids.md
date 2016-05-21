@@ -1,42 +1,40 @@
 # Airport Navaid Queries
 
-These are example N1QL queries that may can performed to retrieve airport frequency related data.
+These are example N1QL queries that may can performed to retrieve airport navaid related data.
 
 ---
 
 ## Airport Navaids by Code
 
-This query uses the previously created `idx_airport_codes` index.
-
-##### Query 
+##### Query
 
 This query will find the available frequencies by the 3 character IATA / FAA code of the airport
 
 ```sql
-SELECT navaids.navaid_id, navaids.navaid_ident, navaids.navaid_name, navaids.type, 
+SELECT navaids.navaid_id, navaids.navaid_ident, navaids.navaid_name, navaids.type,
     navaids.frequency_khz, navaids.geo, navaids.elevation, navaids.usage_type
-FROM `flight-data` AS c
-INNER JOIN `flight-data` AS lookup ON KEYS 'airport_' || TOSTRING(c.id) || '_navaids'
-UNNEST lookup.navaids AS navaid_ids
-INNER JOIN `flight-data` AS navaids ON KEYS 'navaid_' || TOSTRING(navaid_ids)
-WHERE c.code = 'SLN'
-    AND c.designation = 'airport' 
-    AND c.doc_type = 'code'
+FROM `flight-data` AS airport_codes
+USE KEYS 'airport_code_SLN'
+INNER JOIN `flight-data` AS airport_navaids
+    ON KEYS 'airport_' || TOSTRING( airport_codes.id ) || '_navaids'
+UNNEST airport_navaids.navaids AS navaids_lookup
+INNER JOIN `flight-data` AS navaids
+    ON KEYS 'navaid_' || TOSTRING( navaids_lookup )
 ORDER BY navaids.navaid_name ASC
 ```
 
 This query will find the available frequencies by the 4 character ICAO code of the airport
 
 ```sql
-SELECT navaids.navaid_id, navaids.navaid_ident, navaids.navaid_name, navaids.type, 
+SELECT navaids.navaid_id, navaids.navaid_ident, navaids.navaid_name, navaids.type,
     navaids.frequency_khz, navaids.geo, navaids.elevation, navaids.usage_type
-FROM `flight-data` AS c
-INNER JOIN `flight-data` AS lookup ON KEYS 'airport_' || TOSTRING(c.id) || '_navaids'
-UNNEST lookup.navaids AS navaid_ids
-INNER JOIN `flight-data` AS navaids ON KEYS 'navaid_' || TOSTRING(navaid_ids)
-WHERE c.code = 'KSLN'
-    AND c.designation = 'airport' 
-    AND c.doc_type = 'code'
+FROM `flight-data` AS airport_codes
+USE KEYS 'airport_code_KSLN'
+INNER JOIN `flight-data` AS airport_navaids
+    ON KEYS 'airport_' || TOSTRING( airport_codes.id ) || '_navaids'
+UNNEST airport_navaids.navaids AS navaids_lookup
+INNER JOIN `flight-data` AS navaids
+    ON KEYS 'navaid_' || TOSTRING( navaids_lookup )
 ORDER BY navaids.navaid_name ASC
 ```
 

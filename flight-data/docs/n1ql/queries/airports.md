@@ -6,13 +6,13 @@ These are example N1QL queries that may can performed to retrieve airport relate
 
 ## Airport By ID
 
-The following query will get an Airline by its ID.
+The following query will get an Airline by its Document ID.
 
 ##### Query
 
 ```sql
-SELECT a.*
-FROM `flight-data` AS a
+SELECT airports.*
+FROM `flight-data` AS airports
 USE KEYS 'airport_3605'
 ```
 
@@ -52,8 +52,8 @@ The following query will retrieve many Airlines by their ID.
 ##### Query
 
 ```sql
-SELECT a.*
-FROM `flight-data` AS a
+SELECT airports.*
+FROM `flight-data` AS airports
 USE KEYS ['airport_3605', 'airport_3568']
 ```
 
@@ -121,17 +121,19 @@ The following index and queries allows for finding airports based in a given cou
 ##### Index
 
 ```sql
-CREATE INDEX idx_airports_iso_country ON `flight-data`(iso_country)
-WHERE doc_type = 'airport' AND iso_country IS NOT NULL
+CREATE INDEX idx_airports_iso_country ON `flight-data`( iso_country )
+WHERE doc_type = 'airport'
+    AND iso_country IS NOT NULL
+USING GSI
 ```
 
 ##### Query
 
 ```sql
-SELECT a.*
-FROM `flight-data` AS a
-WHERE a.iso_country = 'FI'
-    AND a.doc_type = 'airport'
+SELECT airports.*
+FROM `flight-data` AS airports
+WHERE airports.iso_country = 'FI'
+    AND airports.doc_type = 'airport'
 LIMIT 1
 ```
 
@@ -166,17 +168,17 @@ LIMIT 1
 ]
 ```
 
-Now that we know we can retrieve all airports in a given country by querying on the `iso_country`.
+Now that we know we can retrieve an airport in a country, lets retrieve all airports in a given country by querying on the `iso_country`, sorted by the `airport_name`
 
 ##### Query
 
 ```sql
-SELECT a.airport_id, a.airport_name, a.airport_type, a.iso_region, a.municipality, 
-    a.airport_iata, a.airport_icao, a.airport_ident
-FROM `flight-data` AS a
-WHERE a.iso_country = 'FI'
-    AND a.doc_type = 'airport'
-ORDER BY a.airport_name ASC
+SELECT airports.airport_id, airports.airport_name, airports.airport_type, airports.iso_region, airports.municipality,
+    IFNULL( airports.airport_iata, airports.airport_icao, airports.airport_ident ) AS airport_code
+FROM `flight-data` AS airports
+WHERE airports.iso_country = 'AE'
+    AND airports.doc_type = 'airport'
+ORDER BY airports.airport_name ASC
 ```
 
 ##### Results
@@ -184,24 +186,28 @@ ORDER BY a.airport_name ASC
 ```json
 [
   {
-    "airport_iata": "ENF",
-    "airport_icao": "EFET",
-    "airport_id": 2303,
-    "airport_ident": "EFET",
-    "airport_name": "Enontekio",
-    "airport_type": "medium_airport",
-    "iso_region": "FI-LL",
-    "municipality": "Enontekio"
+    "airport_code": "AUH",
+    "airport_id": 5226,
+    "airport_name": "Abu Dhabi Intl",
+    "airport_type": "large_airport",
+    "iso_region": "AE-AZ",
+    "municipality": "Abu Dhabi"
   },
   {
-    "airport_iata": null,
-    "airport_icao": "EFEU",
-    "airport_id": 2304,
-    "airport_ident": "EFEU",
-    "airport_name": "Eura",
-    "airport_type": "small_airport",
-    "iso_region": "FI-LS",
-    "municipality": "Eura"
+    "airport_code": "AAN",
+    "airport_id": 5230,
+    "airport_name": "Al Ain International Airport",
+    "airport_type": "medium_airport",
+    "iso_region": "AE-AZ",
+    "municipality": "Al Ain"
+  },
+  {
+    "airport_code": "DHF",
+    "airport_id": 5231,
+    "airport_name": "Al Dhafra",
+    "airport_type": "medium_airport",
+    "iso_region": "AE-AZ",
+    "municipality": "Abu Dhabi"
   },
   ...
 ]
@@ -212,10 +218,10 @@ Additionally we can retrieve an aggregate count of the number of airports in a g
 ##### Query
 
 ```sql
-SELECT COUNT(1) AS airports
-FROM `flight-data` AS a
-WHERE a.iso_country = 'FI'
-    AND a.doc_type = 'airport'
+SELECT COUNT(1) AS total_airports
+FROM `flight-data` AS airports
+WHERE airports.iso_country = 'FI'
+    AND airports.doc_type = 'airport'
 ```
 
 ##### Result
@@ -223,7 +229,7 @@ WHERE a.iso_country = 'FI'
 ```json
 [
   {
-    "airports": 50
+    "total_airports": 50
   }
 ]
 ```
@@ -243,20 +249,23 @@ DROP INDEX `flight-data`.idx_airports_iso_country
 ```
 
 ```sql
-CREATE INDEX idx_airports_iso_country_region ON `flight-data`(iso_country, iso_region)
-WHERE doc_type = 'airport' AND iso_country IS NOT NULL
+CREATE INDEX idx_airports_iso_country_region ON `flight-data`( iso_country, iso_region )
+WHERE doc_type = 'airport'
+    AND iso_country IS NOT NULL
+    AND iso_region IS NOT NULL
+USING GSI
 ```
 
 ##### Query
 
 ```sql
-SELECT a.airport_id, a.airport_name, a.airport_type, a.iso_region, a.municipality, 
-    a.airport_iata, a.airport_icao, a.airport_ident
-FROM `flight-data` AS a
-WHERE a.iso_country = 'US' 
-    AND a.iso_region = 'US-VT'
-    AND a.doc_type = 'airport'
-ORDER BY a.airport_name ASC
+SELECT airports.airport_id, airports.airport_name, airports.airport_type, airports.iso_region, airports.municipality,
+    IFNULL( airports.airport_iata, airports.airport_icao, airports.airport_ident ) AS airport_code
+FROM `flight-data` AS airports
+WHERE airports.iso_country = 'US'
+    AND airports.iso_region = 'US-VT'
+    AND airports.doc_type = 'airport'
+ORDER BY airports.airport_name ASC
 ```
 
 ##### Results
@@ -264,26 +273,45 @@ ORDER BY a.airport_name ASC
 ```json
 [
   {
-    "airport_iata": "BTV",
-    "airport_icao": "KBTV",
+    "airport_code": "BTV",
     "airport_id": 3430,
-    "airport_ident": "KBTV",
     "airport_name": "Burlington Intl",
     "airport_type": "medium_airport",
     "iso_region": "US-VT",
     "municipality": "Burlington"
   },
   {
-    "airport_iata": "MPV",
-    "airport_icao": "KMPV",
+    "airport_code": "MPV",
     "airport_id": 20551,
-    "airport_ident": "KMPV",
     "airport_name": "Edward F Knapp State",
     "airport_type": "medium_airport",
     "iso_region": "US-VT",
     "municipality": "Montpelier"
   },
-  ...
+  {
+    "airport_code": "VSF",
+    "airport_id": 21336,
+    "airport_name": "Hartness State",
+    "airport_type": "small_airport",
+    "iso_region": "US-VT",
+    "municipality": "Springfield VT"
+  },
+  {
+    "airport_code": "MVL",
+    "airport_id": 20575,
+    "airport_name": "Morrisville Stowe State Airport",
+    "airport_type": "small_airport",
+    "iso_region": "US-VT",
+    "municipality": "Morrisville"
+  },
+  {
+    "airport_code": "RUT",
+    "airport_id": 3859,
+    "airport_name": "Rutland State Airport",
+    "airport_type": "medium_airport",
+    "iso_region": "US-VT",
+    "municipality": "Rutland"
+  }
 ]
 ```
 
@@ -292,11 +320,11 @@ Additionally we can retrieve an aggregate count of the number of airports in a g
 ##### Query
 
 ```sql
-SELECT COUNT(1) AS airports
-FROM `flight-data` AS a
-WHERE a.iso_country = 'US'
-    AND a.iso_region = 'US-AZ'
-    AND a.doc_type = 'airport'
+SELECT COUNT(1) AS total_airports
+FROM `flight-data` AS airports
+WHERE airports.iso_country = 'US'
+    AND airports.iso_region = 'US-VT'
+    AND airports.doc_type = 'airport'
 ```
 
 ##### Result
@@ -304,7 +332,7 @@ WHERE a.iso_country = 'US'
 ```json
 [
   {
-    "airports": 42
+    "total_airports": 5
   }
 ]
 ```
@@ -313,40 +341,31 @@ WHERE a.iso_country = 'US'
 
 ## Airport Codes
 
-The following index and queries allows for finding airports by their IATA, ICAO or Ident Codes. By creating an index on `code` attribute where the `doc_type = 'code'` and the `designation = 'airport'.
+The following queries allows for finding airports by their IATA, ICAO or Ident Codes.
 
-##### Index
+Just like Airlines, our [Codes](/flight-data/docs/models/codes.md) model is keyed by `{{designation}}_code_{{code}}` i.e. `airport_code_ICT`.  Because of how these documents are keyed, we do not even need an index.  Using this predictive key pattern we use the code as part of the key name on the codes document.
 
-```sql
-CREATE INDEX idx_codes ON `flight-data`(code, designation)
-WHERE doc_type = 'code'
-```
+##### Query
 
-##### Query 
-
-This query will find the airline by the 3 character IATA / FAA code
+Query by the IATA code
 
 ```sql
-SELECT a.airport_id, a.airport_name, a.airport_type, a.iso_region, a.municipality, 
-    a.airport_iata, a.airport_icao, a.airport_ident
-FROM `flight-data` AS c
-INNER JOIN `flight-data` AS a ON KEYS 'airport_' || TOSTRING(c.id)
-WHERE c.code = 'ATL'
-    AND c.designation = 'airport' 
-    AND c.doc_type = 'code' 
+SELECT airports.airport_id, airports.airport_name, airports.airport_type, airports.iso_region, airports.municipality,
+    IFNULL( airports.airport_iata, airports.airport_icao, airports.airport_ident ) AS airport_code
+FROM `flight-data` AS codes
+USE KEYS 'airport_code_ICT'
+INNER JOIN `flight-data` AS airports ON KEYS 'airport_' || TOSTRING( codes.id )
 LIMIT 1
 ```
 
-This query will find the airline by the 4 character ICAO code
+Query by the ICAO code
 
 ```sql
-SELECT a.airport_id, a.airport_name, a.airport_type, a.iso_region, a.municipality, 
-    a.airport_iata, a.airport_icao, a.airport_ident
-FROM `flight-data` AS c
-INNER JOIN `flight-data` AS a ON KEYS 'airport_' || TOSTRING(c.id)
-WHERE c.code = 'KICT'
-    AND c.designation = 'airport' 
-    AND c.doc_type = 'code' 
+SELECT airports.airport_id, airports.airport_name, airports.airport_type, airports.iso_region, airports.municipality,
+    IFNULL( airports.airport_iata, airports.airport_icao, airports.airport_ident ) AS airport_code
+FROM `flight-data` AS codes
+USE KEYS 'airport_code_KICT'
+INNER JOIN `flight-data` AS airports ON KEYS 'airport_' || TOSTRING( codes.id )
 LIMIT 1
 ```
 
@@ -357,35 +376,37 @@ Both queries will yield the same exact result.
 ```json
 [
   {
-    "airport_iata": "ATL",
-    "airport_icao": "KATL",
-    "airport_id": 3384,
-    "airport_ident": "KATL",
-    "airport_name": "Hartsfield Jackson Atlanta Intl",
+    "airport_code": "ICT",
+    "airport_id": 3605,
+    "airport_name": "Wichita Dwight D. Eisenhower National Airport",
     "airport_type": "large_airport",
-    "iso_region": "US-GA",
-    "municipality": "Atlanta"
+    "iso_region": "US-KS",
+    "municipality": "Wichita"
   }
 ]
 ```
 
-Lets say we wanted to search on cities in an ISO country to find associated airport codes for use within an auto-complete function on our site.
 
 ### Airports by City
+
+Lets say we wanted to search on cities in an ISO country to find associated airport codes for use within an auto-complete function on our site.
 
 ##### Index
 
 ```sql
-CREATE INDEX idx_airport_cities ON `flight-data`(iso_country, municipality)
-WHERE doc_type = 'airport' AND iso_country IS NOT NULL AND municipality IS NOT NULL
+CREATE INDEX idx_airport_cities ON `flight-data`( iso_country, municipality )
+WHERE doc_type = 'airport'
+    AND iso_country IS NOT NULL
+    AND municipality IS NOT NULL
+USING GSI
 ```
 
-##### Query 
+##### Query
 
 This query will find the airline by the 3 character IATA / FAA code
 
 ```sql
-SELECT a.municipality AS city, IFNULL(a.airport_iata, a.airport_icao, a.airport_ident) AS airport_code
+SELECT a.municipality AS city, IFNULL( a.airport_iata, a.airport_icao, a.airport_ident ) AS airport_code
 FROM `flight-data` AS a
 WHERE a.iso_country = 'US'
     AND a.municipality LIKE 'San%'
@@ -448,7 +469,7 @@ We can leverage the `OFFSET` clause to paginate through the results.
 ##### Query
 
 ```sql
-SELECT a.municipality AS city, IFNULL(a.airport_iata, a.airport_icao, a.airport_ident) AS airport_code
+SELECT a.municipality AS city, IFNULL( a.airport_iata, a.airport_icao, a.airport_ident ) AS airport_code
 FROM `flight-data` AS a
 WHERE a.iso_country = 'US'
     AND a.municipality LIKE 'San%'
@@ -484,22 +505,23 @@ LIMIT 5 OFFSET 5
 ]
 ```
 
---- 
+---
 
 ## Airports Near a Given Airport
 
-For this query we want to find all airports within a given radius of a given airport code.  
+For this query we want to find all airports within a given radius of a given airport code.
 
 Since we are going to be querying on the ISO Country, Latitude and Longitude of a given airport we need to create an index.
 
 ##### Index
 
 ```sql
-CREATE INDEX idx_airport_distance ON `flight-data`(iso_country, geo.latitude, geo.longitude)
-WHERE doc_type = 'airport' 
-    AND iso_country IS NOT NULL 
-    AND geo.latitude IS NOT NULL 
+CREATE INDEX idx_airports_distance ON `flight-data`( iso_country, geo.latitude, geo.longitude )
+WHERE doc_type = 'airport'
+    AND iso_country IS NOT NULL
+    AND geo.latitude IS NOT NULL
     AND geo.longitude IS NOT NULL
+USING GSI
 ```
 
 This query is based on a MySQL example provided by [Ollie Jones](http://www.plumislandmedia.net/mysql/haversine-mysql-nearest-loc/).
@@ -508,8 +530,8 @@ To perform this query we need to provide 5 pieces of information to the query, t
 
 ##### Input
 
-- The `iso_country`
-- The Source Airports 
+- The Source Airports
+  - `iso_country` i.e. US
   - `latitude` i.e. `36.09780121`
   - `longitude` i.e. `-79.93730164`
 - A `distance_unit`
@@ -522,7 +544,7 @@ To perform this query we need to provide 5 pieces of information to the query, t
 ```sql
 SELECT results.airport_name, results.airport_code, ROUND( results.distance, 2 ) AS distance
 FROM (
-    SELECT airports.airport_name, 
+    SELECT airports.airport_name,
         /* assign an airport_code */
         IFNULL( airports.airport_iata, airports.airport_icao, airports.airport_ident ) AS airport_code,
         /* calculate the distance */
@@ -532,9 +554,9 @@ FROM (
         + SIN(RADIANS( {{source_latitude}} ))
         * SIN(RADIANS( airports.geo.latitude )))) AS distance
     FROM `flight-data` AS airports
-    WHERE airports.iso_country = '{{iso_country}}' 
+    WHERE airports.iso_country = '{{iso_country}}'
         /* limit results to latitudes within {{distance}} north or south of the source latitude, degree of latitude is {{distance_unit}} */
-        AND airports.geo.latitude BETWEEN {{source_latitude}} - ( {{radius}} / {{distance_unit}} ) AND {{source_latitude}} + ( {{radius}} / {{distance_unit}} ) 
+        AND airports.geo.latitude BETWEEN {{source_latitude}} - ( {{radius}} / {{distance_unit}} ) AND {{source_latitude}} + ( {{radius}} / {{distance_unit}} )
         /* limit results to longitudes within {{distance}} east or west of the source longitude, degree of longitude is {{distance_unit}} */
         AND airports.geo.longitude BETWEEN {{source_longitude}} - ( {{radius}} / ( {{distance_unit}} * COS(RADIANS( {{source_latitude}} )))) AND {{source_longitude}} + ( {{radius}} / ( {{distance_unit}} * COS(RADIANS( {{source_latitude}} ))))
         AND airports.doc_type = 'airport'
@@ -544,17 +566,15 @@ WHERE results.distance > 0 /* remove the source from the results as its distance
 ORDER BY results.distance ASC /* sort the results by closest distance */
 ```
 
-To provide the source airports `iso_country`, `latitude`, and `longitude` we can use the previous Airport Codes query. 
+To provide the source airports `iso_country`, `latitude`, and `longitude` we can use the previous Airport Codes query.
 
 ##### Source Airport Query
 
 ```sql
-SELECT a.iso_country, a.geo.latitude AS latitude, a.geo.longitude AS longitude
-FROM `flight-data` AS c
-INNER JOIN `flight-data` AS a ON KEYS 'airport_' || TOSTRING(c.id)
-WHERE c.code = 'ICT'
-    AND c.designation = 'airport' 
-    AND c.doc_type = 'code'
+SELECT airports.iso_country, airports.geo.latitude AS latitude, airports.geo.longitude AS longitude
+FROM `flight-data` AS codes
+USE KEYS 'airport_code_ICT'
+INNER JOIN `flight-data` AS airports ON KEYS 'airport_' || TOSTRING( codes.id )
 LIMIT 1
 ```
 
@@ -579,7 +599,7 @@ For our example we want to find any airports within 100 miles of "ICT". Our `{{d
 ```sql
 SELECT results.airport_name, results.airport_code, ROUND( results.distance, 2 ) AS distance
 FROM (
-    SELECT airports.airport_name, 
+    SELECT airports.airport_name,
         IFNULL( airports.airport_iata, airports.airport_icao, airports.airport_ident ) AS airport_code,
         69 * DEGREES(ACOS(COS(RADIANS( 37.64989853 ))
         * COS(RADIANS( airports.geo.latitude ))
@@ -587,10 +607,10 @@ FROM (
         + SIN(RADIANS( 37.64989853 ))
         * SIN(RADIANS( airports.geo.latitude )))) AS distance
     FROM `flight-data` AS airports
-    WHERE airports.iso_country = 'US' 
-        AND airports.geo.latitude BETWEEN 37.64989853 - (100 / 69) AND 37.64989853 + (100 / 69) 
+    WHERE airports.iso_country = 'US'
+        AND airports.geo.latitude BETWEEN 37.64989853 - (100 / 69) AND 37.64989853 + (100 / 69)
         AND airports.geo.longitude BETWEEN -97.43309784 - (100 / (69 * COS(RADIANS( 37.64989853 )))) AND -97.43309784 + ( 100 / ( 69 * COS(RADIANS( 37.64989853 ))))
-        AND airports.doc_type = 'airport' 
+        AND airports.doc_type = 'airport'
     ) AS results
 WHERE results.distance > 0
     AND results.distance <= 100
@@ -661,12 +681,10 @@ For our example we want to find any airports within 75 kilometers of "Berlin" (T
 ##### Source Airport Query
 
 ```sql
-SELECT a.iso_country, a.geo.latitude AS latitude, a.geo.longitude AS longitude
-FROM `flight-data` AS c
-INNER JOIN `flight-data` AS a ON KEYS 'airport_' || TOSTRING(c.id)
-WHERE c.code = 'TXL'
-    AND c.designation = 'airport' 
-    AND c.doc_type = 'code'
+SELECT airports.iso_country, airports.geo.latitude AS latitude, airports.geo.longitude AS longitude
+FROM `flight-data` AS codes
+USE KEYS 'airport_code_TXL'
+INNER JOIN `flight-data` AS airports ON KEYS 'airport_' || TOSTRING( codes.id )
 LIMIT 1
 ```
 
@@ -681,12 +699,12 @@ LIMIT 1
   }
 ]
 ```
-##### Airports Near a Given Airport in Kilometers Query 
+##### Airports Near a Given Airport in Kilometers Query
 
 ```sql
 SELECT results.airport_name, results.airport_code, ROUND( results.distance, 2 ) AS distance
 FROM (
-    SELECT airports.airport_name, 
+    SELECT airports.airport_name,
         IFNULL( airports.airport_iata, airports.airport_icao, airports.airport_ident ) AS airport_code,
         111.045 * DEGREES(ACOS(COS(RADIANS( 52.55970001 ))
         * COS(RADIANS( airports.geo.latitude ))
@@ -694,8 +712,8 @@ FROM (
         + SIN(RADIANS( 52.55970001 ))
         * SIN(RADIANS( airports.geo.latitude )))) AS distance
     FROM `flight-data` AS airports
-    WHERE airports.iso_country = 'DE' 
-        AND airports.geo.latitude BETWEEN 52.55970001 - ( 75 / 111.045 ) AND 52.55970001 + ( 75 / 111.045 ) 
+    WHERE airports.iso_country = 'DE'
+        AND airports.geo.latitude BETWEEN 52.55970001 - ( 75 / 111.045 ) AND 52.55970001 + ( 75 / 111.045 )
         AND airports.geo.longitude BETWEEN 13.2876997 - ( 75 / ( 111.045 * COS(RADIANS( 52.55970001 )))) AND 13.2876997 + ( 75 / ( 111.045 * COS(RADIANS( 52.55970001 ))))
         AND airports.doc_type = 'airport'
     ) AS results

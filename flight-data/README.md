@@ -34,9 +34,24 @@ There are 17 types of models that will be generated
 
 If you would like to see further examples of how to query this data set using the [N1QL](http://www.couchbase.com/n1ql) query language from [Couchbase](http://www.couchbase.com/) checkout the [Examples](docs/n1ql/).
 
-> Warning executing this entire example will generate ~250,000 documents
+### Terms
+
+- [IATA](http://www.iata.org/about/members/Pages/airline-list.aspx?All=true): International Air Transport Association
+- [ICAO](http://www.icao.int/): International Civil Aviation Organization
+- [FAA](http://www.faa.gov/): Federal Aviation Administration
+- Callsign: The term used to identify the broadcaster or transimitter over radio
+- Navaid: Navigational Aid
+- Ident: An entity identifier typically used for GPS codes
+- [DME](https://en.wikipedia.org/wiki/Distance_measuring_equipment): Distance Measuring Equipment
+- [Magnetic Variation](https://en.wikipedia.org/wiki/Magnetic_declination): Magnetic declination or variation is the angle on the horizontal plane between magnetic north and true north
+- Magnetic Heading: The heading of the aircraft relative to magnetic north
+- [Displayed Threshold](https://en.wikipedia.org/wiki/Displaced_threshold): A displaced threshold is a runway threshold located at a point other than the physical beginning or end of the runway.
+- DST: Daylight Savings Type
+-
 
 ### Usage Examples
+
+> Warning executing this entire example will generate ~250,000 documents
 
 Below is a variety of commands that can be used on this data model, all of the examples assume that you are in the `flight-data/` directory.  While all of the `fakeit` options will work, for this example we will only demonstrate how adding the data to Couchbase.  Please be aware that this may take several minutes to complete.
 
@@ -136,7 +151,7 @@ Generating 5912 documents for Airlines model
 #### Airline Reviews
 
 ```bash
-[flight-data]$ fakeit -m models/airlines.yaml,models/countries.yaml,models/regions.yaml,models/users.yaml,models/airline_reviews.yaml -i input/airlines.csv,input/countries.csv,inputs/regions.csv -d couchbase -s 127.0.0.1 -b flight-data -e Countries,Regions,Users
+[flight-data]$ fakeit -m models/airlines.yaml,models/countries.yaml,models/regions.yaml,models/users.yaml,models/airline_reviews.yaml -i input/airlines.csv,input/countries.csv,input/regions.csv -d couchbase -s 127.0.0.1 -b flight-data -e Countries,Regions,Users,Airlines
 Generating 247 documents for Countries model
 Generating 3999 documents for Regions model
 Generating 5912 documents for Airlines model
@@ -248,7 +263,7 @@ fakeit -m models/airlines.yaml,models/countries.yaml -i input/airlines.csv,input
 #### Airline Reviews
 
 ```bash
-[flight-data]$ fakeit -m models/airlines.yaml,models/countries.yaml,models/regions.yaml,models/users.yaml,models/airline_reviews.yaml -i input/airlines.csv,input/countries.csv,inputs/regions.csv -d output -a airline_reviews.zip -e Countries,Regions,Users -f 0
+[flight-data]$ fakeit -m models/airlines.yaml,models/countries.yaml,models/regions.yaml,models/users.yaml,models/airline_reviews.yaml -i input/airlines.csv,input/countries.csv,input/regions.csv -d output -a airline_reviews.zip -e Countries,Regions,Users -f 0
 ```
 
 #### Airport Airlines
