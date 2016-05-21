@@ -7,6 +7,8 @@ data:
     - Users
   pre_run: >
     this.data.fixed = inputs.airports.length * 5;
+  pre_build: >
+    globals.current_airport_index = chance.integer({min: 0, max: documents.Airports.length - 1});
 properties:
   _id:
     type: string
@@ -27,7 +29,12 @@ properties:
     type: integer
     description: The airport_id the review is for
     data:
-      build: "return documents.Airports[chance.integer({min: 0, max: documents.Airports.length - 1})].airport_id"
+      build: "return documents.Airports[globals.current_airport_index].airport_id"
+  airport_code:
+    type: string
+    description: The airport_code the review is for
+    data:
+      build: "return documents.Airports[globals.current_airport_index].airport_iata || documents.Airports[globals.current_airport_index].airport_icao || documents.Airports[globals.current_airport_index].airport_ident || null;"
   user_id:
     type: integer
     description: The user_id of the user who wrote the review
