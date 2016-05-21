@@ -5,15 +5,16 @@
 
 ```json
 {
-  "_id": "airport_2563_review_bd5def2c-9e3b-48fd-94d1-83f95af0a358",
+  "_id": "airport_3605_review_c73dac2d-466a-481c-ad4d-22ef113a4976",
+  "airport_code": "ICT",
+  "airport_id": 3605,
   "doc_type": "airport-review",
-  "review_id": "bd5def2c-9e3b-48fd-94d1-83f95af0a358",
-  "airport_id": 2563,
-  "user_id": 2097,
-  "rating": 5,
-  "review_title": "Sit est error autem aut vero quo consequatur consequatur.",
-  "review_body": "Hic eligendi hic ratione fuga id sit omnis. At nulla eos nihil facere dolorem quidem est officiis. Sit hic voluptatem ut. Distinctio eum omnis at dicta sint.\n \rImpedit hic molestias numquam dolore et eos accusantium recusandae dicta. Veniam reprehenderit expedita. Ipsa ratione quaerat odit.\n \rAb est tempore qui voluptas in. Earum atque veniam libero et odit consequuntur cum iste. Facilis molestias ut. Officiis ducimus magni maxime aut. Voluptatem quo quasi deleniti quod dicta sit sed. Itaque aut error itaque recusandae voluptatem voluptatem accusamus illum.",
-  "review_date": 1463617176795
+  "rating": 2,
+  "review_body": "Reprehenderit ea non laudantium voluptatem. Facere perspiciatis recusandae quia consectetur dolor possimus. Impedit provident recusandae nisi.\n \rVoluptatum aspernatur velit. Animi omnis autem rem odio voluptatem quia voluptas quibusdam. Blanditiis voluptatem deserunt totam nemo corrupti molestias eum ullam nostrum. Nobis nulla rerum quod et ab asperiores ea. Laborum iure est. Ipsa sed repellat aut.\n \rDicta nulla autem voluptatem. Tempora consequatur sapiente optio iusto. A voluptates aut. Qui tempora officiis possimus facilis nobis amet enim consequatur distinctio. Est iure impedit atque quidem voluptate totam pariatur. Illo et consequuntur eum molestiae eligendi quia provident earum cumque.",
+  "review_date": 1459714567958,
+  "review_id": "c73dac2d-466a-481c-ad4d-22ef113a4976",
+  "review_title": "Et quos earum amet.",
+  "user_id": 5693
 }
 ```
 
@@ -34,6 +35,9 @@ properties:
   airport_id:
     type: integer
     description: The airport_id the review is for
+  airport_code:
+    type: integer
+    description: The airports IATA, ICAO or Ident code
   user_id:
     type: integer
     description: The user_id of the user who wrote the review
@@ -50,6 +54,3 @@ properties:
     type: integer
     description: The review content
 ```
-
-
-

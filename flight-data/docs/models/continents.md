@@ -30,6 +30,3 @@ properties:
     type: string
     description: The continent name
 ```
-
-
-

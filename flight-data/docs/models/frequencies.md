@@ -45,8 +45,3 @@ properties:
     type: float
     description: The mhz of the frequency
 ```
-
-
-
-
-

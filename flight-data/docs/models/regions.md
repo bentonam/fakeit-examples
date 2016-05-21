@@ -46,7 +46,3 @@ properties:
     description: The ISO country code for the region
 ```
 
-
-
-
-

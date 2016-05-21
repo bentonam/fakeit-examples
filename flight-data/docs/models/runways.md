@@ -111,10 +111,3 @@ properties:
         type: integer
         description: The high bearing displacement from the end of the runway to the threshold
 ```
-
-
-
-
-
-
-

@@ -43,10 +43,3 @@ properties:
     type: array
     description: An array of frequency_ids used by the airport
 ```
-
-
-
-
-
-
-

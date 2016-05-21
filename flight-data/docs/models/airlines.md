@@ -45,4 +45,3 @@ properties:
     type: boolean
     description: Whether or not the airline is active
 ```
-

@@ -36,10 +36,3 @@ properties:
     type: array
     description: An array of navaid_ids
 ```
-
-
-
-
-
-
-

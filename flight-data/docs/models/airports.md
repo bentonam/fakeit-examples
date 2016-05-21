@@ -98,10 +98,3 @@ properties:
     type: string
     description: The airports timezone if available, otherwise null
 ```
-
-
-
-
-
-
-

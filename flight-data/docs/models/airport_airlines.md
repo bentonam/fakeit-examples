@@ -44,10 +44,3 @@ properties:
     type: array
     description: An array of airline codes at the airport
 ```
-
-
-
-
-
-
-

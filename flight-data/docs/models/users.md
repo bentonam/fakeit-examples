@@ -201,9 +201,6 @@ properties:
         primary:
           type: boolean
           description: If the email address is the primary email address or not false
-      
+
 
 ```
-
-
-

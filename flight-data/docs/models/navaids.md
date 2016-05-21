@@ -103,10 +103,3 @@ properties:
     type: string
     description: An airport icao_code or ident that the navaid is associated with if available, otherwise null
 ```
-
-
-
-
-
-
-

@@ -33,10 +33,3 @@ properties:
     type: string
     description: The ISO continent code the country is located in
 ```
-
-
-
-
-
-
-

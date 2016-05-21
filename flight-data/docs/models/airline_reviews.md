@@ -4,17 +4,20 @@
 ### Example Document
 
 ```json
-{
-  "_id": "airline_1650_review_b01f3273-2940-46a9-9ba6-bd7520eaa047",
-  "doc_type": "airline-review",
-  "review_id": "b01f3273-2940-46a9-9ba6-bd7520eaa047",
-  "airline_id": 1650,
-  "user_id": 2097,
-  "rating": 1,
-  "review_title": "Fuga ex libero rerum magni aliquid est reiciendis.",
-  "review_body": "Suscipit sint et laborum sint sed. Ullam voluptas corrupti natus. Nulla molestias tempore dicta facilis autem dolor et tempora.\n \rVoluptatibus provident laboriosam. Veritatis quis ab neque ratione rerum dolorem. Tenetur numquam expedita. Aut et temporibus. Libero sapiente est voluptas ut.\n \rNumquam natus quae omnis ratione. Ut non et. Pariatur velit architecto occaecati velit nemo harum repudiandae eum. Nemo deserunt voluptatibus.",
-  "review_date": 1463615887978
-}
+[
+  {
+    "_id": "airline_24_review_85394e70-2be6-4e6e-bdcd-096965b622d7",
+    "airline_code": "AA",
+    "airline_id": 24,
+    "doc_type": "airline-review",
+    "rating": 1,
+    "review_body": "Aut officiis rerum consequuntur voluptatem. Rerum et dignissimos omnis ut. Qui sequi aperiam ratione aut temporibus et. Dignissimos adipisci et dolores.\n \rNumquam non ut fugit est alias ipsa sunt id. Qui qui sint voluptatem facilis. Quia dolorem nulla error placeat est. Explicabo tenetur porro voluptas tenetur qui dolores fugit.\n \rEt ut voluptas sed placeat voluptates repellat et et. Doloremque est quae quod quis nobis. Quia et reiciendis qui quod et laborum. Ut at esse quas voluptatem enim labore laudantium inventore voluptas. Illo et et autem aut exercitationem sint sed deserunt.",
+    "review_date": 1463793142982,
+    "review_id": "85394e70-2be6-4e6e-bdcd-096965b622d7",
+    "review_title": "Nemo vitae quia et atque incidunt velit maiores expedita.",
+    "user_id": 2908
+  }
+]
 ```
 
 ### Model Definitions
@@ -34,6 +37,9 @@ properties:
   airline_id:
     type: integer
     description: The airline_id the review is for
+  airline_code:
+    type: string
+    description: The airlines IATA or ICAO code
   user_id:
     type: integer
     description: The user_id of the user who wrote the review
@@ -50,6 +56,3 @@ properties:
     type: integer
     description: The review content
 ```
-
-
-

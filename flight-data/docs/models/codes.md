@@ -41,10 +41,3 @@ properties:
     type: string
     description: The document type
 ```
-
-
-
-
-
-
-

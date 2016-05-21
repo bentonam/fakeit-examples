@@ -37,10 +37,3 @@ properties:
     type: array
     description: An array of runway ids that belong to the airport
 ```
-
-
-
-
-
-
-

@@ -53,10 +53,3 @@ properties:
     type: boolean
     description: Whether or not the route is active
 ```
-
-
-
-
-
-
-
