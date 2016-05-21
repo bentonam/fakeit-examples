@@ -46,8 +46,6 @@ If you would like to see further examples of how to query this data set using th
 - [Magnetic Variation](https://en.wikipedia.org/wiki/Magnetic_declination): Magnetic declination or variation is the angle on the horizontal plane between magnetic north and true north
 - Magnetic Heading: The heading of the aircraft relative to magnetic north
 - [Displayed Threshold](https://en.wikipedia.org/wiki/Displaced_threshold): A displaced threshold is a runway threshold located at a point other than the physical beginning or end of the runway.
-- DST: Daylight Savings Type
--
 
 ### Usage Examples
 
