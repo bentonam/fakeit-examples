@@ -191,7 +191,7 @@ WHERE routes.source_airport_code = 'SFO'
           "index_id": "cd7e02bdb0ccd1d4",
           "keyspace": "flight-data",
           "namespace": "default",
-          ```
+```
 
 ---
 
