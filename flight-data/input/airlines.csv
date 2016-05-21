@@ -307,7 +307,7 @@ id,name,iata_code,icao_code,callsign,iso_country,active
 318,Air Midwest,ZV,AMW,AIR MIDWEST,US,N
 319,Air Seychelles,HM,SEY,SEYCHELLES,SC,Y
 320,Air Sofia,,SFB,AIR SOFIA,BG,N
-321,AeroMÍ©xico,AM,AMX,AEROMEXICO,MX,Y
+321,AeroMÔøΩÔøΩxico,AM,AMX,AEROMEXICO,MX,Y
 322,Air Ambar,,AMY,AIR AMBAR,DO,N
 323,Amiya Airline,,AMZ,AMIYA AIR,NG,N
 324,All Nippon Airways,NH,ANA,ALL NIPPON,JP,Y
@@ -516,7 +516,7 @@ id,name,iata_code,icao_code,callsign,iso_country,active
 562,Air West,,AWT,AIR WEST,CA,N
 563,Aeroline GmbH,7E,AWU,SYLT-AIR,DE,Y
 565,Air Wales,6G,AWW,RED DRAGON,GB,Y
-567,Air CaraÍèbes,TX,FWI,FRENCH WEST,FR,Y
+567,Air CaraÔøΩÔøΩbes,TX,FWI,FRENCH WEST,FR,Y
 568,AirWest,,AWZ, ,SD,N
 569,Air India Express,IX,AXB,EXPRESS INDIA,IN,Y
 570,Air Express,,AXD,AIR SUDEX,SD,N
@@ -1867,7 +1867,7 @@ id,name,iata_code,icao_code,callsign,iso_country,active
 1933,Cruiser Linhas Aereas,,VCR,VOE CRUISER,BR,N
 1934,Cryderman Air Service,,CTY,CENTURY,US,N
 1935,Crystal Shamrock,,CYT,CRYSTAL-AIR,US,N
-1936,Cubana de AviaciÍ_n,CU,CUB,CUBANA,CU,Y
+1936,Cubana de AviaciÔøΩ_n,CU,CUB,CUBANA,CU,Y
 1937,Cumberland Airways (Nicholson Air Service),,CBL,CUMBERLAND,US,N
 1938,Custom Air Transport,,CTT,CATT,US,N
 1939,Cygnus Air,,RGN,CYGNUS AIR,ES,N
@@ -2399,7 +2399,7 @@ id,name,iata_code,icao_code,callsign,iso_country,active
 2474,Full Express,,GAX,GRAND AIRE,US,N
 2475,Fumigacion Aerea Andaluza,,FAM,FAASA,ES,N
 2476,Fun Flying Thai Air Service,,FFY,FUN FLYING,TH,N
-2477,FundaciÍ_ Rego,,ROG,REGO,ES,N
+2477,FundaciÔøΩ_ Rego,,ROG,REGO,ES,N
 2478,Funtshi Aviation Service,,FUN,FUNTSHI,CD,N
 2479,Futura Gael,,FGL,Applewood,IE,N
 2480,Futura International Airways,FH,FUA,FUTURA,ES,N
@@ -2503,7 +2503,7 @@ id,name,iata_code,icao_code,callsign,iso_country,active
 2578,Gobierno De Guinea Ecuatorial,,GGE,,GQ,N
 2579,Gof-Air,,GOF,GOF-AIR,MX,N
 2580,Gofir,,GOI,SWISS HAWK,CH,N
-2581,Gol Transportes AÍ©reos,G3,GLO,GOL TRANSPORTE,BR,Y
+2581,Gol Transportes AÔøΩÔøΩreos,G3,GLO,GOL TRANSPORTE,BR,Y
 2582,Gold Belt Air Transport,,GBT,GOLD BELT,CA,N
 2583,GoldAir,,GDA,AIR PARTNER,GB,N
 2584,Goldeck-Flug,,GDK,GOLDECK FLUG,AT,N
@@ -2714,8 +2714,8 @@ id,name,iata_code,icao_code,callsign,iso_country,active
 2795,Hungarian Air Force,,HUF,HUNGARIAN AIRFORCE,HU,N
 2796,Hyack Air,,HYA,HYACK,CA,N
 2797,Hydro Air Flight Operations,,HYC,HYDRO CARGO,ZA,N
-2798,Hydro-QuÍ©bec,,HYD,HYDRO,CA,N
-2799,HÍ©li SÍ©curitÍ© Helicopter Airlines,H4,,,FR,N
+2798,Hydro-QuÔøΩÔøΩbec,,HYD,HYDRO,CA,N
+2799,HÔøΩÔøΩli SÔøΩÔøΩcuritÔøΩÔøΩ Helicopter Airlines,H4,,,FR,N
 2800,International Air Carrier Association,,ITC,,BE,N
 2801,IBC Airways,II,CSQ,CHASQUI,US,N
 2802,IBL Aviation,,IBL,CATOVAIR,MU,N
@@ -3288,10 +3288,10 @@ id,name,iata_code,icao_code,callsign,iso_country,active
 3383,Mall Airways,,MLS,MALL-AIRWAYS,US,N
 3384,Malmo Aviation,,SCW,SCANWING,SE,Y
 3385,Malmoe Air Taxi,,LOD,LOGIC,SE,N
-3386,MalmÍ_ Aviation,TF,SCW,Scanwings,SE,Y
+3386,MalmÔøΩ_ Aviation,TF,SCW,Scanwings,SE,Y
 3387,Malta Air Charter,R5,MAC,MALTA CHARTER,MT,Y
 3388,Malta Wings,,MWS,MALTA WINGS,MT,N
-3389,MalÍ©v,MA,MAH,MALEV,HU,Y
+3389,MalÔøΩÔøΩv,MA,MAH,MALEV,HU,Y
 3390,Manaf International Airways,,MLB,MANAF,BI,N
 3391,Mandala Airlines,RI,MDL,MANDALA,ID,Y
 3392,Mandarin Airlines,AE,MDA,Mandarin,TW,Y
@@ -3795,7 +3795,7 @@ id,name,iata_code,icao_code,callsign,iso_country,active
 3897,Panorama,,PNM,PANORAMA,ES,N
 3898,Panorama Air Tour,,PAH,LANI,US,N
 3899,Panorama Flight Service,,AFD,AIRFED,US,N
-3900,Pantanal Linhas AÍ©reas,P8,PTN,PANTANAL,BR,N
+3900,Pantanal Linhas AÔøΩÔøΩreas,P8,PTN,PANTANAL,BR,N
 3901,Papair Terminal,,HMP,PAPAIR TERMINAL,HT,N
 3902,Paradise Airways,,PAI,SEA RAY,US,N
 3903,Paradise Island Airways,,PDI,PARADISE ISLAND,US,N
@@ -4192,7 +4192,7 @@ id,name,iata_code,icao_code,callsign,iso_country,active
 4296,Ryanair,FR,RYR,RYANAIR,IE,Y
 4297,Ryazan State Air Enterprise,,RYZ,RYAZAN AIR,RU,N
 4298,Rynes Aviation,,RAA,RYNES AVIATION,US,N
-4299,RÍ©gional,YS,RAE,REGIONAL EUROPE,FR,Y
+4299,RÔøΩÔøΩgional,YS,RAE,REGIONAL EUROPE,FR,Y
 4302,South Asian Airlines,,BDS,SOUTH ASIAN,BD,N
 4303,State Air Company Berkut,,BEC,,KZ,N
 4304,SATA International,S4,RZO,AIR AZORES,PT,Y
@@ -5301,7 +5301,7 @@ id,name,iata_code,icao_code,callsign,iso_country,active
 5436,White Eagle Aviation,,WEA,WHITE EAGLE,PL,N
 5437,White River Air Services,,WRA,,CA,N
 5438,Whyalla Airlines,,WWL,,AU,N
-5439,WiderÍ™e,WF,WIF,WIDEROE,NO,Y
+5439,WiderÔøΩÔøΩe,WF,WIF,WIDEROE,NO,Y
 5440,Wiggins Airways,,WIG,WIGGINS AIRWAYS,US,N
 5441,Wiking Helikopter Service,,WHS,WEEKING,DE,N
 5442,Wilbur's Flight Operations,,WFO,WILBURS,US,N
@@ -5430,13 +5430,13 @@ id,name,iata_code,icao_code,callsign,iso_country,active
 9666,Virgin Pacific,VH,VNP,,FJ,Y
 9764,Zest Air,Z2,,,PH,Y
 9784,Yangon Airways,HK,,Hotel Kilo,MM,Y
-9793,Transport AÍ©rien TransrÍ©gional,IJ,,,FR,N
-9798,LÍçO Flugmennt,,LIO,,IS,N
+9793,Transport AÔøΩÔøΩrien TransrÔøΩÔøΩgional,IJ,,,FR,N
+9798,LÔøΩÔøΩO Flugmennt,,LIO,,IS,N
 9808,Minerva Airlines,N4,,,IT,N
 9809,Eastar Jet,ZE,ESR,Eastar,KR,Y
 9810,Jin Air,LJ,JNA,Jin Air,KR,Y
 9811,Wataniya Airways,,KW1,,KW,Y
-9814,AÍ©ris (Priv),SH,,,FR,N
+9814,AÔøΩÔøΩris (Priv),SH,,,FR,N
 9818,Air Arabia Maroc,3O,,Air Arabia,MA,Y
 9825,Baltic Air lines,B1,BA1,Baltic,LV,Y
 9828,Ciel Canadien,YC,YCC,Ciel,CA,Y
@@ -5503,7 +5503,7 @@ id,name,iata_code,icao_code,callsign,iso_country,active
 11755,Regional Paraguaya,P7,REP,REGIOPAR,PY,Y
 11761,VIP Ecuador,V6,,,EC,Y
 11765,EasyFly,,EFY,EASYFLY,CO,Y
-11767,Polar Airlines,_è_»,,,RU,Y
+11767,Polar Airlines,_ÔøΩ_ÔøΩ,,,RU,Y
 11794,Catovair,OC,,CATOVAIR,MU,Y
 11795,Andalus Lineas Aereas,,ANU,Andalus,ES,Y
 11798,Air 26,,DCD,DUCARD,AO,Y
@@ -5586,7 +5586,7 @@ id,name,iata_code,icao_code,callsign,iso_country,active
 13633,PanAm World Airways,WQ,PQW,,US,Y
 13690,Virginwings,YY,VWA,,DE,Y
 13704,KSY,KY,KSY,KSY,GR,Y
-13732,Buquebus LÍ_neas AÍ©reas,BQ,BQB,,UY,Y
+13732,Buquebus LÔøΩ_neas AÔøΩÔøΩreas,BQ,BQB,,UY,Y
 13734,SOCHI AIR,CQ,KOL,SLOW FROG,RU,Y
 13757,Wizz Air Ukraine,WU,WAU,WIZZAIR UKRAINE,UA,Y
 13781,88,47,VVN,,CY,Y
@@ -5596,7 +5596,6 @@ id,name,iata_code,icao_code,callsign,iso_country,active
 13905,Skyline nepc,D5,,,IN,N
 13923,THREE,H3,T33,,CN,N
 13936,Royal European Airlines,69,,,GB,Y
-13947,Tom\\'s & co airliners,&T,T&O,T&,FR,Y
 13983,Azul,AD,AZU,,BR,Y
 14061,LSM Airlines,PQ,LOO,slowbird,RU,Y
 14069,Zapolyarie Airlines,,PZY,,RU,Y
@@ -5653,7 +5652,7 @@ id,name,iata_code,icao_code,callsign,iso_country,active
 16261,CB Airways UK ( Interliging Flights ),1F,CIF,,GB,Y
 16262,Fly Colombia ( Interliging Flights ),3F,3FF,,CO,Y
 16264,Trans Pas Air,T6,TP6,,US,Y
-16273,KMV,_ñ_ƒ,,Air Minvody,RU,Y
+16273,KMV,_ÔøΩ_ÔøΩ,,Air Minvody,RU,Y
 16323,Himalayan Airlines,HC,HYM,Himalayan,NP,Y
 16327,Indya Airline Group,G1,IG1,Indya1,IN,Y
 16329,Sunwing,WG,,sunwing,CA,Y
@@ -5663,11 +5662,11 @@ id,name,iata_code,icao_code,callsign,iso_country,active
 16363,Norte Lineas Aereas,N0,,,AR,Y
 16364,Austral Brasil,W7,,,BR,Y
 16373,PEGASUS AIRLINES-,H9,,,TR,Y
-16399,AirLibertÍ©,IJ,,,FR,N
+16399,AirLibertÔøΩÔøΩ,IJ,,,FR,N
 16409,Nihon.jet connect,,NX1,,KG,Y
 16415,Camair-co,QC,,,CM,Y
 16459,Sky Regional,RS,,Sky Regional,CA,Y
-16475,TUR Avrupa Hava YollarÍ ‘±,YI,,TurAvrupa,TR,N
+16475,TUR Avrupa Hava YollarÔøΩÔøΩ‘±,YI,,TurAvrupa,TR,N
 16487,Cruzeiro do Sul Servicos Aereos,,CRZ,,BR,N
 16507,LSM International ,II,UWW,moose,RU,Y
 16508,Baikotovitchestrian Airlines ,BU,BUU,,AS,Y
@@ -5760,7 +5759,7 @@ id,name,iata_code,icao_code,callsign,iso_country,active
 17658,Volotea,,VOO,Volotea,ES,Y
 17666,Go Fly (United Kingdom),,GOE,Go Flight,GB,N
 17675,Peach Aviation,MM,,Air Peach,JP,Y
-17694,Helitt LÍ_neas AÍ©reas,,HTH,,ES,Y
+17694,Helitt LÔøΩ_neas AÔøΩÔøΩreas,,HTH,,ES,Y
 17695,Russia State Transport,,RSD,STATE AERO,RU,Y
 17726,Malaysia Wings,,MWI,MWI,MY,Y
 17750,Aviabus,U1,ABI,,RU,Y
@@ -5831,8 +5830,8 @@ id,name,iata_code,icao_code,callsign,iso_country,active
 18781,Hermes Airlines,,HRM,HERMES,GR,Y
 18825,Flightlink Tanzania,Z9,,,TZ,Y
 18828,IzAvia,I8,,,RU,Y
-18860,___ç†_†ç___ç___™_ç,,,,RU,Y
-18863,_»†Å_______ç___™_ç,,PKV,,RU,Y
+18860,___ÔøΩÔøΩ_ÔøΩÔøΩ___ÔøΩ___ÔøΩ_ÔøΩ,,,,RU,Y
+18863,_»†ÔøΩ_______ÔøΩ___ÔøΩ_ÔøΩ,,PKV,,RU,Y
 18896,3 Valleys Airlines,3V,VA3,3 Valleys,FR,N
 18930,Maryland Air,M1,M1F,Maryland Flight,US,Y
 18944,Insel Air (7I/INC) (Priv),7I,,,NL,Y
@@ -5849,7 +5848,7 @@ id,name,iata_code,icao_code,callsign,iso_country,active
 19215,Flyme (VP),,VQI,,MV,Y
 19225,Thai Lion Air,SL,,,TH,Y
 19231,Deutsche Luftverkehrsgesellschaft,DW,DLT,,DE,N
-19232,NÍ_rnberger Flugdienst,,NFD,,DE,N
+19232,NÔøΩ_rnberger Flugdienst,,NFD,,DE,N
 19244,Golden Myanmar Airlines,,GMR,Golden Myanmar,MM,Y
 19262,ViznAir,,VZA,Brian,US,N
 19276,Canaryfly,,CNF,,ES,Y
@@ -5896,7 +5895,7 @@ id,name,iata_code,icao_code,callsign,iso_country,active
 19804,All America,A2,AL2,,US,Y
 19805,All Asia,L9,AL3,,CN,Y
 19806,All Africa,9A,99F,,ZA,Y
-19807,Regionalia MÍ©xico,N4,J88,,MX,Y
+19807,Regionalia MÔøΩÔøΩxico,N4,J88,,MX,Y
 19808,All Europe,N9,N99,,GB,Y
 19809,All Spain,N7,N77,,ES,Y
 19810,Regional Air Iceland,9N,N78,,IS,Y

@@ -2492,7 +2492,7 @@ id,ident,type,name,latitude,longitude,elevation_ft,continent,iso_country,iso_reg
 5958,SBPN,medium_airport,Porto Nacional,-10.71940041,-48.39970016,870,SA,BR,BR-TO,Porto Nacional,SBPN,PNB,SBPN,,-3,S,America/Fortaleza
 5959,SBPP,medium_airport,Ponta Pora,-22.5496006,-55.70259857,2156,SA,BR,BR-MS,Ponta Pora,SBPP,PMG,SBPP,,-4,S,America/Campo_Grande
 5962,SBPV,medium_airport,Governador Jorge Teixeira De Oliveira,-8.709289551,-63.90230179,290,SA,BR,BR-RO,Porto Velho,SBPV,PVH,SBPV,,-4,S,America/Boa_Vista
-5964,SBRB,medium_airport,Pl´è_´è__´è_´è__ïÇ«´è___cido de Castro,-9.868888855,-67.89805603,633,SA,BR,BR-AC,Rio Branco,SBRB,RBR,SBRB,,-5,S,America/Rio_Branco
+5964,SBRB,medium_airport,Plï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½__ï¿½Ç«ï¿½ï¿½___cido de Castro,-9.868888855,-67.89805603,633,SA,BR,BR-AC,Rio Branco,SBRB,RBR,SBRB,,-5,S,America/Rio_Branco
 5965,SBRF,medium_airport,Guararapes Gilberto Freyre Intl,-8.126489639,-34.92359924,33,SA,BR,BR-PE,Recife,SBRF,REC,SBRF,,-3,S,America/Fortaleza
 44713,SJRG,small_airport,Rio Grande,-32.081699,-52.163299,27,SA,BR,BR-RS,Rio Grande,SBRG,RIG,SJRG,,-3,S,America/Sao_Paulo
 5967,SBRJ,medium_airport,Santos Dumont,-22.91049957,-43.1631012,11,SA,BR,BR-RJ,Rio De Janeiro,SBRJ,SDU,SBRJ,,-3,S,America/Sao_Paulo
@@ -3299,7 +3299,7 @@ id,ident,type,name,latitude,longitude,elevation_ft,continent,iso_country,iso_reg
 3751,KOMA,medium_airport,Eppley Afld,41.30319977,-95.89409637,984,NA,US,US-NE,Omaha,KOMA,OMA,KOMA,OMA,-6,A,America/Chicago
 20649,KNOW,small_airport,Port Angeles Cgas,48.14149857,-123.4140015,13,NA,US,US-WA,Port Angeles,KNOW,NOW,KNOW,NOW,-8,A,America/Los_Angeles
 5455,PHOG,medium_airport,Kahului,20.89859962,-156.4299927,54,NA,US,US-HI,Kahului,PHOG,OGG,PHOG,OGG,-10,N,Pacific/Honolulu
-3605,KICT,large_airport,Wichita Mid Continent,37.64989853,-97.43309784,1333,NA,US,US-KS,Wichita,KICT,ICT,KICT,ICT,-6,A,America/Chicago
+3605,KICT,large_airport,Wichita Dwight D. Eisenhower National Airport,37.64989853,-97.43309784,1333,NA,US,US-KS,Wichita,KICT,ICT,KICT,ICT,-6,A,America/Chicago
 3668,KMCI,large_airport,Kansas City Intl,39.29759979,-94.71389771,1026,NA,US,US-MO,Kansas City,KMCI,MCI,KMCI,MCI,-6,A,America/Chicago
 3707,KMSN,large_airport,Dane Co Rgnl Truax Fld,43.13990021,-89.33750153,887,NA,US,US-WI,Madison,KMSN,MSN,KMSN,MSN,-6,A,America/Chicago
 5351,PADL,medium_airport,Dillingham,59.04470062,-158.5050049,81,NA,US,US-AK,Dillingham,PADL,DLG,PADL,DLG,-9,A,America/Anchorage
@@ -4183,9 +4183,9 @@ id,ident,type,name,latitude,longitude,elevation_ft,continent,iso_country,iso_reg
 6433,UASK,medium_airport,Ust Kamenogorsk Airport,50.03659821,82.49420166,939,AS,KZ,KZ-VOS,Ust Kamenogorsk,UASK,UKK,UASK,,6,U,Asia/Qyzylorda
 32495,UACP,medium_airport,Petropavlosk South Airport,54.77470016,69.18389893,453,AS,KZ,KZ-SEV,Petropavlosk,UACP,PPK,UACP,,6,U,Asia/Qyzylorda
 6365,TFFM,medium_airport,Les Bases Airport,15.86870003,-61.27000046,16,NA,GP,GP-U-A,Grand Bourg,TFFM,GBJ,TFFM,,-4,U,America/Guadeloupe
-32286,TFFC,small_airport,St-Fran´è_´è__´è_´è____ois Airport,16.25779915,-61.26250076,10,NA,GP,GP-U-A,St-Fran´è_´è__´è_´è____ois,TFFC,SFC,TFFC,,-4,U,America/Guadeloupe
+32286,TFFC,small_airport,St-Franï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____ois Airport,16.25779915,-61.26250076,10,NA,GP,GP-U-A,St-Franï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____ois,TFFC,SFC,TFFC,,-4,U,America/Guadeloupe
 35328,TAPH,small_airport,Codrington Airport,17.635799,-61.828602,15,NA,AG,AG-10,Codrington,TAPH,BBQ,TAPH,,-4,U,America/Antigua
-547,SWJI,small_airport,Ji-Paran´è_´è__´è_´è___´è_´è__´è_´è___ Airport,-10.87080002,-61.8465004,598,SA,BR,BR-RO,Ji-Paran´è_´è__´è_´è___´è_´è__´è_´è___,SWJI,JPR,SBJI,,-4,S,America/Boa_Vista
+547,SWJI,small_airport,Ji-Paranï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ Airport,-10.87080002,-61.8465004,598,SA,BR,BR-RO,Ji-Paranï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___,SWJI,JPR,SBJI,,-4,S,America/Boa_Vista
 6261,SVBS,medium_airport,Escuela Mariscal Sucre Airport,10.24997807,-67.64942169,1338,SA,VE,VE-D,Maracay,SVBS,MYC,SVBS,,-4,U,America/Caracas
 6242,SPZA,medium_airport,Maria Reiche Neuman Airport,-14.85400009,-74.96150208,1860,SA,PE,PE-ICA,Nazca,SPZA,NZC,SPZA,,-5,U,America/Lima
 6223,SPJR,medium_airport,Mayor General FAP Armando Revoredo Iglesias Airport,-7.139180183,-78.48940277,8781,SA,PE,PE-CAJ,Cajamarca,SPJR,CJA,SPJR,,-5,U,America/Lima
@@ -4195,12 +4195,12 @@ id,ident,type,name,latitude,longitude,elevation_ft,continent,iso_country,iso_reg
 32127,SMZO,small_airport,Zorg en Hoop Airport,5.811079979,-55.19070053,10,SA,SR,SR-PM,Paramaribo,SMZO,ORG,SMZO,,-3,U,America/Paramaribo
 30331,SLRY,small_airport,Reyes Airport,-14.30440044,-67.35340118,935,SA,BO,BO-B,Reyes,SLRY,REY,SLRY,,-4,U,America/La_Paz
 39530,SLPR,small_airport,Puerto Rico Airport,-11.10766315,-67.55115509,597,SA,BO,BO-N,Puerto Rico/Manuripi,SLPR,PUR,SLPR,,-4,U,America/La_Paz
-6178,SKYP,medium_airport,El Alcarav´è_´è__´è_´è___´è_´è__´è_´è___n Airport,5.31911,-72.384,1028,SA,CO,CO-CAS,Yopal,SKYP,EYP,SKYP,EYP,-5,U,America/Bogota
+6178,SKYP,medium_airport,El Alcaravï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___n Airport,5.31911,-72.384,1028,SA,CO,CO-CAS,Yopal,SKYP,EYP,SKYP,EYP,-5,U,America/Bogota
 6084,SETN,small_airport,General Rivadeneira Airport,0.978519022,-79.62660217,32,SA,EC,EC-E,Esmeraldas,SETN,ESM,SETN,,-5,U,America/Guayaquil
-6033,SCPC,small_airport,Puc´è_´è__´è_´è____n Airport,-39.2928009,-71.91590118,853,SA,CL,CL-AR,Pucon,SCPC,ZPC,SCPC,,-4,S,America/Santiago
+6033,SCPC,small_airport,Pucï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____n Airport,-39.2928009,-71.91590118,853,SA,CL,CL-AR,Pucon,SCPC,ZPC,SCPC,,-4,S,America/Santiago
 5981,SBTD,small_airport,Toledo Airport,-24.68630028,-53.69749832,1843,SA,BR,BR-PR,Toledo,SBTD,TOW,SBTD,,-3,S,America/Sao_Paulo
 5972,SBSM,medium_airport,Santa Maria Airport,-29.71139908,-53.6882019,287,SA,BR,BR-RS,Santa Maria,SBSM,RIA,SBSM,,-3,S,America/Sao_Paulo
-5928,SBLE,small_airport,Chapada Diamantina Airport,-12.4822998,-41.27700043,1676,SA,BR,BR-BA,Len´è_´è__´è_´è____´è_´è__´è_´è____is,SBLE,LEC,SBLE,,-3,S,America/Fortaleza
+5928,SBLE,small_airport,Chapada Diamantina Airport,-12.4822998,-41.27700043,1676,SA,BR,BR-BA,Lenï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____is,SBLE,LEC,SBLE,,-3,S,America/Fortaleza
 26995,YGLB,medium_airport,Goulburn Airport,-34.81029892,149.7259979,2141,OC,AU,AU-NSW,Goulburn,YGLB,GUL,YGLB,,10,O,Australia/Sydney
 5924,SBJU,small_airport,Orlando Bezerra de Menezes Airport,-7.218959808,-39.27009964,1392,SA,BR,BR-CE,Juazeiro Do Norte,SBJU,JDO,SBJU,,-3,S,America/Fortaleza
 5846,SAZL,medium_airport,Santa Teresita Airport,-36.5423,-56.7218,9,SA,AR,AR-B,Santa Teresita,SAZL,SST,SAZL,STR,-3,N,America/Cordoba
@@ -4262,10 +4262,10 @@ id,ident,type,name,latitude,longitude,elevation_ft,continent,iso_country,iso_reg
 24574,PAGY,small_airport,Skagway Airport,59.46009827,-135.3159943,44,NA,US,US-AK,Skagway,PAGY,SGY,PAGY,SGY,-9,A,America/Anchorage
 5369,PAGS,medium_airport,Gustavus Airport,58.4253006,-135.7070007,35,NA,US,US-AK,Gustavus,PAGS,GST,PAGS,GST,-9,A,America/Anchorage
 16092,PADK,medium_airport,Adak Airport,51.87799835,-176.6459961,18,NA,US,US-AK,Adak Island,PADK,ADK,PADK,ADK,-9,A,America/Anchorage
-35197,PA-SAX,small_airport,Sambu Airport,8.017000198,-78.19999695,32,NA,PA,PA-5,Boca de S´è_´è__´è_´è___´è_´è__´è_´è___balo,,SAX,,,-5,U,America/Panama
+35197,PA-SAX,small_airport,Sambu Airport,8.017000198,-78.19999695,32,NA,PA,PA-5,Boca de Sï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___balo,,SAX,,,-5,U,America/Panama
 35195,PA-OTD,small_airport,Contadora Airport,8.628760338,-79.03469849,14,NA,PA,PA-8,Contadora Island,,OTD,,,-5,U,America/Panama
 35196,PA-ELE,small_airport,EL Real Airport,8.1072,-77.7252,65,NA,PA,PA-5,El Real,,ELE,,,-5,U,America/Panama
-35194,PA-BFQ,small_airport,Bahia Pi´è_´è__´è_´è___´è_´è__´è_´è___a Airport,7.583000183,-78.19999695,14,NA,PA,PA-5,Bahia Pi´è_´è__´è_´è___´è_´è__´è_´è___a,,BFQ,,,-5,U,America/Panama
+35194,PA-BFQ,small_airport,Bahia Piï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___a Airport,7.583000183,-78.19999695,14,NA,PA,PA-5,Bahia Piï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___a,,BFQ,,,-5,U,America/Panama
 5320,OYSY,medium_airport,Sayun International Airport,15.96609974,48.78829956,2097,AS,YE,YE-HD,Sayun Intl,OYSY,GXF,OYSY,,3,U,Asia/Aden
 5305,OSKL,medium_airport,Kamishly Airport,37.02059937,41.19139862,1480,AS,SY,SY-HA,Kamishly,OSKL,KAC,OSKL,,2,E,Asia/Damascus
 5297,ORSU,medium_airport,Sulaymaniyah International Airport,35.5617485,45.31673813,2494,AS,IQ,IQ-SW,Sulaymaniyah,ORSU,ISU,ORSU,OSO,3,U,Asia/Baghdad
@@ -4299,7 +4299,7 @@ id,ident,type,name,latitude,longitude,elevation_ft,continent,iso_country,iso_reg
 30952,OEDW,medium_airport,Dawadmi Domestic Airport,24.5,44.40000153,3429,AS,SA,SA-01,Dawadmi,OEDW,DWD,OEDW,,3,U,Asia/Riyadh
 32692,SOOS,small_airport,Saul Airport,3.613610029,-53.20420074,656,SA,GF,GF-SL,Saul,SOOS,XAU,SOOS,,-3,U,America/Cayenne
 31065,OAFZ,small_airport,Faizabad Airport,37.121101,70.518097,3872,AS,AF,AF-BDS,Faizabad,OAFZ,FBD,OAFZ,,4,U,Asia/Kabul
-5014,NWWE,medium_airport,´è_´è__´è_´è____le des Pins Airport,-22.58889961,167.4559937,315,OC,NC,NC-U-A,´è_´è__´è_´è____le des Pins,NWWE,ILP,NWWE,,11,U,Pacific/Noumea
+5014,NWWE,medium_airport,ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____le des Pins Airport,-22.58889961,167.4559937,315,OC,NC,NC-U-A,ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____le des Pins,NWWE,ILP,NWWE,,11,U,Pacific/Noumea
 30778,NWWC,medium_airport,Belep Islands Airport,-19.72060013,163.6609955,306,OC,NC,NC-U-A,Waala,NWWC,BMY,NWWC,,11,U,Pacific/Noumea
 32439,NWWA,medium_airport,Tiga Airport,-21.09609985,167.8040009,128,OC,NC,NC-U-A,Tiga,NWWA,TGJ,NWWA,,11,U,Pacific/Noumea
 31682,NVVI,small_airport,Ipota Airport,-18.856389,169.283333,23,OC,VU,VU-TAE,Ipota,NVVI,IPA,NVVI,,11,U,Pacific/Efate
@@ -4310,7 +4310,7 @@ id,ident,type,name,latitude,longitude,elevation_ft,continent,iso_country,iso_reg
 35160,NVSZ,small_airport,North West Santo Airport,-14.88169956,166.5579987,50,OC,VU,VU-SAM,Olpoi,NVSZ,OLJ,NVSZ,,11,U,Pacific/Efate
 35162,NVSX,small_airport,Southwest Bay Airport,-16.4864,167.4472,68,OC,VU,VU-MAP,Malekula Island,NVSX,SWJ,NVSX,,11,U,Pacific/Efate
 32583,NVSV,small_airport,Valesdir Airport,-16.79610062,168.177002,10,OC,VU,VU-SEE,Valesdir,NVSV,VLS,NVSV,,11,U,Pacific/Efate
-35164,NVSU,small_airport,Ul´è_´è__´è_´è___´è_´è__´è_´è___i Airport,-16.3297,168.3011,170,OC,VU,VU-MAP,Ambryn Island,NVSU,ULB,NVSU,,11,U,Pacific/Efate
+35164,NVSU,small_airport,Ulï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___i Airport,-16.3297,168.3011,170,OC,VU,VU-MAP,Ambryn Island,NVSU,ULB,NVSU,,11,U,Pacific/Efate
 32437,NVST,small_airport,Tongoa Island Airport,-16.89109993,168.5509949,443,OC,VU,VU-SEE,Tongoa Island,NVST,TGH,NVST,,11,U,Pacific/Efate
 5010,NVSS,medium_airport,Santo Pekoa International Airport,-15.50500011,167.2200012,184,OC,VU,VU-SAM,Santo,NVSS,SON,NVSS,,11,U,Pacific/Efate
 32200,NVSR,small_airport,Redcliffe Airport,-15.47200012,167.8350067,36,OC,VU,VU-PAM,Redcliffe,NVSR,RCL,NVSR,,11,U,Pacific/Efate
@@ -4379,12 +4379,12 @@ id,ident,type,name,latitude,longitude,elevation_ft,continent,iso_country,iso_reg
 4797,MRBC,medium_airport,Barra del Colorado Airport,10.76869965,-83.58560181,3,NA,CR,CR-L,Pococi,MRBC,BCL,MRBC,,-6,U,America/Costa_Rica
 4795,MRAO,medium_airport,Aerotortuguero Airport,10.42,-83.6095,92,NA,CR,CR-L,Roxana,MRAO,TTQ,MRAO,,-6,U,America/Costa_Rica
 32164,MPLP,small_airport,Captain Ramon Xatruch Airport,8.406669617,-78.14170074,30,NA,PA,PA-5,La Palma,MPLP,PLP,MPLP,,-5,U,America/Panama
-31937,MPJE,small_airport,Jaqu´è_´è__´è_´è___´è_´è__´è_´è___ Airport,7.517779827,-78.15720367,29,NA,PA,PA-5,Jaqu´è_´è__´è_´è___´è_´è__´è_´è___,MPJE,JQE,MPJE,,-5,U,America/Panama
-4790,MPEJ,medium_airport,Enrique Adolfo Jimenez Airport,9.356639862,-79.86740112,25,NA,PA,PA-3,Col´è_´è__´è_´è____n,MPEJ,ONX,MPEJ,,-5,U,America/Panama
-4787,MPCE,medium_airport,Alonso Valderrama Airport,7.987840176,-80.40969849,33,NA,PA,PA-6,Chitr´è_´è__´è_´è___´è_´è__´è_´è___,MPCE,CTD,MPCE,,-5,U,America/Panama
+31937,MPJE,small_airport,Jaquï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ Airport,7.517779827,-78.15720367,29,NA,PA,PA-5,Jaquï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___,MPJE,JQE,MPJE,,-5,U,America/Panama
+4790,MPEJ,medium_airport,Enrique Adolfo Jimenez Airport,9.356639862,-79.86740112,25,NA,PA,PA-3,Colï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____n,MPEJ,ONX,MPEJ,,-5,U,America/Panama
+4787,MPCE,medium_airport,Alonso Valderrama Airport,7.987840176,-80.40969849,33,NA,PA,PA-6,Chitrï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___,MPCE,CTD,MPCE,,-5,U,America/Panama
 4718,MMJA,medium_airport,Lencero Airport,19.47509956,-96.79750061,3127,NA,MX,MX-VER,Jalapa,MMJA,JAL,MMJA,,-6,S,America/Mexico_City
 31554,MMGR,small_airport,Guerrero Negro Airport,28.02610016,-114.0240021,59,NA,MX,MX-BCN,Guerrero Negro,MMGR,GUB,MMGR,MM58,-8,S,America/Tijuana
-30860,MMDA,medium_airport,Ciudad Constituci´è_´è__´è_´è____n Airport,25.05380058,-111.6149979,213,NA,MX,MX-BCS,Ciudad Constituci´è_´è__´è_´è____n,MMDA,CUA,MMDA,CCB,-7,S,America/Mazatlan
+30860,MMDA,medium_airport,Ciudad Constituciï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____n Airport,25.05380058,-111.6149979,213,NA,MX,MX-BCS,Ciudad Constituciï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____n,MMDA,CUA,MMDA,CCB,-7,S,America/Mazatlan
 4705,MMCY,medium_airport,Captain Rogelio Castillo National Airport,20.54599953,-100.887001,5709,NA,MX,MX-GUA,Celaya,MMCY,CYW,MMCY,,-6,S,America/Mexico_City
 31910,MLIP,small_airport,Mili Island Airport,6.083330154,171.7330017,4,OC,MH,MH-MIL,Mili Island,MLIP,MIJ,MLIP,1Q9,12,U,Pacific/Majuro
 32153,MHPL,small_airport,Puerto Lempira Airport,15.26220036,-83.78119659,25,NA,HN,HN-GD,Puerto Lempira,MHPL,PEU,MHPL,,-6,U,America/Tegucigalpa
@@ -4409,16 +4409,16 @@ id,ident,type,name,latitude,longitude,elevation_ft,continent,iso_country,iso_reg
 30610,MGQZ,small_airport,Quezaltenango Airport,14.86559963,-91.5019989,7779,NA,GT,GT-QZ,Quezaltenango,MGQZ,AAZ,MGQZ,,-6,U,America/Guatemala
 4645,MGPB,medium_airport,Puerto Barrios Airport,15.73089981,-88.58380127,33,NA,GT,GT-IZ,Puerto Barrios,MGPB,PBR,MGPB,,-6,U,America/Guatemala
 4634,MDJB,medium_airport,Dr Joaquin Balaguer International Airport,18.57250023,-69.98560333,98,NA,DO,DO-01,La Isabela,MDJB,JBQ,MDJB,,-4,U,America/Santo_Domingo
-30673,MDCY,medium_airport,Saman´è_´è__´è_´è___´è_´è__´è_´è___ El Catey International Airport,19.2670002,-69.74199677,30,NA,DO,DO-20,Samana,MDCY,AZS,MDCY,,-4,U,America/Santo_Domingo
+30673,MDCY,medium_airport,Samanï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ El Catey International Airport,19.2670002,-69.74199677,30,NA,DO,DO-20,Samana,MDCY,AZS,MDCY,,-4,U,America/Santo_Domingo
 32325,MBSY,small_airport,Salt Cay Airport,21.33300018,-71.19999695,3,NA,TC,TC-SL,Salt Cay,MBSY,SLX,MBSY,,-5,U,America/Grand_Turk
 31887,MBMC,small_airport,Middle Caicos Airport,21.82602,-71.8025,9,NA,TC,TC-MC,Middle Caicos,MBMC,MDS,MBMC,,-5,U,America/Grand_Turk
 4626,MBGT,medium_airport,JAGS McCartney International Airport,21.44449997,-71.14230347,13,NA,TC,TC-GT,Cockburn Town,MBGT,GDT,MBGT,,-5,U,America/Grand_Turk
-4624,LZZI,medium_airport,´è_´è__´è_´è____ilina Airport,49.23149872,18.6135006,1020,EU,SK,SK-ZI,´è_´è__´è_´è____ilina,LZZI,ILZ,LZZI,,1,E,Europe/Bratislava
+4624,LZZI,medium_airport,ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____ilina Airport,49.23149872,18.6135006,1020,EU,SK,SK-ZI,ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____ilina,LZZI,ILZ,LZZI,,1,E,Europe/Bratislava
 32195,LY-QUB,small_airport,Ubari Airport,26.56749916,12.82310009,1387,AF,LY,LY-SH,Ubari,HLUB,QUB,HLUB,,2,N,Africa/Tripoli
 31944,LY-MRA,small_airport,Misratah Airport,32.32500076,15.06099987,60,AF,LY,LY-MI,Misratah,HLMS,MRA,HLMS,,2,N,Africa/Tripoli
-4568,LTFH,medium_airport,Samsun-´è_´è__´è_´è___´è_´è__´è_´è___ar´è_´è__´è_´è___´è_´è__´è_´è___amba Airport,41.25450134,36.56710052,18,AS,TR,TR-55,Samsun,LTFH,SZF,LTFH,,2,E,Europe/Istanbul
+4568,LTFH,medium_airport,Samsun-ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___arï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___amba Airport,41.25450134,36.56710052,18,AS,TR,TR-55,Samsun,LTFH,SZF,LTFH,,2,E,Europe/Istanbul
 4566,LTFD,medium_airport,Balikesir Korfez Airport,39.55459976,27.01379967,50,AS,TR,TR-10,Balikesir Korfez,LTFD,EDO,LTFD,,2,E,Europe/Istanbul
-4565,LTFC,large_airport,Isparta S´è_´è__´è_´è____leyman Demirel Airport,37.85540009,30.36840057,2835,AS,TR,TR-32,Isparta,LTFC,ISE,LTFC,,2,E,Europe/Istanbul
+4565,LTFC,large_airport,Isparta Sï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____leyman Demirel Airport,37.85540009,30.36840057,2835,AS,TR,TR-32,Isparta,LTFC,ISE,LTFC,,2,E,Europe/Istanbul
 4561,LTCP,medium_airport,Adiyaman Airport,37.73139954,38.46889877,2216,AS,TR,TR-02,Adiyaman,LTCP,ADF,LTCP,,2,E,Europe/Istanbul
 4560,LTCO,medium_airport,Agri Airport,39.65454102,43.02597809,5462,AS,TR,TR-04,Agri,LTCO,AJI,LTCO,,2,E,Europe/Istanbul
 4559,LTCN,medium_airport,Kahramanmaras Airport,37.53882599,36.95352173,1723,AS,TR,TR-46,Kahramanmaras,LTCN,KCM,LTCN,,2,E,Europe/Istanbul
@@ -4429,15 +4429,15 @@ id,ident,type,name,latitude,longitude,elevation_ft,continent,iso_country,iso_reg
 29487,LPCR,small_airport,Corvo Airport,39.67150116,-31.11359978,,EU,PT,PT-20,Corvo,LPCR,CVU,LPCR,,-1,E,Atlantic/Azores
 4374,LIRI,medium_airport,Salerno Pontecagnano Airport,40.62039948,14.91129971,119,EU,IT,IT-72,Salerno,LIRI,QSR,LIRI,,1,E,Europe/Rome
 4349,LIMW,medium_airport,Aosta Airport,45.73849869,7.368720055,1791,EU,IT,IT-23,Aosta,LIMW,AOT,LIMW,,1,E,Europe/Rome
-4305,LHSM,medium_airport,S´è_´è__´è_´è___´è_´è__´è_´è___rmell´è_´è__´è_´è___´è_´è__´è_´è___k International Airport,46.68640137,17.15909958,408,EU,HU,HU-ZA,S´è_´è__´è_´è___´è_´è__´è_´è___rmell´è_´è__´è_´è___´è_´è__´è_´è___k,LHSM,SOB,LHSM,,1,N,Europe/Budapest
-4303,LHPR,medium_airport,Gy´è_´è__´è_´è___´è_´è__´è_´è___r-P´è_´è__´è_´è___´è_´è__´è_´è___r International Airport,47.62440109,17.81360054,424,EU,HU,HU-GS,Gy´è_´è__´è_´è___´è_´è__´è_´è___r,LHPR,QGY,LHPR,,1,N,Europe/Budapest
-4302,LHPP,medium_airport,P´è_´è__´è_´è___´è_´è__´è_´è___cs-Pog´è_´è__´è_´è___´è_´è__´è_´è___ny Airport,45.99089813,18.24099922,1000,EU,HU,HU-BA,P´è_´è__´è_´è___´è_´è__´è_´è___cs-Pog´è_´è__´è_´è___´è_´è__´è_´è___ny,LHPP,PEV,LHPP,,1,N,Europe/Budapest
+4305,LHSM,medium_airport,Sï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___rmellï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___k International Airport,46.68640137,17.15909958,408,EU,HU,HU-ZA,Sï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___rmellï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___k,LHSM,SOB,LHSM,,1,N,Europe/Budapest
+4303,LHPR,medium_airport,Gyï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___r-Pï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___r International Airport,47.62440109,17.81360054,424,EU,HU,HU-GS,Gyï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___r,LHPR,QGY,LHPR,,1,N,Europe/Budapest
+4302,LHPP,medium_airport,Pï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___cs-Pogï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ny Airport,45.99089813,18.24099922,1000,EU,HU,HU-BA,Pï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___cs-Pogï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ny,LHPP,PEV,LHPP,,1,N,Europe/Budapest
 4284,LGSO,small_airport,Syros Airport,37.42279816,24.95089912,236,EU,GR,GR-82,Syros Island,LGSO,JSY,LGSO,,2,E,Europe/Athens
-4243,LFTZ,small_airport,La M´è_´è__´è_´è___´è_´è__´è_´è___le Airport,43.20539856,6.481999874,59,EU,FR,FR-U,La M´è_´è__´è_´è___´è_´è__´è_´è___le,LFTZ,LTT,LFTZ,,1,E,Europe/Paris
+4243,LFTZ,small_airport,La Mï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___le Airport,43.20539856,6.481999874,59,EU,FR,FR-U,La Mï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___le,LFTZ,LTT,LFTZ,,1,E,Europe/Paris
 30465,NZTL,small_airport,Tekapo,-44.00529861,170.4440002,2496,OC,NZ,NZ-CAN,Lake Tekapo,NZTL,,NZTL,,12,Z,Pacific/Auckland
-4121,LFJR,medium_airport,Angers-Loire Airport,47.56029892,-0.312222004,194,EU,FR,FR-R,Angers/Marc´è_´è__´è_´è___´è_´è__´è_´è___,LFJR,ANE,LFJR,,1,E,Europe/Paris
-4101,LFEY,medium_airport,´è_´è__´è_´è____le d'Yeu Airport,46.71860123,-2.391109943,79,EU,FR,FR-R,´è_´è__´è_´è____le d'Yeu,LFEY,IDY,LFEY,,1,E,Europe/Paris
-30083,LELO,small_airport,Logro´è_´è__´è_´è___´è_´è__´è_´è___o-Agoncillo Airport,42.46095349,-2.322235107,1161,EU,ES,ES-LO,Logro´è_´è__´è_´è___´è_´è__´è_´è___o-Agoncillo,LELO,RJL,LERJ,,1,E,Europe/Madrid
+4121,LFJR,medium_airport,Angers-Loire Airport,47.56029892,-0.312222004,194,EU,FR,FR-R,Angers/Marcï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___,LFJR,ANE,LFJR,,1,E,Europe/Paris
+4101,LFEY,medium_airport,ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____le d'Yeu Airport,46.71860123,-2.391109943,79,EU,FR,FR-R,ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____le d'Yeu,LFEY,IDY,LFEY,,1,E,Europe/Paris
+30083,LELO,small_airport,Logroï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___o-Agoncillo Airport,42.46095349,-2.322235107,1161,EU,ES,ES-LO,Logroï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___o-Agoncillo,LELO,RJL,LERJ,,1,E,Europe/Madrid
 30979,LCEN,medium_airport,Ercan International Airport,35.15470123,33.49610138,404,AS,CY,CY-02,Nicosia,LCEN,ECN,LCEN,,2,E,Asia/Nicosia
 3958,KYKM,medium_airport,Yakima Air Terminal McAllister Field,46.56819916,-120.5439987,1099,NA,US,US-WA,Yakima,KYKM,YKM,KYKM,YKM,-8,A,America/Los_Angeles
 42550,KWY,medium_airport,Kiwayu (Mkononi) Airport,-1.960559964,41.29750061,21,AF,KE,KE-300,Kiwayu,,KWY,,,3,U,Africa/Nairobi
@@ -4546,7 +4546,7 @@ id,ident,type,name,latitude,longitude,elevation_ft,continent,iso_country,iso_reg
 32287,GVSF,small_airport,Sao Filipe Airport,14.88500023,-24.47999954,617,AF,CV,CV-S,"Sao Filipe, Fogo Island",GVSF,SFL,GVSF,,-1,U,Atlantic/Cape_Verde
 3153,GVNP,medium_airport,Praia International Airport,14.92450047,-23.49349976,230,AF,CV,CV-S,"Praia, Santiago Island",GVNP,RAI,GVNP,,-1,U,Atlantic/Cape_Verde
 3114,GMMW,medium_airport,El Aroui Airport,34.98880005,-3.028209925,574,AF,MA,MA-NAD,El Aroui,GMMW,NDR,GMMW,,0,N,Africa/Casablanca
-3112,GMML,medium_airport,Hassan I Airport,27.15169907,-13.21920013,207,AF,EH,EH-U-A,El Aai´è_´è__´è_´è____n,GMML,EUN,GMML,,0,N,Africa/El_Aaiun
+3112,GMML,medium_airport,Hassan I Airport,27.15169907,-13.21920013,207,AF,EH,EH-U-A,El Aaiï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____n,GMML,EUN,GMML,,0,N,Africa/El_Aaiun
 3111,GMMI,small_airport,Mogador Airport,31.39749908,-9.681670189,384,AF,MA,MA-ESI,Essadouira,GMMI,ESU,GMMI,,0,N,Africa/Casablanca
 3110,GMMH,medium_airport,Dakhla Airport,23.71829987,-15.93200016,36,AF,EH,EH-U-A,Dakhla,GMMH,VIL,GMMH,,0,N,Africa/El_Aaiun
 3108,GMMA,medium_airport,Smara Airport,26.73180008,-11.68470001,350,AF,EH,EH-U-A,Smara,GMMA,SMW,GMMA,,0,N,Africa/El_Aaiun
@@ -4595,7 +4595,7 @@ id,ident,type,name,latitude,longitude,elevation_ft,continent,iso_country,iso_reg
 35210,FMNP,small_airport,Mampikony Airport,-16.07226934,47.64416456,,AF,MG,MG-M,Mampikony,FMNP,WMP,FMNP,,3,U,Indian/Antananarivo
 30951,FMNO,small_airport,Soalala Airport,-16.10169042,45.35883665,141,AF,MG,MG-M,Soalala,FMNO,DWB,FMNO,,3,U,Indian/Antananarivo
 31688,FMNJ,small_airport,Ambanja Airport,-13.64570531,48.45942736,36,AF,MG,MG-D,Ambanja,FMNJ,IVA,FMNJ,,3,U,Indian/Antananarivo
-32673,FMNG,small_airport,Port Berg´è_´è__´è_´è___´è_´è__´è_´è___ Airport,-15.58428647,47.62358665,213,AF,MG,MG-M,Port Berg´è_´è__´è_´è___´è_´è__´è_´è___,FMNG,WPB,FMNG,,3,U,Indian/Antananarivo
+32673,FMNG,small_airport,Port Bergï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ Airport,-15.58428647,47.62358665,213,AF,MG,MG-M,Port Bergï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___,FMNG,WPB,FMNG,,3,U,Indian/Antananarivo
 32630,FMMZ,small_airport,Ambatondrazaka Airport,-17.79537761,48.44258308,2513,AF,MG,MG-A,Ambatondrazaka,FMMZ,WAM,FMMZ,,3,U,Indian/Antananarivo
 32682,FMMX,small_airport,Tsiroanomandidy Airport,-18.75967656,46.05406523,2776,AF,MG,MG-T,Tsiroanomandidy,FMMX,WTS,FMMX,,3,U,Indian/Antananarivo
 32678,FMMU,small_airport,Tambohorano Airport,-17.47610092,43.97280121,23,AF,MG,MG-M,Tambohorano,FMMU,WTA,FMMU,,3,U,Indian/Antananarivo
@@ -4621,23 +4621,23 @@ id,ident,type,name,latitude,longitude,elevation_ft,continent,iso_country,iso_reg
 28145,HIL,small_airport,Shilavo Airport,6.083330154,44.76670074,1296,AF,ET,ET-SO,Shilavo,HASL,HIL,HASL,,3,U,Africa/Addis_Ababa
 2716,ESUT,medium_airport,Hemavan Airport,65.80609894,15.08279991,1503,EU,SE,SE-AC,Hemavan,ESUT,HMV,ESUT,,1,E,Europe/Stockholm
 2713,ESUD,medium_airport,Storuman Airport,64.96089935,17.69659996,915,EU,SE,SE-AC,Mohed,ESUD,SQO,ESUD,,1,E,Europe/Stockholm
-2711,ESTA,medium_airport,´è_´è__´è_´è___´è_´è__´è_´è___ngelholm-Helsingborg Airport,56.29610062,12.84710026,68,EU,SE,SE-M,´è_´è__´è_´è___´è_´è__´è_´è___ngelholm,ESTA,AGH,ESTA,,1,E,Europe/Stockholm
+2711,ESTA,medium_airport,ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ngelholm-Helsingborg Airport,56.29610062,12.84710026,68,EU,SE,SE-M,ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ngelholm,ESTA,AGH,ESTA,,1,E,Europe/Stockholm
 2708,ESST,medium_airport,Torsby Airport,60.1576004,12.99129963,393,EU,SE,SE-S,Torsby,ESST,TYF,ESST,,1,E,Europe/Stockholm
 2695,ESOK,medium_airport,Karlstad Airport,59.44469833,13.33740044,352,EU,SE,SE-S,Karlstad,ESOK,KSD,ESOK,,1,E,Europe/Stockholm
 2694,ESOH,medium_airport,Hagfors Airport,60.02009964,13.57890034,474,EU,SE,SE-S,Hagfors,ESOH,HFS,ESOH,,1,E,Europe/Stockholm
-29358,ESNZ,medium_airport,´è_´è__´è_´è____stersund Airport,63.19440079,14.50030041,1233,EU,SE,SE-Z,´è_´è__´è_´è____stersund,ESNZ,OSD,ESNZ,,1,E,Europe/Stockholm
-2616,EPLL,medium_airport,´è_´è__´è_´è___´è_´è__´è_´è___´è_´è__´è_´è____d´è_´è__´è_´è____ W´è_´è__´è_´è___´è_´è__´è_´è___adys´è_´è__´è_´è___´è_´è__´è_´è___aw Reymont Airport,51.72190094,19.3980999,604,EU,PL,PL-LD,Lodz,EPLL,LCJ,EPLL,,1,E,Europe/Warsaw
+29358,ESNZ,medium_airport,ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____stersund Airport,63.19440079,14.50030041,1233,EU,SE,SE-Z,ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____stersund,ESNZ,OSD,ESNZ,,1,E,Europe/Stockholm
+2616,EPLL,medium_airport,ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____dï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____ Wï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___adysï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___aw Reymont Airport,51.72190094,19.3980999,604,EU,PL,PL-LD,Lodz,EPLL,LCJ,EPLL,,1,E,Europe/Warsaw
 2604,EPBY,medium_airport,Bydgoszcz Ignacy Jan Paderewski Airport,53.09680176,17.97769928,235,EU,PL,PL-KP,Bydgoszcz,EPBY,BZG,EPBY,,1,E,Europe/Warsaw
-35127,ENVR,heliport,V´è_´è__´è_´è____r´è_´è__´è_´è___´è_´è__´è_´è___y Heliport,67.65540314,12.72700024,12,EU,NO,NO-18,V´è_´è__´è_´è____r´è_´è__´è_´è___´è_´è__´è_´è___y,ENVR,VRY,ENVR,,1,E,Europe/Oslo
-2597,ENSS,medium_airport,Svartnes Airport,70.35540009,31.04490089,42,EU,NO,NO-20,Vard´è_´è__´è_´è___´è_´è__´è_´è___,ENSS,VAW,ENSS,,1,E,Europe/Oslo
+35127,ENVR,heliport,Vï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____rï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___y Heliport,67.65540314,12.72700024,12,EU,NO,NO-18,Vï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____rï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___y,ENVR,VRY,ENVR,,1,E,Europe/Oslo
+2597,ENSS,medium_airport,Svartnes Airport,70.35540009,31.04490089,42,EU,NO,NO-20,Vardï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___,ENSS,VAW,ENSS,,1,E,Europe/Oslo
 2596,ENSR,medium_airport,Sorkjosen Airport,69.78679657,20.95940018,16,EU,NO,NO-19,Sorkjosen,ENSR,SOJ,ENSR,,1,E,Europe/Oslo
-29281,ENSH,medium_airport,Svolv´è_´è__´è_´è____r Helle Airport,68.24330139,14.66919994,27,EU,NO,NO-18,Svolv´è_´è__´è_´è____r,ENSH,SVJ,ENSH,,1,E,Europe/Oslo
+29281,ENSH,medium_airport,Svolvï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____r Helle Airport,68.24330139,14.66919994,27,EU,NO,NO-18,Svolvï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____r,ENSH,SVJ,ENSH,,1,E,Europe/Oslo
 28116,ENSG,small_airport,Sogndal Airport,61.15610123,7.13778019,,EU,NO,NO-14,Sogndal,ENSG,SOG,ENSG,,1,E,Europe/Oslo
 29280,ENSD,small_airport,Anda Airport,61.83000183,6.105830193,196,EU,NO,NO-14,Sandane,ENSD,SDN,ENSD,,1,E,Europe/Oslo
-29279,ENRS,small_airport,R´è_´è__´è_´è___´è_´è__´è_´è___st Airport,67.52780151,12.10330009,7,EU,NO,NO-18,R´è_´è__´è_´è___´è_´è__´è_´è___st,ENRS,RET,ENRS,,1,E,Europe/Oslo
-29278,ENRM,medium_airport,Ryum Airport,64.83830261,11.14610004,14,EU,NO,NO-17,R´è_´è__´è_´è___´è_´è__´è_´è___rvik,ENRM,RVK,ENRM,,1,E,Europe/Oslo
-29277,ENRA,medium_airport,R´è_´è__´è_´è___´è_´è__´è_´è___ssvoll Airport,66.36389923,14.30140018,229,EU,NO,NO-18,Mo i Rana,ENRA,MQN,ENRA,,1,E,Europe/Oslo
-29267,ENNM,small_airport,Namsos H´è_´è__´è_´è___´è_´è__´è_´è___knes´è_´è__´è_´è___´è_´è__´è_´è___ra Airport,64.47219849,11.57859993,7,EU,NO,NO-17,Namsos,ENNM,OSY,ENNM,,1,E,Europe/Oslo
+29279,ENRS,small_airport,Rï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___st Airport,67.52780151,12.10330009,7,EU,NO,NO-18,Rï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___st,ENRS,RET,ENRS,,1,E,Europe/Oslo
+29278,ENRM,medium_airport,Ryum Airport,64.83830261,11.14610004,14,EU,NO,NO-17,Rï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___rvik,ENRM,RVK,ENRM,,1,E,Europe/Oslo
+29277,ENRA,medium_airport,Rï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ssvoll Airport,66.36389923,14.30140018,229,EU,NO,NO-18,Mo i Rana,ENRA,MQN,ENRA,,1,E,Europe/Oslo
+29267,ENNM,small_airport,Namsos Hï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___knesï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ra Airport,64.47219849,11.57859993,7,EU,NO,NO-17,Namsos,ENNM,OSY,ENNM,,1,E,Europe/Oslo
 29264,ENLK,medium_airport,Leknes Airport,68.15249634,13.6093998,78,EU,NO,NO-18,Leknes,ENLK,LKN,ENLK,,1,E,Europe/Oslo
 2554,EKSN,medium_airport,Sindal Airport,57.50350189,10.22939968,92,EU,DK,DK-81,Sindal,EKSN,CNL,EKSN,,1,N,Europe/Copenhagen
 27310,EIWT,medium_airport,Weston Airport,53.35219955,-6.48611021,150,EU,IE,IE-KE,Leixlip,EIWT,,EIWT,,0,E,Europe/Dublin
@@ -4658,14 +4658,14 @@ id,ident,type,name,latitude,longitude,elevation_ft,continent,iso_country,iso_reg
 2411,EGEC,medium_airport,Campbeltown Airport,55.43719864,-5.686389923,42,EU,GB,GB-SCT,Campbeltown,EGEC,CAL,EGEC,,0,E,Europe/London
 2401,EGCN,large_airport,Robin Hood Doncaster Sheffield Airport,53.48053781,-1.010656357,55,EU,GB,GB-ENG,"Doncaster, Sheffield",EGCN,DSA,EGCN,,0,E,Europe/London
 2393,EGBN,medium_airport,Nottingham Airport,52.91999817,-1.079169989,138,EU,GB,GB-ENG,Nottingham,EGBN,NQT,EGBN,,0,E,Europe/London
-2345,EFSI,medium_airport,Sein´è_´è__´è_´è____joki Airport,62.69210052,22.83230019,302,EU,FI,FI-LS,Sein´è_´è__´è_´è____joki / Ilmajoki,EFSI,SJY,EFSI,,2,E,Europe/Helsinki
-28591,EDXH,small_airport,Helgoland-D´è_´è__´è_´è____ne Airport,54.18527985,7.915832996,8,EU,DE,DE-SH,Helgoland,EDXH,HGL,EDXH,,1,E,
-28590,EDXB,small_airport,Heide-B´è_´è__´è_´è____sum Airport,54.15333176,8.901666641,7,EU,DE,DE-SH,B´è_´è__´è_´è____sum,EDXB,HEI,EDXB,,1,E,Europe/Berlin
+2345,EFSI,medium_airport,Seinï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____joki Airport,62.69210052,22.83230019,302,EU,FI,FI-LS,Seinï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____joki / Ilmajoki,EFSI,SJY,EFSI,,2,E,Europe/Helsinki
+28591,EDXH,small_airport,Helgoland-Dï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____ne Airport,54.18527985,7.915832996,8,EU,DE,DE-SH,Helgoland,EDXH,HGL,EDXH,,1,E,
+28590,EDXB,small_airport,Heide-Bï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____sum Airport,54.15333176,8.901666641,7,EU,DE,DE-SH,Bï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____sum,EDXB,HEI,EDXB,,1,E,Europe/Berlin
 2187,EDAH,medium_airport,Heringsdorf Airport,53.87870026,14.15229988,93,EU,DE,DE-MV,Heringsdorf,EDAH,HDF,EDAH,,1,E,Europe/Berlin
 2093,DGSI,medium_airport,Kumasi Airport,6.714560032,-1.590819955,942,AF,GH,GH-AH,Kumasi,DGSI,KMS,DGSI,,0,N,Africa/Accra
 2083,DAUO,medium_airport,Guemar Airport,33.51139832,6.776790142,203,AF,DZ,DZ-39,Guemar,DAUO,ELU,DAUO,,1,N,Africa/Algiers
 30777,DATM,small_airport,Bordj Badji Mokhtar Airport,21.375,0.923888981,1303,AF,DZ,DZ-01,Bordj Badji Mokhtar,DATM,BMW,DATM,,1,N,Africa/Algiers
-2072,DAOR,medium_airport,B´è_´è__´è_´è___´è_´è__´è_´è___char Boudghene Ben Ali Lotfi Airport,31.64570045,-2.269860029,2661,AF,DZ,DZ-08,B´è_´è__´è_´è___´è_´è__´è_´è___char,DAOR,CBH,DAOR,,1,N,Africa/Algiers
+2072,DAOR,medium_airport,Bï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___char Boudghene Ben Ali Lotfi Airport,31.64570045,-2.269860029,2661,AF,DZ,DZ-08,Bï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___char,DAOR,CBH,DAOR,,1,N,Africa/Algiers
 2063,DABT,medium_airport,Batna Airport,35.7521019,6.308589935,2697,AF,DZ,DZ-05,Batna,DABT,BLJ,DABT,,1,N,Africa/Algiers
 2046,CZWL,medium_airport,Wollaston Lake Airport,58.10689926,-103.1719971,1360,NA,CA,CA-SK,Wollaston Lake,CZWL,ZWL,CZWL,,-6,N,America/Regina
 2043,CZUM,small_airport,Churchill Falls Airport,53.56190109,-64.10639954,1442,NA,CA,CA-NL,Churchill Falls,CZUM,ZUM,CZUM,,-4,A,America/Halifax
@@ -4692,7 +4692,7 @@ id,ident,type,name,latitude,longitude,elevation_ft,continent,iso_country,iso_reg
 1905,CYSK,medium_airport,Sanikiluaq Airport,56.53779984,-79.24669647,104,NA,CA,CA-NU,Sanikiluaq,CYSK,YSK,CYSK,,-5,A,
 1901,CYSF,medium_airport,Stony Rapids Airport,59.25030136,-105.8410034,805,NA,CA,CA-SK,Stony Rapids,CYSF,YSF,CYSF,,-6,N,America/Regina
 1889,CYRL,medium_airport,Red Lake Airport,51.06689835,-93.79309845,1265,NA,CA,CA-ON,Red Lake,CYRL,YRL,CYRL,,-6,A,America/Winnipeg
-1884,CYRA,medium_airport,Rae Lakes Airport,64.1160965,-117.3099976,723,NA,CA,CA-NT,Gam´è_´è__´è_´è___´è_´è__´è_´è___t´è_´è__´è_´è___´è_´è__´è_´è___,CYRA,YRA,CYRA,,-7,A,America/Edmonton
+1884,CYRA,medium_airport,Rae Lakes Airport,64.1160965,-117.3099976,723,NA,CA,CA-NT,Gamï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___tï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___,CYRA,YRA,CYRA,,-7,A,America/Edmonton
 1873,CYQN,medium_airport,Nakina Airport,50.18280029,-86.6964035,1057,NA,CA,CA-ON,Nakina,CYQN,YQN,CYQN,,-5,A,America/Toronto
 1865,CYQD,medium_airport,The Pas Airport,53.97140121,-101.0910034,887,NA,CA,CA-MB,The Pas,CYQD,YQD,CYQD,,-6,A,America/Winnipeg
 1859,CYPW,medium_airport,Powell River Airport,49.83420181,-124.5,425,NA,CA,CA-BC,Powell River,CYPW,YPW,CYPW,,-8,A,America/Vancouver
@@ -4741,11 +4741,11 @@ id,ident,type,name,latitude,longitude,elevation_ft,continent,iso_country,iso_reg
 1658,CYAQ,medium_airport,Kasabonika Airport,53.52470016,-88.64279938,672,NA,CA,CA-ON,Kasabonika,CYAQ,XKS,CYAQ,,-5,A,America/Toronto
 1654,CYAG,medium_airport,Fort Frances Municipal Airport,48.65420151,-93.43969727,1125,NA,CA,CA-ON,Fort Frances,CYAG,YAG,CYAG,,-6,A,America/Winnipeg
 1652,CYAC,medium_airport,Cat Lake Airport,51.72719955,-91.82440186,1344,NA,CA,CA-ON,Cat Lake,CYAC,YAC,CYAC,,-6,A,America/Winnipeg
-35319,CO-TCD,small_airport,Tarapac´è_´è__´è_´è___´è_´è__´è_´è___ Airport,-2.867,-69.733002,,SA,CO,CO-AMA,Tarapac´è_´è__´è_´è___´è_´è__´è_´è___,,TCD,,,-5,U,America/Bogota
-6127,SKLC,medium_airport,Apartad´è_´è__´è_´è____ Airport,7.81196,-76.7164,46,SA,CO,CO-ANT,Apartad´è_´è__´è_´è____,SKLC,APO,SKLC,APO,-5,U,America/Bogota
+35319,CO-TCD,small_airport,Tarapacï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ Airport,-2.867,-69.733002,,SA,CO,CO-AMA,Tarapacï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___,,TCD,,,-5,U,America/Bogota
+6127,SKLC,medium_airport,Apartadï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____ Airport,7.81196,-76.7164,46,SA,CO,CO-ANT,Apartadï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____,SKLC,APO,SKLC,APO,-5,U,America/Bogota
 32048,CN-NTG,small_airport,Nantong Airport,32.07080078,120.9759979,16,AS,CN,CN-32,Nantong,ZSNT,NTG,ZSNT,,8,U,Asia/Chongqing
-1619,CTU5,small_airport,La Tabati´è_´è__´è_´è___´è_´è__´è_´è___re Airport,50.8307991,-58.9756012,102,NA,CA,CA-QC,La Tabati´è_´è__´è_´è___´è_´è__´è_´è___re,CTU5,ZLT,CTU5,CTU5,-4,A,America/Blanc-Sablon
-1590,CTB6,small_airport,T´è_´è__´è_´è___´è_´è__´è_´è___te-´è_´è__´è_´è___´è_´è__´è_´è___-la-Baleine Airport,50.67440033,-59.38359833,107,NA,CA,CA-QC,T´è_´è__´è_´è___´è_´è__´è_´è___te-´è_´è__´è_´è___´è_´è__´è_´è___-la-Baleine,CTB6,ZTB,CTB6,CTB6,-4,A,America/Blanc-Sablon
+1619,CTU5,small_airport,La Tabatiï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___re Airport,50.8307991,-58.9756012,102,NA,CA,CA-QC,La Tabatiï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___re,CTU5,ZLT,CTU5,CTU5,-4,A,America/Blanc-Sablon
+1590,CTB6,small_airport,Tï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___te-ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___-la-Baleine Airport,50.67440033,-59.38359833,107,NA,CA,CA-QC,Tï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___te-ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___-la-Baleine,CTB6,ZTB,CTB6,CTB6,-4,A,America/Blanc-Sablon
 1563,CSU2,small_airport,Chisasibi Airport,53.80559921,-78.91690063,43,NA,CA,CA-QC,Chisasibi,CSU2,YKU,CSU2,CSU2,-5,A,America/Toronto
 1465,CPV7,small_airport,Poplar Hill Airport,52.11330032,-94.25559998,1095,NA,CA,CA-ON,Poplar Hill,CPV7,YHP,CPV7,CPV7,-6,A,America/Winnipeg
 1343,CNT3,small_airport,Ogoki Post Airport,51.65859985,-85.90170288,594,NA,CA,CA-ON,Ogoki Post,CNT3,YOG,CYKP,CYKP,-5,A,America/Toronto
@@ -4755,7 +4755,7 @@ id,ident,type,name,latitude,longitude,elevation_ft,continent,iso_country,iso_reg
 1200,CKL3,small_airport,Wunnumin Lake Airport,52.89390182,-89.28919983,819,NA,CA,CA-ON,Wunnumin Lake,CKL3,WNN,CKL3,CKL3,-5,A,America/Toronto
 1162,CKB6,small_airport,Wapekeka Airport,53.8492012,-89.57939911,712,NA,CA,CA-ON,Angling Lake,CKB6,YAX,CKB6,CKB6,-6,A,America/Winnipeg
 1139,CJV7,small_airport,Summer Beaver Airport,52.70859909,-88.54190063,832,NA,CA,CA-ON,Summer Beaver,CJV7,SUR,CJV7,CJV7,-5,A,America/Toronto
-874,CEM3,small_airport,What´è_´è__´è_´è___´è_´è__´è_´è___ Airport,63.13169861,-117.2460022,882,NA,CA,CA-NT,What´è_´è__´è_´è___´è_´è__´è_´è___,CEM3,YLE,CEM3,CEM3,-7,A,America/Edmonton
+874,CEM3,small_airport,Whatï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ Airport,63.13169861,-117.2460022,882,NA,CA,CA-NT,Whatï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___,CEM3,YLE,CEM3,CEM3,-7,A,America/Edmonton
 314953,CYVL,small_airport,Colville Lake Airport,67.02,-126.126,870,NA,CA,CA-NT,Colville Lake,CEB3,YCK,CYVL,,-7,A,America/Edmonton
 793,CCZ2,small_airport,Rigolet Airport,54.17969894,-58.45750046,180,NA,CA,CA-NL,Rigolet,CCZ2,YRG,CCZ2,CCZ2,-4,A,America/Halifax
 771,CCP4,small_airport,Port Hope Simpson Airport,52.52809906,-56.28609848,347,NA,CA,CA-NL,Port Hope Simpson,CCP4,YHA,CCP4,CCP4,-3,A,America/St_Johns
@@ -4765,10 +4765,10 @@ id,ident,type,name,latitude,longitude,elevation_ft,continent,iso_country,iso_reg
 28465,CAE5,seaplane_base,Whistler/Green Lake Water Aerodrome,50.14360046,-122.9489975,2100,NA,CA,CA-BC,Whistler,CAE5,YWS,CAE5,CAE5,-8,A,America/Vancouver
 35305,BZ-PND,medium_airport,Punta Gorda Airport,16.10239983,-88.8082962,7,NA,BZ,BZ-TOL,Punta Gorda,,PND,,,-6,U,America/Belize
 30861,BZ-CUK,medium_airport,Caye Caulker Airport,17.73469925,-88.03250122,1,NA,BZ,BZ-BZ,Caye Caulker,,CUK,,,-6,U,America/Belize
-32593,BIVO,small_airport,Vopnafj´è_´è__´è_´è____r´è_´è__´è_´è___´è_´è__´è_´è___ur Airport,65.72059631,-14.85060024,16,EU,IS,IS-7,Vopnafj´è_´è__´è_´è____r´è_´è__´è_´è___´è_´è__´è_´è___ur,BIVO,VPN,BIVO,,0,N,Atlantic/Reykjavik
+32593,BIVO,small_airport,Vopnafjï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____rï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ur Airport,65.72059631,-14.85060024,16,EU,IS,IS-7,Vopnafjï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____rï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ur,BIVO,VPN,BIVO,,0,N,Atlantic/Reykjavik
 127,BITN,small_airport,Thorshofn Airport,66.21849823,-15.3355999,65,EU,IS,IS-6,Thorshofn,BITN,THO,BITN,,0,N,Atlantic/Reykjavik
 31945,MRDK,small_airport,Drake Bay Airport,8.71889019,-83.64170074,12,NA,CR,CR-P,Puntarenas,MRDK,DRK,MRDK,,-6,N,America/Costa_Rica
-31549,BIGR,small_airport,Gr´è_´è__´è_´è____msey Airport,66.5458,-18.0173,66,EU,IS,IS-6,Gr´è_´è__´è_´è____msey,BIGR,GRY,BIGR,,0,N,Atlantic/Reykjavik
+31549,BIGR,small_airport,Grï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____msey Airport,66.5458,-18.0173,66,EU,IS,IS-6,Grï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____msey,BIGR,GRY,BIGR,,0,N,Atlantic/Reykjavik
 31709,BGUQ,small_airport,Qaarsut Airport,70.73419952,-52.69620132,289,NA,GL,GL-U-A,Uummannaq,BGUQ,JQA,BGUQ,,-3,E,America/Godthab
 31713,BGUK,small_airport,Upernavik Airport,72.79019928,-56.13059998,414,NA,GL,GL-U-A,Upernavik,BGUK,JUV,BGUK,,-3,E,America/Godthab
 31700,BGSS,small_airport,Sisimiut Airport,66.95130157,-53.72930145,33,NA,GL,GL-U-A,Sisimiut,BGSS,JHS,BGSS,,-3,E,America/Godthab
@@ -4829,29 +4829,29 @@ id,ident,type,name,latitude,longitude,elevation_ft,continent,iso_country,iso_reg
 32575,TUPW,small_airport,Virgin Gorda Airport,18.44639969,-64.42749786,9,NA,VG,VG-U-A,Spanish Town,TUPW,VIJ,TUPW,,-4,U,America/Tortola
 6387,TKPN,medium_airport,Vance Winkworth Amory International Airport,17.20569992,-62.58990097,14,NA,KN,KN-U-A,Charlestown,TKPN,NEV,TKPN,,-4,U,America/St_Kitts
 30683,TFFB,small_airport,Baillif Airport,16.01329994,-61.74219894,59,NA,GP,GP-U-A,Basse Terre,TFFB,BBR,TFFB,,-4,U,America/Guadeloupe
-30948,TFFA,small_airport,La D´è_´è__´è_´è___´è_´è__´è_´è___sirade Airport,16.2968998,-61.08440018,10,NA,GP,GP-U-A,Grande Anse,TFFA,DSD,TFFA,,-4,U,America/Guadeloupe
-6335,SVVG,medium_airport,Juan Pablo P´è_´è__´è_´è___´è_´è__´è_´è___rez Alfonso Airport,8.624138832,-71.67266846,250,SA,VE,VE-L,El Vig´è_´è__´è_´è____a,SVVG,VIG,SVVG,,-4,U,America/Caracas
+30948,TFFA,small_airport,La Dï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___sirade Airport,16.2968998,-61.08440018,10,NA,GP,GP-U-A,Grande Anse,TFFA,DSD,TFFA,,-4,U,America/Guadeloupe
+6335,SVVG,medium_airport,Juan Pablo Pï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___rez Alfonso Airport,8.624138832,-71.67266846,250,SA,VE,VE-L,El Vigï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____a,SVVG,VIG,SVVG,,-4,U,America/Caracas
 32390,SUPE,small_airport,El Jaguel / Punta del Este Airport,-34.91699982,-54.91699982,66,SA,UY,UY-MA,Maldonado,SUPE,MDO,SUPE,,-3,S,America/Montevideo
 516,SSZR,small_airport,Santa Rosa Airport,-27.90670013,-54.520401,984,SA,BR,BR-RS,Santa Rosa,SSZR,SRA,SSZR,SSZR,-3,S,America/Sao_Paulo
-6229,SPNC,medium_airport,Alferez Fap David Figueroa Fernandini Airport,-9.878809929,-76.20480347,6070,SA,PE,PE-HUC,Hu´è_´è__´è_´è___´è_´è__´è_´è___nuco,SPNC,HUU,SPNC,,-5,U,America/Lima
+6229,SPNC,medium_airport,Alferez Fap David Figueroa Fernandini Airport,-9.878809929,-76.20480347,6070,SA,PE,PE-HUC,Huï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___nuco,SPNC,HUU,SPNC,,-5,U,America/Lima
 6203,SPBC,medium_airport,Caballococha Airport,-3.916860104,-70.5082016,328,SA,PE,PE-LOR,Caballococha,SPBC,LHC,SPBC,LHC,-5,U,America/Lima
-30364,SLSB,small_airport,Capit´è_´è__´è_´è___´è_´è__´è_´è___n Av. German Quiroga G. Airport,-14.85919952,-66.73750305,633,SA,BO,BO-B,San Borja,SLSB,SRJ,SLSB,,-4,U,America/La_Paz
-30334,SLRI,small_airport,Capit´è_´è__´è_´è___´è_´è__´è_´è___n Av. Selin Zeitun Lopez Airport,-11,-66,462,SA,BO,BO-B,Riberalta,SLRI,RIB,SLRI,,-4,U,America/La_Paz
-29926,SLGY,small_airport,Capit´è_´è__´è_´è___´è_´è__´è_´è___n de Av. Emilio Beltr´è_´è__´è_´è___´è_´è__´è_´è___n Airport,-10.82059956,-65.34559631,557,SA,BO,BO-B,Guayaramer´è_´è__´è_´è____n,SLGY,GYA,SLGY,,-4,U,America/La_Paz
-6147,SKPD,medium_airport,Obando Airport,3.85353,-67.9062,460,SA,CO,CO-GUA,Puerto In´è_´è__´è_´è____rida,SKPD,PDA,SKPD,PDA,-5,U,America/Bogota
-32314,SKNQ,small_airport,Reyes Murillo Airport,5.6964,-77.2806,12,SA,CO,CO-CHO,Nuqu´è_´è__´è_´è____,SKNQ,NQU,SKNQ,NQU,-5,U,America/Bogota
+30364,SLSB,small_airport,Capitï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___n Av. German Quiroga G. Airport,-14.85919952,-66.73750305,633,SA,BO,BO-B,San Borja,SLSB,SRJ,SLSB,,-4,U,America/La_Paz
+30334,SLRI,small_airport,Capitï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___n Av. Selin Zeitun Lopez Airport,-11,-66,462,SA,BO,BO-B,Riberalta,SLRI,RIB,SLRI,,-4,U,America/La_Paz
+29926,SLGY,small_airport,Capitï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___n de Av. Emilio Beltrï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___n Airport,-10.82059956,-65.34559631,557,SA,BO,BO-B,Guayaramerï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____n,SLGY,GYA,SLGY,,-4,U,America/La_Paz
+6147,SKPD,medium_airport,Obando Airport,3.85353,-67.9062,460,SA,CO,CO-GUA,Puerto Inï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____rida,SKPD,PDA,SKPD,PDA,-5,U,America/Bogota
+32314,SKNQ,small_airport,Reyes Murillo Airport,5.6964,-77.2806,12,SA,CO,CO-CHO,Nuquï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____,SKNQ,NQU,SKNQ,NQU,-5,U,America/Bogota
 31844,SKLP,small_airport,La Pedrera Airport,-1.32861,-69.5797,590,SA,CO,CO-AMA,La Pedrera,SKLP,LPD,SKLP,LPD,-5,U,America/Bogota
-6128,SKLG,small_airport,Caucaya Airport,-0.182278,-74.7708,573,SA,CO,CO-PUT,Puerto Legu´è_´è__´è_´è____zamo,SKLG,LQM,SKLG,LQM,-5,U,America/Bogota
-32572,SKGZ,small_airport,La Jagua Airport,2.1464,-75.6944,2620,SA,CO,CO-HUI,Garz´è_´è__´è_´è____n,SKGZ,GLJ,SKGZ,GLJ,-5,U,America/Bogota
+6128,SKLG,small_airport,Caucaya Airport,-0.182278,-74.7708,573,SA,CO,CO-PUT,Puerto Leguï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____zamo,SKLG,LQM,SKLG,LQM,-5,U,America/Bogota
+32572,SKGZ,small_airport,La Jagua Airport,2.1464,-75.6944,2620,SA,CO,CO-HUI,Garzï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____n,SKGZ,GLJ,SKGZ,GLJ,-5,U,America/Bogota
 6121,SKGO,medium_airport,Santa Ana Airport,4.75818,-75.9557,2979,SA,CO,CO-VAC,Cartago,SKGO,CRC,SKGO,CRC,-5,U,America/Bogota
 6087,SFAL,medium_airport,Stanley Airport,-51.68569946,-57.77759933,75,SA,FK,FK-U-A,Stanley,SFAL,PSY,SFAL,,-3,U,Atlantic/Stanley
 6083,SETM,small_airport,Camilo Ponce Enriquez Airport,-3.995889902,-79.37190247,4056,SA,EC,EC-L,La Toma (Catamayo),SETM,LOH,SETM,,-5,U,America/Guayaquil
-6079,SEST,small_airport,San Crist´è_´è__´è_´è____bal Airport,-0.91020602,-89.61740112,62,SA,EC,EC-W,San Crist´è_´è__´è_´è____bal,SEST,SCY,SEST,,-6,U,Pacific/Galapagos
+6079,SEST,small_airport,San Cristï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____bal Airport,-0.91020602,-89.61740112,62,SA,EC,EC-W,San Cristï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____bal,SEST,SCY,SEST,,-6,U,Pacific/Galapagos
 156,SDCO,small_airport,Sorocaba Airport,-23.47800064,-47.49000168,2077,SA,BR,BR-SP,Sorocaba,SDCO,SOD,SDCO,SDCO,-3,S,America/Sao_Paulo
-6017,SCES,medium_airport,Ricardo Garc´è_´è__´è_´è____a Posada Airport,-26.31110001,-69.76519775,5240,SA,CL,CL-AT,El Salvador,SCES,ESR,SCES,,-4,S,America/Santiago
-5963,SBQV,medium_airport,Vit´è_´è__´è_´è____ria da Conquista Airport,-14.86279964,-40.86309814,3002,SA,BR,BR-BA,Vit´è_´è__´è_´è____ria Da Conquista,SBQV,VDC,SBQV,,-3,S,America/Fortaleza
-5940,SBML,medium_airport,Mar´è_´è__´è_´è____lia Airport,-22.19689941,-49.92639923,2122,SA,BR,BR-SP,Mar´è_´è__´è_´è____lia,SBML,MII,SBML,,-3,S,America/Sao_Paulo
-5937,SBME,medium_airport,Maca´è_´è__´è_´è___´è_´è__´è_´è___ Airport,-22.34300041,-41.76599884,8,SA,BR,BR-RJ,Maca´è_´è__´è_´è___´è_´è__´è_´è___,SBME,MEA,SBME,,-3,S,America/Sao_Paulo
+6017,SCES,medium_airport,Ricardo Garcï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____a Posada Airport,-26.31110001,-69.76519775,5240,SA,CL,CL-AT,El Salvador,SCES,ESR,SCES,,-4,S,America/Santiago
+5963,SBQV,medium_airport,Vitï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____ria da Conquista Airport,-14.86279964,-40.86309814,3002,SA,BR,BR-BA,Vitï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____ria Da Conquista,SBQV,VDC,SBQV,,-3,S,America/Fortaleza
+5940,SBML,medium_airport,Marï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____lia Airport,-22.19689941,-49.92639923,2122,SA,BR,BR-SP,Marï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____lia,SBML,MII,SBML,,-3,S,America/Sao_Paulo
+5937,SBME,medium_airport,Macaï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ Airport,-22.34300041,-41.76599884,8,SA,BR,BR-RJ,Macaï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___,SBME,MEA,SBME,,-3,S,America/Sao_Paulo
 5849,SAZO,medium_airport,Necochea Airport,-38.4831,-58.8172,72,SA,AR,AR-B,Necochea,SAZO,NEC,SAZO,NEC,-3,N,America/Cordoba
 30057,SAWA,small_airport,Lago Argentino Airport,-50.33610153,-72.24859619,732,SA,AR,AR-Z,El Calafate,SAWA,ING,SAWA,,-3,N,America/Cordoba
 5745,RPVR,medium_airport,Roxas Airport,11.59770012,122.7519989,10,AS,PH,PH-CAP,Roxas City,RPVR,RXS,RPVR,,8,N,Asia/Manila
@@ -4959,7 +4959,7 @@ id,ident,type,name,latitude,longitude,elevation_ft,continent,iso_country,iso_reg
 26692,VVCI,medium_airport,Cat Bi International Airport,20.81940079,106.7249985,6,AS,VN,VN-61,Haiphong,VVCI,HPH,VVCI,,7,U,Asia/Saigon
 26693,VVCR,medium_airport,Cam Ranh Airport,11.99820042,109.2190018,40,AS,VN,VN-34,Nha Trang,VVCR,CXR,VVCR,,7,U,Asia/Saigon
 26694,VVCS,medium_airport,Co Ong Airport,8.731829643,106.6330032,20,AS,VN,VN-14,Conson,VVCS,VCS,VVCS,,7,U,Asia/Saigon
-26695,VVCT,medium_airport,Tr´è_´è__´è_´è___´è_´è__´è_´è___ N´è_´è__´è_´è____c Airport,10.08510017,105.711998,9,AS,VN,VN-02,Can Tho,VVCT,VCA,VVCT,,7,U,Asia/Saigon
+26695,VVCT,medium_airport,Trï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ Nï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½____c Airport,10.08510017,105.711998,9,AS,VN,VN-02,Can Tho,VVCT,VCA,VVCT,,7,U,Asia/Saigon
 26696,VVDB,medium_airport,Dien Bien Phu Airport,21.39749908,103.0080032,1611,AS,VN,VN-01,Dienbienphu,VVDB,DIN,VVDB,,7,U,Asia/Saigon
 26703,VVPC,medium_airport,Phu Cat Airport,13.95499992,109.0419998,80,AS,VN,VN-31,Phucat,VVPC,UIH,VVPC,,7,U,Asia/Saigon
 26704,VVPK,medium_airport,Pleiku Airport,14.00450039,108.0169983,2434,AS,VN,VN-30,Pleiku,VVPK,PXU,VVPK,,7,U,Asia/Saigon
@@ -5288,7 +5288,7 @@ id,ident,type,name,latitude,longitude,elevation_ft,continent,iso_country,iso_reg
 26721,VYKL,small_airport,Kalay Airport,23.18880081,94.05110168,499,AS,MM,MM-01,Kalemyo,VYKL,KMV,VYKL,,6,U,Asia/Rangoon
 31853,TFFS,small_airport,Terre-de-Haut Airport,15.86439991,-61.58060074,46,NA,GP,GP-U-A,Les Saintes,TFFS,LSS,TFFS,,-4,U,America/Guadeloupe
 4541,LTBR,medium_airport,Yenisehir Airport,40.25519943,29.56259918,764,AS,TR,TR-16,Yenisehir,LTBR,YEI,LTBR,,2,E,Europe/Istanbul
-4544,LTBU,medium_airport,Tekirda´è_´è__´è_´è___´è_´è__´è_´è___ ´è_´è__´è_´è___´è_´è__´è_´è___orlu Airport,41.13819885,27.91909981,574,EU,TR,TR-59,´è_´è__´è_´è___´è_´è__´è_´è___orlu,LTBU,TEQ,LTBU,,2,E,Europe/Istanbul
+4544,LTBU,medium_airport,Tekirdaï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___orlu Airport,41.13819885,27.91909981,574,EU,TR,TR-59,ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___orlu,LTBU,TEQ,LTBU,,2,E,Europe/Istanbul
 30418,LTCM,small_airport,Sinop Airport,42.01580048,35.06639862,20,AS,TR,TR-57,Sinop,LTCM,NOP,LTCM,,2,E,Europe/Istanbul
 4557,LTCK,medium_airport,Mus Airport,38.74779892,41.66120148,4157,AS,TR,TR-49,Mus,LTCK,MSR,LTCK,,2,E,Europe/Istanbul
 4531,LTBH,medium_airport,Canakkale Airport,40.13769913,26.42679977,23,AS,TR,TR-17,Canakkale,LTBH,CKZ,LTBH,,2,E,Europe/Istanbul
@@ -6899,7 +6899,7 @@ id,ident,type,name,latitude,longitude,elevation_ft,continent,iso_country,iso_reg
 19583,KCZG,small_airport,Tri-Cities,42.07849884,-76.09629822,833,NA,US,US-NY,Endicott,KCZG,CZG,KCZG,CZG,-5,A,America/New_York
 19749,KEKY,small_airport,Bessemer,33.31290054,-86.92590332,700,NA,US,US-AL,Bessemer,KEKY,EKY,KEKY,EKY,-6,A,America/Chicago
 19222,KA50,small_airport,Colorado Springs East,38.87440109,-104.4100037,6145,NA,US,US-CO,Ellicott,KA50,A50,KA50,A50,-7,A,America/Denver
-6425,UAFL,small_airport,Issyk-Kul International Airport,42.5882988,76.71330261,5425,AS,KG,KG-Y,Tamchy,UCFL,_´è_´è__´è_´è______´è_´è__´è_´è___,UCFL,,6,N,Asia/Bishkek
+6425,UAFL,small_airport,Issyk-Kul International Airport,42.5882988,76.71330261,5425,AS,KG,KG-Y,Tamchy,UCFL,_ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½______ï¿½ï¿½_ï¿½ï¿½__ï¿½ï¿½_ï¿½ï¿½___,UCFL,,6,N,Asia/Bishkek
 20508,KMIC,small_airport,Crystal Airport,45.06200027,-93.35389709,869,NA,US,US-MN,Crystal,KMIC,MIC,KMIC,MIC,-6,A,America/Chicago
 18541,K23M,small_airport,Clarke CO,32.0848999,-88.73889923,320,NA,US,US-MS,Quitman,K23M,23M,23M,23M,-6,A,America/Chicago
 19617,KDBN,small_airport,W H Barron Field,32.56439972,-82.98529816,309,NA,US,US-GA,Dublin,KDBN,DBN,KDBN,DBN,-5,A,America/New_York

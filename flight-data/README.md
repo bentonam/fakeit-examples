@@ -12,313 +12,292 @@ These data models demonstrate the following:
 - Using the `inputs` to make external data available to the model
 - Using the `documents` variable to use data from a previously generated model
 
-There are 12 types of models that will be generated
+There are 17 types of models that will be generated
 
-- [Airlines](#airlines)
-- [Airports](#airports)
-- [Airport Airlines](#airport-airlines) (has dependencies on Airports and Routes)
-- [Airport Frequencies](#airport-frequencies) (has dependencies on Airports and Frequencies)
-- [Airport Navaids](#airport-navaids) (has dependencies on Airports and Navaids)
-- [Airport Runways](#airport-runways) (has dependencies on Airports and Runways)
-- [Countries](#countries)
-- [Frequencies](#frequencies)
-- [Navaids](#navaids)
-- [Regions](#regions)
-- [Routes](#routes)
-- [Runways](#runways)
+- [Airlines](docs/models/airlines.md)
+- [Airlines Reviews](docs/models/airline_reviews.md)
+- [Airports](docs/models/airports.md)
+- [Airport Airlines](docs/models/airport_airlines.md)
+- [Airport Frequencies](docs/models/airport_frequencies.md)
+- [Airport Navaids](docs/models/airport_navaids.md)
+- [Airport Reviews](docs/models/airport_reviews.md)
+- [Airport Runways](docs/models/airport_runways.md)
+- [Codes](docs/models/codes.md)
+- [Continents](docs/models/continents.md)
+- [Countries](docs/models/countries.md)
+- [Frequencies](docs/models/frequencies.md)
+- [Navaids](docs/models/navaids.md)
+- [Regions](docs/models/regions.md)
+- [Routes](docs/models/routes.md)
+- [Runways](docs/models/runways.md)
+- [Users](docs/models/users.md)
 
-> Warning executing this entire example will generate ~150k documents
+If you would like to see further examples of how to query this data set using the [N1QL](http://www.couchbase.com/n1ql) query language from [Couchbase](http://www.couchbase.com/) checkout the [Examples](docs/n1ql/).
 
-##### airlines
+### Terms
 
-```json
-{
-  "_id": "airline_DAL",
-  "doc_type": "airline",
-  "airline_name": "Delta Air Lines",
-  "airline_iata": "DL",
-  "airline_icao": "DAL",
-  "callsign": "DELTA",
-  "iso_country": "US",
-  "active": true
-}
-```
-
-##### airports
-
-```json
-{
-  "_id": "airport_3384",
-  "airport_id": 3384,
-  "doc_type": "airport",
-  "airport_ident": "KATL",
-  "airport_type": "large_airport",
-  "airport_name": "Hartsfield Jackson Atlanta Intl",
-  "geo": {
-    "latitude": 33.63669968,
-    "longitude": -84.42810059
-  },
-  "elevation": 1026,
-  "continent": "NA",
-  "iso_country": "US",
-  "iso_region": "US-GA",
-  "municipality": "Atlanta",
-  "airport_icao_code": "KATL",
-  "airport_iata_code": "ATL",
-  "airport_gps_code": "KATL",
-  "airport_local_code": "ATL",
-  "timezone_offset": -5,
-  "dst": "A",
-  "timezone": "America/New_York"
-}
-```
-
-##### airport-airlines
-
-```json
-{
-  "_id": "airport_3384_airlines",
-  "airport_id": 3384,
-  "doc_type": "airport-airlines",
-  "airport_ident": "KATL",
-  "airlines": [
-    "3M",
-    "9E",
-    "AA",
-    "AC",
-    "AF",
-    "AM",
-    "AS",
-    "AY",
-    "AZ",
-    "BA",
-    "CA",
-    "CI",
-    "CX",
-    "DL",
-    "EI",
-    "EY",
-    "F9",
-    "FL",
-    "IB",
-    "JL",
-    "KE",
-    "KL",
-    "LH",
-    "MH",
-    "NH",
-    "NK",
-    "NZ",
-    "OZ",
-    "QF",
-    "QR",
-    "SU",
-    "TK",
-    "UA",
-    "US",
-    "VA",
-    "VS",
-    "WN",
-    "WS"
-  ]
-}
-```
-
-##### airport-frequencies
-
-```json
-{
-  "_id": "airport_3384_frequencies",
-  "airport_id": 3384,
-  "doc_type": "airport-frequencies",
-  "airport_ident": "KATL",
-  "frequencies": [
-    66249,
-    66250,
-    66251,
-    66252,
-    66253,
-    66254,
-    66255,
-    66256,
-    66257
-  ]
-}
-```
-
-##### airport-navaids
-
-```json
-{
-  "_id": "airport_3384_navaids",
-  "airport_id": 3384,
-  "doc_type": "airport-navaids",
-  "airport_ident": "KATL",
-  "navaids": [
-    "5bcbf2fa-7776-52e7-9170-0ff6235e3269",
-    "84336733-2663-59d8-8800-4dd66f8d5cab",
-    "2413d4de-f37c-5c84-8f7d-da731b47b899"
-  ]
-}
-```
-
-##### airport-runways
-
-```json
-{
-  "_id": "airport_3384_runways",
-  "airport_id": 3384,
-  "doc_type": "airport-runways",
-  "airport_ident": "KATL",
-  "runways": [
-    243551,
-    243550,
-    243553,
-    243552,
-    243554
-  ]
-}
-```
-
-##### countries
-
-```json
-{
-  "_id": "country_US",
-  "country_code": "US",
-  "doc_type": "country",
-  "country_name": "United States",
-  "continent": "NA"
-}
-```
-
-##### frequencies
-
-```json
-{
-  "_id": "frequency_66249",
-  "frequency_id": 66249,
-  "doc_type": "frequency",
-  "airport_id": 3384,
-  "airport_ident": "KATL",
-  "type": "APP",
-  "description": "ATLANTA APP",
-  "frequency_mhz": 118.35
-}
-```
-
-##### navaids
-
-```json
-{
-  "_id": "navaid_84336733-2663-59d8-8800-4dd66f8d5cab",
-  "navaid_id": "84336733-2663-59d8-8800-4dd66f8d5cab",
-  "doc_type": "navaid",
-  "navaid_ident": "ATL",
-  "navaid_name": "Atlanta",
-  "type": "VORTAC",
-  "frequency_khz": 116900,
-  "geo": {
-    "latitude": 33.6291008,
-    "longitude": -84.43509674
-  },
-  "elevation": 1000,
-  "iso_country": "US",
-  "dme": {
-    "frequency_khz": 116900,
-    "channel": "116X",
-    "latitude": 33.6246,
-    "longitude": -84.4258,
-    "elevation": 1000
-  },
-  "magnetic_variation": -4.022,
-  "usage_type": "BOTH",
-  "power": "HIGH",
-  "associated_airport_icao_code": "KATL"
-}
-```
-
-##### regions
-
-```json
-{
-  "_id": "region_US-GA",
-  "region_id": 306086,
-  "doc_type": "region",
-  "region_code": "US-GA",
-  "local_code": "GA",
-  "region_name": "Georgia",
-  "continent": "NA",
-  "iso_country": "US"
-}
-```
-
-##### routes
-
-```json
-{
-  "_id": "route_0026d7f9-4453-52c5-8757-e82aaee8c119",
-  "route_id": "0026d7f9-4453-52c5-8757-e82aaee8c119",
-  "doc_type": "route",
-  "airline_code": "DL",
-  "source_airport_code": "ATL",
-  "destination_airport_code": "JFK",
-  "codehsare": false,
-  "stops": 0,
-  "equipment": "777",
-  "active": true
-}
-```
-
-##### runways
-
-```json
-{
-  "_id": "runway_243550",
-  "runway_id": 243550,
-  "doc_type": "runway",
-  "airport_id": 3384,
-  "airport_ident": "KATL",
-  "runway_length": 10000,
-  "runway_width": 150,
-  "surface": "CON",
-  "lighted": true,
-  "closed": null,
-  "low_bearing": {
-    "ident": "08R",
-    "latitude": 33.6468,
-    "longitude": -84.4384,
-    "elevation": 1024,
-    "magnetic_heading": 90,
-    "displaced_threshold": null
-  },
-  "high_bearing": {
-    "ident": "26L",
-    "latitude": 33.6468,
-    "longitude": -84.4055,
-    "elevation": 995,
-    "magnetic_heading": 270,
-    "displaced_threshold": null
-  }
-}
-```
+- [IATA](http://www.iata.org/about/members/Pages/airline-list.aspx?All=true): International Air Transport Association
+- [ICAO](http://www.icao.int/): International Civil Aviation Organization
+- [FAA](http://www.faa.gov/): Federal Aviation Administration
+- Callsign: The term used to identify the broadcaster or transimitter over radio
+- Navaid: Navigational Aid
+- Ident: An entity identifier typically used for GPS codes
+- [DME](https://en.wikipedia.org/wiki/Distance_measuring_equipment): Distance Measuring Equipment
+- [Magnetic Variation](https://en.wikipedia.org/wiki/Magnetic_declination): Magnetic declination or variation is the angle on the horizontal plane between magnetic north and true north
+- Magnetic Heading: The heading of the aircraft relative to magnetic north
+- [Displayed Threshold](https://en.wikipedia.org/wiki/Displaced_threshold): A displaced threshold is a runway threshold located at a point other than the physical beginning or end of the runway.
+- DST: Daylight Savings Type
+-
 
 ### Usage Examples
+
+> Warning executing this entire example will generate ~250,000 documents
 
 Below is a variety of commands that can be used on this data model, all of the examples assume that you are in the `flight-data/` directory.  While all of the `fakeit` options will work, for this example we will only demonstrate how adding the data to Couchbase.  Please be aware that this may take several minutes to complete.
 
 ```bash
-[ecommerce]$ fakeit -m models -i input -d couchbase
+[flight-data]$ fakeit -m models -i input -d couchbase -b flight-data
 Generating 5912 documents for Airlines model
 Generating 6922 documents for Airports model
+Generating 7 documents for Continents model
 Generating 247 documents for Countries model
 Generating 10314 documents for Navaids model
 Generating 17137 documents for Frequencies model
 Generating 3999 documents for Regions model
+Generating 10000 documents for Users model
 Generating 67065 documents for Routes model
 Generating 8813 documents for Runways model
+Generating 29560 documents for AirlinesReviews model
 Generating 6922 documents for AirportAirlines model
 Generating 6922 documents for AirportFrequencies model
 Generating 6922 documents for AirportNavaids model
+Generating 34610 documents for AirportReviews model
 Generating 6922 documents for AirportRunways model
+```
+
+If you wanted to generated the models separately and add them to Couchbase use the following commands.  *Note some models may have to be generated more than once but can be excluded from output
+
+#### Continents
+
+```bash
+[flight-data]$ fakeit -m models/continents.yaml -i input/continents.csv -d couchbase -s 127.0.0.1 -b flight-data
+Generating 7 documents for Continents model
+```
+
+#### Countries
+
+```bash
+[flight-data]$ fakeit -m models/countries.yaml -i input/countries.csv -d couchbase -s 127.0.0.1 -b flight-data
+Generating 247 documents for Countries model
+```
+
+#### Regions
+
+```bash
+[flight-data]$ fakeit -m models/regions.yaml -i input/regions.csv -d couchbase -s 127.0.0.1 -b flight-data
+Generating 3999 documents for Regions model
+```
+
+#### Users
+
+```bash
+[flight-data]$ fakeit -m models/regions.yaml,models/users.yaml -i input/regions.csv -d couchbase -s 127.0.0.1 -b flight-data -e Regions
+Generating 3999 documents for Regions model
+Generating 10000 documents for Regions model
+```
+
+#### Airports
+
+```bash
+[flight-data]$ fakeit -m models/airports.yaml -i input/airports.csv -d couchbase -s 127.0.0.1 -b flight-data
+Generating 6922 documents for Airports model
+```
+
+#### Frequencies
+
+```bash
+[flight-data]$ fakeit -m models/frequencies.yaml -i input/frequencies.csv -d couchbase -s 127.0.0.1 -b flight-data
+Saving 17137 documents for Frequencies model
+```
+
+#### Navaids
+
+```bash
+[flight-data]$ fakeit -m models/navaids.yaml -i input/navaids.csv -d couchbase -s 127.0.0.1 -b flight-data
+Generating 10314 documents for Navaids model
+```
+
+#### Routes
+
+```bash
+[flight-data]$ fakeit -m models/routes.yaml -i input/routes.csv -d couchbase -s 127.0.0.1 -b flight-data
+Generating 67065 documents for Routes model
+```
+
+#### Runways
+
+```bash
+[flight-data]$ fakeit -m models/runways.yaml -i input/runways.csv -d couchbase -s 127.0.0.1 -b flight-data
+Generating 10314 documents for Navaids model
+```
+
+#### Airlines
+
+```bash
+[flight-data]$ fakeit -m models/airlines.yaml,models/countries.yaml -i input/airlines.csv,input/countries.csv -d couchbase -s 127.0.0.1 -b flight-data -e Countries
+Generating 5912 documents for Airlines model
+```
+
+#### Airline Reviews
+
+```bash
+[flight-data]$ fakeit -m models/airlines.yaml,models/countries.yaml,models/regions.yaml,models/users.yaml,models/airline_reviews.yaml -i input/airlines.csv,input/countries.csv,input/regions.csv -d couchbase -s 127.0.0.1 -b flight-data -e Countries,Regions,Users,Airlines
+Generating 247 documents for Countries model
+Generating 3999 documents for Regions model
+Generating 5912 documents for Airlines model
+Generating 10000 documents for Users model
+Generating 29560 documents for AirlinesReviews model
+```
+
+#### Airport Airlines
+
+```bash
+[flight-data]$ fakeit -m models/airport_airlines.yaml,models/airports.yaml,models/routes.yaml,models/airlines.yaml,models/countries.yaml -i input/airlines.csv,input/airports.csv,input/routes.csv,input/countries.csv -d couchbase -s 127.0.0.1 -b flight-data -e Countries,Airports,Routes,Airlines
+Saving 6922 documents for AirportAirlines model
+```
+
+#### Airport Frequencies
+
+```bash
+[flight-data]$ fakeit -m models/airport_frequencies.yaml,models/airports.yaml,models/frequencies.yaml -i input/airports.csv,input/frequencies.csv -d couchbase -s 127.0.0.1 -b flight-data -e Airports,Frequencies
+Generating 6922 documents for AirportFrequencies model
+```
+
+#### Airport Navaids
+
+```bash
+[flight-data]$ fakeit -m models/airport_navaids.yaml,models/airports.yaml,models/navaids.yaml -i input/airports.csv,input/navaids.csv -d couchbase -s 127.0.0.1 -b flight-data -e Airports,Navaids
+Generating 6922 documents for AirportNavaids model
+```
+
+#### Airport Reviews
+
+```bash
+[flight-data]$ fakeit -m models/airports.yaml,models/regions.yaml,models/users.yaml,models/airport_reviews.yaml -i input/airports.csv,input/regions.csv -d couchbase -s 127.0.0.1 -b flight-data -e Airports,Regions,Users
+Generating 3999 documents for Regions model
+Generating 6922 documents for Airports model
+Generating 10000 documents for Users model
+Generating 34610 documents for AirportReviews model
+```
+
+#### Airport Runways
+
+```bash
+[flight-data]$ fakeit -m models/airport_runways.yaml,models/airports.yaml,models/runways.yaml -i input/airports.csv,input/runways.csv -d couchbase -s 127.0.0.1 -b flight-data -e Airports,Runways
+Generating 6922 documents for AirportRunways model
+```
+
+#### Codes
+
+```bash
+[flight-data]$ fakeit -m models/airports.yaml,models/airlines.yaml,models/countries.yaml,models/navaids.yaml,models/codes.yaml -i input/airports.csv,input/airlines.csv,input/countries.csv,input/navaids.csv -d couchbase -s 127.0.0.1 -b flight-data -e Airports,Airlines,Navaids,Countries
+Generating 36944 documents for Codes model
+```
+
+If you want to generate each of the models as JSON files in separate ZIP archives use the following commands.
+
+#### Continents
+
+```bash
+fakeit -m models/continents.yaml -i input/continents.csv -d output -a continents.zip -f 0
+```
+
+#### Countries
+
+```bash
+fakeit -m models/countries.yaml -i input/countries.csv -d output -a countries.zip -f 0
+```
+
+#### Regions
+
+```bash
+fakeit -m models/regions.yaml -i input/regions.csv -d output -a regions.zip -f 0
+```
+
+#### Airports
+
+```bash
+fakeit -m models/airports.yaml -i input/airports.csv -d output -a airports.zip -f 0
+```
+
+#### Frequencies
+
+```bash
+fakeit -m models/frequencies.yaml -i input/frequencies.csv -d output -a frequencies.zip -f 0
+```
+
+#### Navaids
+
+```bash
+fakeit -m models/navaids.yaml -i input/navaids.csv -d output -a navaids.zip -f 0
+```
+
+#### Routes
+
+```bash
+fakeit -m models/routes.yaml -i input/routes.csv -d output -a routes.zip -f 0
+```
+
+#### Runways
+
+```bash
+fakeit -m models/runways.yaml -i input/runways.csv -d output -a runways.zip -f 0
+```
+
+#### Airlines
+
+```bash
+fakeit -m models/airlines.yaml,models/countries.yaml -i input/airlines.csv,input/countries.csv -d output -a airlines.zip -f 0 -e Countries
+```
+
+#### Airline Reviews
+
+```bash
+[flight-data]$ fakeit -m models/airlines.yaml,models/countries.yaml,models/regions.yaml,models/users.yaml,models/airline_reviews.yaml -i input/airlines.csv,input/countries.csv,input/regions.csv -d output -a airline_reviews.zip -e Countries,Regions,Users -f 0
+```
+
+#### Airport Airlines
+
+```bash
+fakeit -m models/airport_airlines.yaml,models/airports.yaml,models/routes.yaml,models/airlines.yaml,models/countries.yaml -i input/airlines.csv,input/airports.csv,input/routes.csv,input/countries.csv -d output -a airport_airlines.zip -f 0 -e Countries,Airports,Routes,Airlines
+```
+
+#### Airport Frequencies
+
+```bash
+fakeit -m models/airport_frequencies.yaml,models/airports.yaml,models/frequencies.yaml -i input/airports.csv,input/frequencies.csv -d output -a airport_frequencies.zip -f 0 -e Airports,Frequencies
+```
+
+#### Airport Navaids
+
+```bash
+fakeit -m models/airport_navaids.yaml,models/airports.yaml,models/navaids.yaml -i input/airports.csv,input/navaids.csv -d output -a airport_navaids.zip -f 0 -e Airports,Navaids
+```
+
+#### Airport Reviews
+
+```bash
+[flight-data]$ fakeit -m models/airports.yaml,models/regions.yaml,models/users.yaml,models/airport_reviews.yaml -i input/airports.csv,input/regions.csv -d output -a airport_reviews.zip -e Airports,Regions,Users -f 0
+```
+
+#### Airport Runways
+
+```bash
+fakeit -m models/airport_runways.yaml,models/airports.yaml,models/runways.yaml -i input/airports.csv,input/runways.csv -d output -a airport_runways.zip -f 0 -e Airports,Runways
+```
+
+#### Codes
+
+```bash
+fakeit -m models/airports.yaml,models/airlines.yaml,models/countries.yaml,models/navaids.yaml,models/codes.yaml -i input/airports.csv,input/airlines.csv,input/countries.csv,input/navaids.csv -d output -a codes.zip -f 0 -e Airports,Airlines,Navaids,Countries
 ```

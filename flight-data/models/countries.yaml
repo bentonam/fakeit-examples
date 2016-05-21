@@ -15,7 +15,7 @@ properties:
       post_build: "return 'country_' + this.country_code"
   country_code:
     type: string
-    description: The iso country
+    description: The ISO country code
     data:
       build: "return inputs.countries[document_index].code"
   doc_type:
@@ -28,8 +28,8 @@ properties:
     description: The country name
     data:
       build: "return inputs.countries[document_index].name"
-  continent:
+  continent_code:
     type: string
-    description: The continent the country is located in
+    description: The ISO continent code the country is located in
     data:
       build: "return inputs.countries[document_index].continent"
