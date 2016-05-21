@@ -334,9 +334,15 @@ FROM (
     FROM `flight-data` AS navaids
     WHERE navaids.iso_country = '{{iso_country}}'
         /* limit results to latitudes within {{distance}} north or south of the source latitude, degree of latitude is {{distance_unit}} */
-        AND navaids.geo.latitude BETWEEN {{source_latitude}} - ({{radius}} / {{distance_unit}}) AND {{source_latitude}} + ({{radius}} / {{distance_unit}})
+        AND navaids.geo.latitude BETWEEN
+            {{source_latitude}} - ({{radius}} / {{distance_unit}})
+            AND
+            {{source_latitude}} + ({{radius}} / {{distance_unit}})
         /* limit results to longitudes within {{distance}} east or west of the source longitude, degree of longitude is {{distance_unit}} */
-        AND navaids.geo.longitude BETWEEN {{source_longitude}} - ({{radius}} / ( {{distance_unit}} * COS(RADIANS( {{source_latitude}} )))) AND {{source_longitude}} + ({{radius}} / ( {{distance_unit}} * COS(RADIANS( {{source_latitude}} ))))
+        AND navaids.geo.longitude BETWEEN
+            {{source_longitude}} - ({{radius}} / ( {{distance_unit}} * COS(RADIANS( {{source_latitude}} ))))
+            AND
+            {{source_longitude}} + ({{radius}} / ( {{distance_unit}} * COS(RADIANS( {{source_latitude}} ))))
         AND navaids.doc_type = 'navaid'
     ) AS results
 WHERE results.distance <= {{radius}} /* remove any of the results that are not within the radius */
@@ -387,8 +393,14 @@ FROM (
         * SIN(RADIANS( navaids.geo.latitude )))) AS distance
     FROM `flight-data` AS navaids
     WHERE navaids.iso_country = 'US'
-        AND navaids.geo.latitude BETWEEN 37.64989853 - ( 50 / 69 ) AND 37.64989853 + ( 50 / 69 )
-        AND navaids.geo.longitude BETWEEN -97.43309784 - ( 50 / ( 69 * COS(RADIANS( 37.64989853 )))) AND -97.43309784 + ( 50 / ( 69 * COS(RADIANS( 37.64989853 ))))
+        AND navaids.geo.latitude BETWEEN
+            37.64989853 - ( 50 / 69 )
+            AND
+            37.64989853 + ( 50 / 69 )
+        AND navaids.geo.longitude BETWEEN
+            -97.43309784 - ( 50 / ( 69 * COS(RADIANS( 37.64989853 ))))
+            AND
+            -97.43309784 + ( 50 / ( 69 * COS(RADIANS( 37.64989853 ))))
         AND navaids.doc_type = 'navaid'
     ) AS results
 WHERE results.distance <= 50
@@ -515,8 +527,14 @@ FROM (
         * SIN(RADIANS( navaids.geo.latitude )))) AS distance
     FROM `flight-data` AS navaids
     WHERE navaids.iso_country = 'DE'
-        AND navaids.geo.latitude BETWEEN 52.55970001 - ( 75 / 111.045 ) AND 52.55970001 + ( 75 / 111.045 )
-        AND navaids.geo.longitude BETWEEN 13.2876997 - ( 75 / ( 111.045 * COS(RADIANS( 52.55970001 )))) AND 13.2876997 + ( 75 / ( 111.045 * COS(RADIANS( 52.55970001 ))))
+        AND navaids.geo.latitude BETWEEN
+            52.55970001 - ( 75 / 111.045 )
+            AND
+            52.55970001 + ( 75 / 111.045 )
+        AND navaids.geo.longitude BETWEEN
+            13.2876997 - ( 75 / ( 111.045 * COS(RADIANS( 52.55970001 ))))
+            AND
+            13.2876997 + ( 75 / ( 111.045 * COS(RADIANS( 52.55970001 ))))
         AND navaids.doc_type = 'navaid'
     ) AS results
 WHERE results.distance <= 75
