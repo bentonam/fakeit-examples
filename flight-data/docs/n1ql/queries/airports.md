@@ -173,7 +173,8 @@ Now that we know we can retrieve an airport in a country, lets retrieve all airp
 ##### Query
 
 ```sql
-SELECT airports.airport_id, airports.airport_name, airports.airport_type, airports.iso_region, airports.municipality,
+SELECT airports.airport_id, airports.airport_name, airports.airport_type,
+    airports.iso_region, airports.municipality,
     IFNULL( airports.airport_iata, airports.airport_icao, airports.airport_ident ) AS airport_code
 FROM `flight-data` AS airports
 WHERE airports.iso_country = 'AE'
@@ -259,7 +260,8 @@ USING GSI
 ##### Query
 
 ```sql
-SELECT airports.airport_id, airports.airport_name, airports.airport_type, airports.iso_region, airports.municipality,
+SELECT airports.airport_id, airports.airport_name, airports.airport_type,
+    airports.iso_region, airports.municipality,
     IFNULL( airports.airport_iata, airports.airport_icao, airports.airport_ident ) AS airport_code
 FROM `flight-data` AS airports
 WHERE airports.iso_country = 'US'
@@ -350,7 +352,8 @@ Just like Airlines, our [Codes](/flight-data/docs/models/codes.md) model is keye
 Query by the IATA code
 
 ```sql
-SELECT airports.airport_id, airports.airport_name, airports.airport_type, airports.iso_region, airports.municipality,
+SELECT airports.airport_id, airports.airport_name, airports.airport_type,
+    airports.iso_region, airports.municipality,
     IFNULL( airports.airport_iata, airports.airport_icao, airports.airport_ident ) AS airport_code
 FROM `flight-data` AS codes
 USE KEYS 'airport_code_ICT'
@@ -361,7 +364,8 @@ LIMIT 1
 Query by the ICAO code
 
 ```sql
-SELECT airports.airport_id, airports.airport_name, airports.airport_type, airports.iso_region, airports.municipality,
+SELECT airports.airport_id, airports.airport_name, airports.airport_type,
+    airports.iso_region, airports.municipality,
     IFNULL( airports.airport_iata, airports.airport_icao, airports.airport_ident ) AS airport_code
 FROM `flight-data` AS codes
 USE KEYS 'airport_code_KICT'
@@ -406,7 +410,8 @@ USING GSI
 This query will find the airline by the 3 character IATA / FAA code
 
 ```sql
-SELECT a.municipality AS city, IFNULL( a.airport_iata, a.airport_icao, a.airport_ident ) AS airport_code
+SELECT a.municipality AS city,
+    IFNULL( a.airport_iata, a.airport_icao, a.airport_ident ) AS airport_code
 FROM `flight-data` AS a
 WHERE a.iso_country = 'US'
     AND a.municipality LIKE 'San%'
@@ -469,7 +474,8 @@ We can leverage the `OFFSET` clause to paginate through the results.
 ##### Query
 
 ```sql
-SELECT a.municipality AS city, IFNULL( a.airport_iata, a.airport_icao, a.airport_ident ) AS airport_code
+SELECT a.municipality AS city,
+    IFNULL( a.airport_iata, a.airport_icao, a.airport_ident ) AS airport_code
 FROM `flight-data` AS a
 WHERE a.iso_country = 'US'
     AND a.municipality LIKE 'San%'
@@ -556,9 +562,15 @@ FROM (
     FROM `flight-data` AS airports
     WHERE airports.iso_country = '{{iso_country}}'
         /* limit results to latitudes within {{distance}} north or south of the source latitude, degree of latitude is {{distance_unit}} */
-        AND airports.geo.latitude BETWEEN {{source_latitude}} - ( {{radius}} / {{distance_unit}} ) AND {{source_latitude}} + ( {{radius}} / {{distance_unit}} )
+        AND airports.geo.latitude BETWEEN
+            {{source_latitude}} - ( {{radius}} / {{distance_unit}} )
+            AND
+            {{source_latitude}} + ( {{radius}} / {{distance_unit}} )
         /* limit results to longitudes within {{distance}} east or west of the source longitude, degree of longitude is {{distance_unit}} */
-        AND airports.geo.longitude BETWEEN {{source_longitude}} - ( {{radius}} / ( {{distance_unit}} * COS(RADIANS( {{source_latitude}} )))) AND {{source_longitude}} + ( {{radius}} / ( {{distance_unit}} * COS(RADIANS( {{source_latitude}} ))))
+        AND airports.geo.longitude BETWEEN
+            {{source_longitude}} - ( {{radius}} / ( {{distance_unit}} * COS(RADIANS( {{source_latitude}} ))))
+            AND
+            {{source_longitude}} + ( {{radius}} / ( {{distance_unit}} * COS(RADIANS( {{source_latitude}} ))))
         AND airports.doc_type = 'airport'
     ) AS results
 WHERE results.distance > 0 /* remove the source from the results as its distance 0 */
@@ -608,8 +620,14 @@ FROM (
         * SIN(RADIANS( airports.geo.latitude )))) AS distance
     FROM `flight-data` AS airports
     WHERE airports.iso_country = 'US'
-        AND airports.geo.latitude BETWEEN 37.64989853 - (100 / 69) AND 37.64989853 + (100 / 69)
-        AND airports.geo.longitude BETWEEN -97.43309784 - (100 / (69 * COS(RADIANS( 37.64989853 )))) AND -97.43309784 + ( 100 / ( 69 * COS(RADIANS( 37.64989853 ))))
+        AND airports.geo.latitude BETWEEN
+            37.64989853 - (100 / 69)
+            AND
+            37.64989853 + (100 / 69)
+        AND airports.geo.longitude BETWEEN
+            -97.43309784 - (100 / (69 * COS(RADIANS( 37.64989853 ))))
+            AND
+            -97.43309784 + ( 100 / ( 69 * COS(RADIANS( 37.64989853 ))))
         AND airports.doc_type = 'airport'
     ) AS results
 WHERE results.distance > 0
@@ -713,8 +731,14 @@ FROM (
         * SIN(RADIANS( airports.geo.latitude )))) AS distance
     FROM `flight-data` AS airports
     WHERE airports.iso_country = 'DE'
-        AND airports.geo.latitude BETWEEN 52.55970001 - ( 75 / 111.045 ) AND 52.55970001 + ( 75 / 111.045 )
-        AND airports.geo.longitude BETWEEN 13.2876997 - ( 75 / ( 111.045 * COS(RADIANS( 52.55970001 )))) AND 13.2876997 + ( 75 / ( 111.045 * COS(RADIANS( 52.55970001 ))))
+        AND airports.geo.latitude BETWEEN
+            52.55970001 - ( 75 / 111.045 )
+            AND
+            52.55970001 + ( 75 / 111.045 )
+        AND airports.geo.longitude BETWEEN
+            13.2876997 - ( 75 / ( 111.045 * COS(RADIANS( 52.55970001 ))))
+            AND
+            13.2876997 + ( 75 / ( 111.045 * COS(RADIANS( 52.55970001 ))))
         AND airports.doc_type = 'airport'
     ) AS results
 WHERE results.distance > 0
