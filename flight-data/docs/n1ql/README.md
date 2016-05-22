@@ -30,19 +30,19 @@ CREATE PRIMARY INDEX idx_primary ON `flight-data`;
 
 [N1QL Language Reference](http://developer.couchbase.com/documentation/server/current/n1ql/n1ql-language-reference/index.html)
 
-It is recommended to start with the [Countries](queries/countries.md) queries first as there is detailed explanations of each query.
+It is recommended to start with the [Countries](countries.md) queries first as there is detailed explanations of each query.
 
-1. [Countries](queries/countries.md)
-2. [Regions](queries/regions.md)
-3. [Airlines](queries/airlines.md)
-4. [Airports](queries/airports.md)
-5. [Airport Airlines](queries/airport_airlines.md)
-6. [Airport Frequencies](queries/airport_frequencies.md)
-7. [Airport Navaids](queries/airport_navaids.md)
-8. [Airport Runways](queries/airport_runways.md)
-9. [Navaids](queries/navaids.md)
-10. [Routes](queries/routes.md)
-11. [Users](queries/users.md)
-12. [Airlines Reviews](queries/airline_reviews.md)
-13. [Airport Reviews](queries/airport_reviews.md)
+1. [Countries](countries.md)
+2. [Regions](regions.md)
+3. [Airlines](airlines.md)
+4. [Airports](airports.md)
+5. [Airport Airlines](airport_airlines.md)
+6. [Airport Frequencies](airport_frequencies.md)
+7. [Airport Navaids](airport_navaids.md)
+8. [Airport Runways](airport_runways.md)
+9. [Navaids](navaids.md)
+10. [Routes](routes.md)
+11. [Users](users.md)
+12. [Airlines Reviews](airline_reviews.md)
+13. [Airport Reviews](airport_reviews.md)
 
