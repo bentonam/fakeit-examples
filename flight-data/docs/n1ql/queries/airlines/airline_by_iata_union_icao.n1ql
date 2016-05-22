@@ -1,10 +1,11 @@
-SELECT airlines.airline_id, airlines.airline_name, airlines.airline_iata, airlines.airline_icao
-FROM `flight-data` AS airlines
-WHERE airlines.airline_iata = 'DL'
-    AND airlines.doc_type = 'airline'
-UNION
-SELECT airlines.airline_id, airlines.airline_name, airlines.airline_iata, airlines.airline_icao
-FROM `flight-data` AS airlines
-WHERE airlines.airline_icao = 'DL'
-    AND airlines.doc_type = 'airline'
-LIMIT 1
+SELECT airlines.airline_id, airlines.airline_iata, airlines.airline_icao, airlines.airline_name
+FROM `flight-data` AS airport_codes
+USE KEYS 'airport_code_GSO'
+INNER JOIN `flight-data` AS airport_airlines
+    ON KEYS 'airport_' || TOSTRING( airport_codes.id ) || '_airlines'
+UNNEST airport_airlines.airlines AS airlines_lookup
+INNER JOIN `flight-data` AS airline_codes
+    ON KEYS 'airline_code_' || TOSTRING( airlines_lookup )
+INNER JOIN `flight-data` AS airlines
+    ON KEYS 'airline_' || TOSTRING( airline_codes.id )
+ORDER BY airlines.airline_name ASC

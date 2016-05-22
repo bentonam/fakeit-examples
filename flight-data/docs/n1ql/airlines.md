@@ -231,16 +231,20 @@ USING GSI
 [airline_by_iata_or_icao.n1ql](queries/airlines/airline_by_iata_or_icao.n1ql)
 
 ```sql
-SELECT airlines.airline_id, airlines.airline_name, airlines.airline_iata, airlines.airline_icao
+SELECT airlines.airline_id, airlines.airline_name,
+    airlines.airline_iata, airlines.airline_icao
 FROM `flight-data` AS airlines
 WHERE (
         airlines.airline_iata = 'DL'
         OR (
-            airlines.airline_iata IS NOT MISSING AND airlines.airline_icao = 'DL'
+            airlines.airline_iata IS NOT MISSING
+            AND
+            airlines.airline_icao = 'DL'
         )
     )
     AND airlines.doc_type = 'airline'
 LIMIT 1
+
 ```
 
 ##### Results
@@ -295,12 +299,14 @@ USING GSI
 [airline_by_iata_union_icao.n1ql](queries/airliens/airline_by_iata_union_icao.n1ql)
 
 ```sql
-SELECT airlines.airline_id, airlines.airline_name, airlines.airline_iata, airlines.airline_icao
+SELECT airlines.airline_id, airlines.airline_name,
+    airlines.airline_iata, airlines.airline_icao
 FROM `flight-data` AS airlines
 WHERE airlines.airline_iata = 'DL'
     AND airlines.doc_type = 'airline'
 UNION
-SELECT airlines.airline_id, airlines.airline_name, airlines.airline_iata, airlines.airline_icao
+SELECT airlines.airline_id, airlines.airline_name,
+    airlines.airline_iata, airlines.airline_icao
 FROM `flight-data` AS airlines
 WHERE airlines.airline_icao = 'DL'
     AND airlines.doc_type = 'airline'
@@ -355,9 +361,11 @@ Query by the IATA code
 [airline_by_iata_designation.n1ql](queries/airlines/airline_by_iata_designation.n1ql)
 
 ```sql
-SELECT airlines.airline_id, airlines.airline_name, airlines.airline_iata, airlines.airline_icao
+SELECT airlines.airline_id, airlines.airline_name,
+    airlines.airline_iata, airlines.airline_icao
 FROM `flight-data` AS codes
-INNER JOIN `flight-data` AS airlines ON KEYS 'airline_' || TOSTRING( codes.id )
+INNER JOIN `flight-data` AS airlines
+    ON KEYS 'airline_' || TOSTRING( codes.id )
 WHERE codes.code = 'DL'
      AND codes.designation = 'airline'
      AND codes.doc_type = 'code'
@@ -369,9 +377,11 @@ Query by the ICAO code
 [airline_by_icao_designation.n1ql](queries/airlines/airline_by_icao_designation.n1ql)
 
 ```sql
-SELECT airlines.airline_id, airlines.airline_name, airlines.airline_iata, airlines.airline_icao
+SELECT airlines.airline_id, airlines.airline_name,
+    airlines.airline_iata, airlines.airline_icao
 FROM `flight-data` AS codes
-INNER JOIN `flight-data` AS airlines ON KEYS 'airline_' || TOSTRING( codes.id )
+INNER JOIN `flight-data` AS airlines
+    ON KEYS 'airline_' || TOSTRING( codes.id )
 WHERE codes.code = 'DAL'
      AND codes.designation = 'airline'
      AND codes.doc_type = 'code'
@@ -412,10 +422,12 @@ Query by the IATA code
 [airline_by_iata_code.n1ql](queries/airlines/airline_by_iata_code.n1ql)
 
 ```sql
-SELECT airlines.airline_id, airlines.airline_name, airlines.airline_iata, airlines.airline_icao
+SELECT airlines.airline_id, airlines.airline_name,
+    airlines.airline_iata, airlines.airline_icao
 FROM `flight-data` AS codes
 USE KEYS 'airline_code_DL'
-INNER JOIN `flight-data` AS airlines ON KEYS 'airline_' || TOSTRING( codes.id )
+INNER JOIN `flight-data` AS airlines
+    ON KEYS 'airline_' || TOSTRING( codes.id )
 LIMIT 1
 ```
 
@@ -424,10 +436,12 @@ Query by the ICAO code
 [airline_by_icao_code.n1ql](queries/airlines/airline_by_icao_code.n1ql)
 
 ```sql
-SELECT airlines.airline_id, airlines.airline_name, airlines.airline_iata, airlines.airline_icao
+SELECT airlines.airline_id, airlines.airline_name,
+    airlines.airline_iata, airlines.airline_icao
 FROM `flight-data` AS codes
 USE KEYS 'airline_code_DAL'
-INNER JOIN `flight-data` AS airlines ON KEYS 'airline_' || TOSTRING( codes.id )
+INNER JOIN `flight-data` AS airlines
+   ON KEYS 'airline_' || TOSTRING( codes.id )
 LIMIT 1
 ```
 
