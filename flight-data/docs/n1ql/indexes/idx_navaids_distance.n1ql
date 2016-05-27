@@ -1,4 +1,4 @@
-CREATE INDEX idx_navaid_distance ON `flight-data`( iso_country, geo.latitude, geo.longitude )
+CREATE INDEX idx_navaids_distance ON `flight-data`( iso_country, geo.latitude, geo.longitude )
 WHERE doc_type = 'navaid'
     AND iso_country IS NOT NULL
     AND geo.latitude IS NOT NULL

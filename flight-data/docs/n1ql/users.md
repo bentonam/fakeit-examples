@@ -363,6 +363,247 @@ WHERE flattened_addresses.`primary` = true
   }
 ]
 ```
+
+Now we want to lookup our users by the region that they are in.  To do this we will need to create an index on the `addresses[*].iso_region`.  [Prior to Couchbase 4.5](http://blog.couchbase.com/2016/march/making-the-most-of-your-arrays...-with-array-indexing) the entire array had to be indexed and data could not be efficiently queried.   
+
+##### Index
+
+[idx_users_addresses_regions.n1ql](indexes/idx_users_addresses_regions.n1ql)
+
+```sql
+CREATE INDEX idx_users_addresses_region ON `flight-data`(
+    DISTINCT ARRAY address.iso_region
+        FOR address IN addresses
+            WHEN address.iso_region IS NOT NULL
+        END
+)
+WHERE doc_type = 'user';
+```
+
+##### Query
+
+For our query, we do not want to return the entire `addresses` property, we want to omit the `primary` and `type` fields.  The results should be sorted by `iso_region DESC` and have the `primary` address listed first.
+
+[user_addresses_by_region.n1ql](user_addresses_by_region.n1ql)
+
+```sql
+SELECT users.details.first_name ||
+    IFNULL(' ' ||  users.details.last_name, '') AS name,
+    (
+        ARRAY {
+            "address_1": address.address_1,
+            "address_2": address.address_2,
+            "iso_region": address.iso_region,
+            "iso_country": address.iso_country,
+            "postal_code": address.postal_code,
+            "locality": address.locality
+        } FOR address IN users.addresses END
+    ) AS addresses
+FROM `flight-data` AS users
+WHERE users.doc_type = 'user'
+    AND (
+        ANY address IN users.addresses
+            SATISFIES address.iso_region IN [
+                'US-AK', 'US-MN', 'US-NC'
+            ]
+        END
+    )
+ORDER BY users.addresses[*].iso_region DESC,
+    users.addresses[*].`primary` DESC
+```
+
+##### Result
+
+```json
+[
+  {
+    "addresses": [
+      {
+        "address_1": "38582 Sigrid Terrace Cape",
+        "address_2": null,
+        "iso_country": "US",
+        "iso_region": "US-NC",
+        "locality": "Sengermouth",
+        "postal_code": "76275-0205",
+        "primary": false,
+        "type": "Work"
+      },
+      {
+        "address_1": "1844 Krajcik Unions Garden",
+        "address_2": "Apt. 925",
+        "iso_country": "US",
+        "iso_region": "US-NC",
+        "locality": "Macieborough",
+        "postal_code": "17581-8835",
+        "primary": true,
+        "type": "Other"
+      }
+    ],
+    "first_name": "Marianna",
+    "last_name": "Labadie"
+  },
+  {
+    "addresses": [
+      {
+        "address_1": "82985 Angus Garden Mountain",
+        "address_2": null,
+        "iso_country": "US",
+        "iso_region": "US-NC",
+        "locality": "Swiftfort",
+        "postal_code": "26911-4639",
+        "primary": true,
+        "type": "Other"
+      }
+    ],
+    "first_name": "Yasmeen",
+    "last_name": "Rippin"
+  },
+  {
+    "addresses": [
+      {
+        "address_1": "8913 Rodriguez Gardens Fords",
+        "address_2": "Apt. 764",
+        "iso_country": "US",
+        "iso_region": "US-MN",
+        "locality": "Bonniestad",
+        "postal_code": "07379",
+        "primary": true,
+        "type": "Home"
+      },
+      {
+        "address_1": "69403 Cleora Ports Shores",
+        "address_2": null,
+        "iso_country": "US",
+        "iso_region": "US-MN",
+        "locality": "Randiside",
+        "postal_code": "91175",
+        "primary": false,
+        "type": "Work"
+      }
+    ],
+    "first_name": "Winnifred",
+    "last_name": "Koepp"
+  },
+  {
+    "addresses": [
+      {
+        "address_1": "354 Susanna Row Falls",
+        "address_2": null,
+        "iso_country": "US",
+        "iso_region": "US-MN",
+        "locality": "Champlinchester",
+        "postal_code": "26170",
+        "primary": true,
+        "type": "Other"
+      },
+      {
+        "address_1": "38849 Brakus Divide Keys",
+        "address_2": null,
+        "iso_country": "US",
+        "iso_region": "US-MN",
+        "locality": "Barrowston",
+        "postal_code": "05343-0841",
+        "primary": false,
+        "type": "Home"
+      }
+    ],
+    "first_name": "Lola",
+    "last_name": "Emmerich"
+  },
+  {
+    "addresses": [
+      {
+        "address_1": "90856 Stark Streets Manors",
+        "address_2": null,
+        "iso_country": "US",
+        "iso_region": "US-MN",
+        "locality": "Port Carlie",
+        "postal_code": "56282-1062",
+        "primary": true,
+        "type": "Work"
+      }
+    ],
+    "first_name": "Marie",
+    "last_name": "Marks"
+  },
+  {
+    "addresses": [
+      {
+        "address_1": "6136 Kuhlman Isle Crossroad",
+        "address_2": null,
+        "iso_country": "US",
+        "iso_region": "US-MN",
+        "locality": "Emmittshire",
+        "postal_code": "41017-8748",
+        "primary": true,
+        "type": "Other"
+      }
+    ],
+    "first_name": "Emmie",
+    "last_name": null
+  }
+]
+```
+Building on the previous index and query, we want to retrieve all of the users, a unique array of each region the user is in, as well as the total # of addresses.
+
+##### Query
+
+[user_addresses_by_region_distinct.n1ql](user_addresses_by_region_distinct.n1ql)
+
+```sql
+SELECT users.details.first_name ||
+    IFNULL(' ' ||  users.details.last_name, '') AS name,
+    ARRAY_LENGTH(users.addresses) AS addresses,
+    ARRAY_DISTINCT(
+        ARRAY address.iso_region FOR address IN users.addresses END
+    ) AS regions
+FROM `flight-data` AS users
+WHERE users.doc_type = 'user'
+    AND (
+        ANY address IN users.addresses
+            SATISFIES address.iso_region IN ['US-SC']
+        END
+    )
+ORDER BY users.addresses[*].iso_region DESC
+```
+
+##### Result
+
+```json
+[
+  {
+    "addresses": 2,
+    "name": "Lenny Borer",
+    "regions": [
+      "US-KS",
+      "US-SC"
+    ]
+  },
+  {
+    "addresses": 2,
+    "name": "Jasper Donnelly",
+    "regions": [
+      "US-SC"
+    ]
+  },
+  {
+    "addresses": 1,
+    "name": "Cindy Thiel",
+    "regions": [
+      "US-SC"
+    ]
+  },
+  {
+    "addresses": 2,
+    "name": "Zoila Koepp",
+    "regions": [
+      "US-NM",
+      "US-SC"
+    ]
+  }
+]
+```
+
 ---
 
 ## Users Phones

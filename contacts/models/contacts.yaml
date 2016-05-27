@@ -2,8 +2,8 @@ name: Contacts
 type: object
 key: _id
 data:
-  min: 50
-  max: 100
+  min: 200
+  max: 400
 properties:
   _id:
     type: string
@@ -58,6 +58,14 @@ properties:
       data:
         min: 1
         max: 2
+  children:
+    type: array
+    description: An array of children
+    items:
+      $ref: '#/definitions/Children'
+      data:
+        min: 1
+        max: 8
   notes:
     type: string
     description: Notes about the contact
@@ -132,6 +140,24 @@ definitions:
         description: The country code
         data:
           build: "return faker.address.countryCode();"
+  Children:
+    type: object
+    properties:
+      first_name:
+        type: string
+        description: The childs first_name
+        data:
+          fake: "{{name.firstName}}"
+      gender:
+        type: string
+        description: The childs gender
+        data:
+          build: "return chance.bool({likelihood: 70})? faker.random.arrayElement(['M', 'F']) : null;"
+      age:
+        type: integer
+        description: The childs age
+        data:
+          build: "return chance.integer({min: 1, max: 17})"
   Details:
     type: object
     properties:

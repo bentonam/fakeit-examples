@@ -5,7 +5,7 @@ It is assumed that you have imported this entire dataset into a Couchbase bucket
 
 Be sure to familiarize yourself with each of the available [models](/flight-data/docs/models/) in the Flight Data dataset.
 
-If we were to attempt to execute any of the queries listed below, they would fail with an error similar to the following:
+If we were to attempt to execute any of the queries listed below, excluding `USE KEYS` queries, they would fail with an error similar to the following:
 
 ```json
 [
@@ -24,7 +24,7 @@ This is because we have not created any primary or secondary indexes on our buck
 To start performing the example N1QL queries, execute the following N1QL to create a `PRIMARY INDEX`:
 
 ```sql
-CREATE PRIMARY INDEX idx_primary ON `flight-data`;
+CREATE PRIMARY INDEX idx_flight_data_primary ON `flight-data`;
 ```
 ## Queries
 

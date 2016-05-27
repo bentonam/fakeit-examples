@@ -307,10 +307,10 @@ Since we are going to be querying on the ISO Country, Latitude and Longitude of 
 
 ##### Index
 
-[idx_navaid_distance.n1ql](indexes/idx_navaid_distance.n1ql)
+[idx_navaids_distance.n1ql](indexes/idx_navaids_distance.n1ql)
 
 ```sql
-CREATE INDEX idx_navaid_distance ON `flight-data`( iso_country, geo.latitude, geo.longitude )
+CREATE INDEX idx_navaids_distance ON `flight-data`( iso_country, geo.latitude, geo.longitude )
 WHERE doc_type = 'navaid'
     AND iso_country IS NOT NULL
     AND geo.latitude IS NOT NULL

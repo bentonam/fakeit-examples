@@ -7,6 +7,13 @@ data:
     globals.address_types = ['Home', 'Work', 'Other'];
     globals.email_types = ['Home', 'Work', 'Other'];
     globals.phone_types = ['Home', 'Work', 'Mobile', 'Main', 'Other', 'Fax'];
+    globals.flattened_regions = {};
+    for (var i = 0; i < documents.Regions.length; i++) {
+      if (!globals.flattened_regions[documents.Regions[i].iso_country]) {
+        globals.flattened_regions[documents.Regions[i].iso_country] = [];
+      }
+      globals.flattened_regions[documents.Regions[i].iso_country].push(documents.Regions[i].region_code);
+    }
   pre_build: >
     globals.current_region = documents.Regions[chance.integer({min: 0, max: documents.Regions.length - 1})];
   post_build: >
@@ -162,7 +169,12 @@ definitions:
         type: string
         description: The ISO region / state / province code
         data:
-          build: "return globals.current_region.region_code"
+          build: >
+            var region = globals.current_region.region_code;
+            if (chance.bool({likelihood: 30})) {
+              region = globals.flattened_regions[globals.current_region.iso_country][chance.integer({min: 0, max: globals.flattened_regions[globals.current_region.iso_country].length - 1})]
+            }
+            return region;
       postal_code:
         type: string
         description: The zip code / postal code

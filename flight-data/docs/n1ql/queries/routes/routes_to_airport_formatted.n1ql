@@ -1,22 +1,22 @@
 SELECT
     {
-        "airline": {
-            "airline_code": IFNULL(
-                airlines.airline_iata,
-                airlines.airline_icao
-            ),
-            "airline_name": airlines.airline_name
-        },
-        "source_airport": {
-            "airport_name": source_airports.airport_name,
-            "iso_country": source_airports.iso_country,
-            "iso_region": source_airports.iso_region,
-            "airport_code": IFNULL(
-                source_airports.airport_iata,
-                source_airports.airport_icao,
-                source_airports.airport_ident
-            )
-        }
+      "airline": {
+          "airline_code": IFNULL(
+              airlines.airline_iata,
+              airlines.airline_icao
+          ),
+          "airline_name": airlines.airline_name
+      },
+      "source_airport": {
+          "airport_name": source_airports.airport_name,
+          "iso_country": source_airports.iso_country,
+          "iso_region": source_airports.iso_region,
+          "airport_code": IFNULL(
+              source_airports.airport_iata,
+              source_airports.airport_icao,
+              source_airports.airport_ident
+          )
+      }
     } AS route
 FROM `flight-data` AS routes
 INNER JOIN `flight-data` AS airport_codes
