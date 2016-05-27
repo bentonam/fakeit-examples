@@ -352,28 +352,88 @@ USING GSI
 
 ##### Query
 
-[airlines_flying_to_airport.n1ql](queries/routes/airlines_flying_to_airport.n1ql)
+[routes_to_airport.n1ql](queries/routes/routes_to_airport.n1ql)
+
+```sql
+SELECT airlines.airline_name,
+    IFNULL(
+        airlines.airline_iata,
+        airlines.airline_icao
+    ) AS airline_code,
+    source_airports.airport_name,
+    source_airports.iso_country,
+    source_airports.iso_region,
+    IFNULL(
+        source_airports.airport_iata,
+        source_airports.airport_icao,
+        source_airports.airport_ident
+    ) AS airport_code
+FROM `flight-data` AS routes
+INNER JOIN `flight-data` AS airport_codes
+    ON KEYS 'airport_code_' || routes.source_airport_code
+INNER JOIN `flight-data` AS source_airports
+    ON KEYS 'airport_' || TOSTRING( airport_codes.id )
+INNER JOIN `flight-data` AS airline_codes
+    ON KEYS 'airline_code_' || routes.airline_code
+INNER JOIN `flight-data` AS airlines
+    ON KEYS 'airline_' || TOSTRING( airline_codes.id )
+WHERE routes.destination_airport_code = 'MRY'
+    AND routes.source_airport_code IS NOT NULL
+    AND routes.doc_type = 'route'
+    AND routes.active = true
+ORDER BY source_airports.airport_name ASC
+```
+
+##### Results
+
+```json
+[
+  {
+    "airline_code": "UA",
+    "airline_name": "United Airlines",
+    "airport_code": "DEN",
+    "airport_name": "Denver Intl",
+    "iso_country": "US",
+    "iso_region": "US-CO"
+  },
+  {
+    "airline_code": "UA",
+    "airline_name": "United Airlines",
+    "airport_code": "LAX",
+    "airport_name": "Los Angeles Intl",
+    "iso_country": "US",
+    "iso_region": "US-CA"
+  },
+  ...
+]
+```
+
+What if we wanted to customize the output into a nested object / collection?
+
+##### Query
+
+[routes_to_airport_formatted.n1ql](queries/routes/routes_to_airport_formatted.n1ql)
 
 ```sql
 SELECT
     {
-        "airline": {
-            "airline_code": IFNULL(
-                airlines.airline_iata,
-                airlines.airline_icao
-            ),
-            "airline_name": airlines.airline_name
-        },
-        "source_airport": {
-            "airport_name": source_airports.airport_name,
-            "iso_country": source_airports.iso_country,
-            "iso_region": source_airports.iso_region,
-            "airport_code": IFNULL(
-                source_airports.airport_iata,
-                source_airports.airport_icao,
-                source_airports.airport_ident
-            )
-        }
+      "airline": {
+          "airline_code": IFNULL(
+              airlines.airline_iata,
+              airlines.airline_icao
+          ),
+          "airline_name": airlines.airline_name
+      },
+      "source_airport": {
+          "airport_name": source_airports.airport_name,
+          "iso_country": source_airports.iso_country,
+          "iso_region": source_airports.iso_region,
+          "airport_code": IFNULL(
+              source_airports.airport_iata,
+              source_airports.airport_icao,
+              source_airports.airport_ident
+          )
+      }
     } AS route
 FROM `flight-data` AS routes
 INNER JOIN `flight-data` AS airport_codes
@@ -421,6 +481,167 @@ ORDER BY source_airports.airport_name ASC
         "iso_country": "US",
         "iso_region": "US-CA"
       }
+    }
+  },
+  ...
+]
+```
+
+This works, however our `airline` and `source_airport` attributes are now nested under a `route` attribute, we can remove this by using a `.*` at the end of the objects construction.
+
+##### Query
+
+[routes_to_airport_formatted_flattened.n1ql](queries/routes/routes_to_airport_formatted_flattened.n1ql)
+
+```sql
+SELECT
+    {
+      "airline": {
+          "airline_code": IFNULL(
+              airlines.airline_iata,
+              airlines.airline_icao
+          ),
+          "airline_name": airlines.airline_name
+      },
+      "source_airport": {
+          "airport_name": source_airports.airport_name,
+          "iso_country": source_airports.iso_country,
+          "iso_region": source_airports.iso_region,
+          "airport_code": IFNULL(
+              source_airports.airport_iata,
+              source_airports.airport_icao,
+              source_airports.airport_ident
+          )
+      }
+    }.*
+FROM `flight-data` AS routes
+INNER JOIN `flight-data` AS airport_codes
+    ON KEYS 'airport_code_' || routes.source_airport_code
+INNER JOIN `flight-data` AS source_airports
+    ON KEYS 'airport_' || TOSTRING( airport_codes.id )
+INNER JOIN `flight-data` AS airline_codes
+    ON KEYS 'airline_code_' || routes.airline_code
+INNER JOIN `flight-data` AS airlines
+    ON KEYS 'airline_' || TOSTRING( airline_codes.id )
+WHERE routes.destination_airport_code = 'MRY'
+    AND routes.source_airport_code IS NOT NULL
+    AND routes.doc_type = 'route'
+    AND routes.active = true
+ORDER BY source_airports.airport_name ASC
+```
+
+##### Results
+
+```json
+[
+  {
+    "airline": {
+      "airline_code": "UA",
+      "airline_name": "United Airlines"
+    },
+    "source_airport": {
+      "airport_code": "DEN",
+      "airport_name": "Denver Intl",
+      "iso_country": "US",
+      "iso_region": "US-CO"
+    }
+  },
+  {
+    "airline": {
+      "airline_code": "UA",
+      "airline_name": "United Airlines"
+    },
+    "source_airport": {
+      "airport_code": "LAX",
+      "airport_name": "Los Angeles Intl",
+      "iso_country": "US",
+      "iso_region": "US-CA"
+    }
+  },
+  ...
+]
+```
+
+Now that we have a nicely formatted object, what if we wanted to return the route distance in miles as well? Note that `69` is used for miles and `111.045` is used for kilometers.  This is the distance between degrees (latitude / longitude).
+
+##### Query
+
+[routes_to_airport_with_distance.n1ql](queries/routes/routes_to_airport_with_distance.n1ql)
+
+```sql
+SELECT
+    {
+      "airline": {
+          "airline_code": IFNULL(
+              airlines.airline_iata,
+              airlines.airline_icao
+          ),
+          "airline_name": airlines.airline_name
+      },
+      "source_airport": {
+          "airport_name": source_airports.airport_name,
+          "iso_country": source_airports.iso_country,
+          "iso_region": source_airports.iso_region,
+          "airport_code": IFNULL(
+              source_airports.airport_iata,
+              source_airports.airport_icao,
+              source_airports.airport_ident
+          )
+      },
+      "distance": ROUND(69 * DEGREES(ACOS(COS(RADIANS( source_airports.geo.latitude ))
+      * COS(RADIANS( destination_airports.geo.latitude ))
+      * COS(RADIANS( source_airports.geo.longitude ) - RADIANS( destination_airports.geo.longitude ))
+      + SIN(RADIANS( source_airports.geo.latitude ))
+      * SIN(RADIANS( destination_airports.geo.latitude )))), 2)
+    }.*
+FROM `flight-data` AS routes
+INNER JOIN `flight-data` AS airport_codes
+    ON KEYS 'airport_code_' || routes.source_airport_code
+INNER JOIN `flight-data` AS source_airports
+    ON KEYS 'airport_' || TOSTRING( airport_codes.id )
+INNER JOIN `flight-data` AS destination_airport_codes
+    ON KEYS 'airport_code_' || routes.destination_airport_code
+INNER JOIN `flight-data` AS destination_airports
+    ON KEYS 'airport_' || TOSTRING(  destination_airport_codes.id  )
+INNER JOIN `flight-data` AS airline_codes
+    ON KEYS 'airline_code_' || routes.airline_code
+INNER JOIN `flight-data` AS airlines
+    ON KEYS 'airline_' || TOSTRING( airline_codes.id )
+WHERE routes.destination_airport_code = 'MRY'
+    AND routes.source_airport_code IS NOT NULL
+    AND routes.doc_type = 'route'
+    AND routes.active = true
+ORDER BY source_airports.airport_name ASC
+```
+
+##### Results
+
+```json
+[
+  {
+    "airline": {
+      "airline_code": "UA",
+      "airline_name": "United Airlines"
+    },
+    "distance": 956.1,
+    "source_airport": {
+      "airport_code": "DEN",
+      "airport_name": "Denver Intl",
+      "iso_country": "US",
+      "iso_region": "US-CO"
+    }
+  },
+  {
+    "airline": {
+      "airline_code": "UA",
+      "airline_name": "United Airlines"
+    },
+    "distance": 265.94,
+    "source_airport": {
+      "airport_code": "LAX",
+      "airport_name": "Los Angeles Intl",
+      "iso_country": "US",
+      "iso_region": "US-CA"
     }
   },
   ...
@@ -571,7 +792,7 @@ ORDER BY COUNT(1) DESC, results.airline_code ASC
 
 ---
 
-## Routes by within certain distance
+## Routes within certain distance
 
 If we only want to return routes originating from a given airport that are with a certain distance in miles we would perform the following queries.
 

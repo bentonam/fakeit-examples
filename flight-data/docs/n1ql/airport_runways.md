@@ -6,7 +6,7 @@ These are example N1QL queries that may can performed to retrieve airport freque
 
 ## Airport Runways by Code
 
-This query uses the previously created `idx_airport_codes` index.
+This query uses the previously created `idx_airports_codes` index.
 
 ##### Query
 

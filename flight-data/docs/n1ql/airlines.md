@@ -218,10 +218,10 @@ Each Airline has 2 identifying codes a 2 character [IATA](http://www.iata.org/ab
 
 ##### Index
 
-[idx_airline_codes.n1ql](indexes/idx_airline_codes.n1ql)
+[idx_airlines_codes.n1ql](indexes/idx_airlines_codes.n1ql)
 
 ```sql
-CREATE INDEX idx_airline_codes ON `flight-data`( airline_iata, airline_icao )
+CREATE INDEX idx_airlines_codes ON `flight-data`( airline_iata, airline_icao )
 WHERE doc_type = 'airline'
 USING GSI
 ```
@@ -266,10 +266,10 @@ This works but is slow because of the `OR` statement that we have to use to atte
 
 Drop the index we just created, since it will no longer be used.
 
-[idx_airline_codes_drop.n1ql](indexes/idx_airline_codes_drop.n1ql)
+[idx_airlines_codes_drop.n1ql](indexes/idx_airlines_codes_drop.n1ql)
 
 ```sql
-DROP INDEX `flight-data`.idx_airline_codes
+DROP INDEX `flight-data`.idx_airlines_codes
 ```
 
 Create index for Airline IATA codes

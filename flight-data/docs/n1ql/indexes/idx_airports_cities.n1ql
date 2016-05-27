@@ -1,4 +1,4 @@
-CREATE INDEX idx_airport_cities ON `flight-data`( iso_country, municipality )
+CREATE INDEX idx_airports_cities ON `flight-data`( iso_country, municipality )
 WHERE doc_type = 'airport'
     AND iso_country IS NOT NULL
     AND municipality IS NOT NULL

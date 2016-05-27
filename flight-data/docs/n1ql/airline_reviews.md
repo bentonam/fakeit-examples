@@ -10,10 +10,10 @@ The following queries will return review related information for a given `airlin
 
 ##### Index
 
-[idx_airline_reviews_airline_code.n1ql](indexes/idx_airline_reviews_airline_code.n1ql)
+[idx_airlines_reviews_airline_code.n1ql](indexes/idx_airlines_reviews_airline_code.n1ql)
 
 ```sql
-CREATE INDEX idx_airline_reviews_airline_code ON `flight-data`( airline_code, rating )
+CREATE INDEX idx_airlines_reviews_airline_code ON `flight-data`( airline_code, rating )
 WHERE doc_type = 'airline-review'
 USING GSI
 ```
@@ -115,10 +115,10 @@ The following indexes and queries show to retrieve which reviews for an airline 
 
 ##### Index
 
-[idx_airline_reviews_user_id.n1ql](indexes/idx_airline_reviews_user_id.n1ql)
+[idx_airlines_reviews_user_id.n1ql](indexes/idx_airlines_reviews_user_id.n1ql)
 
 ```sql
-CREATE INDEX idx_airline_reviews_user_id ON `flight-data`( user_id, airline_code )
+CREATE INDEX idx_airlines_reviews_user_id ON `flight-data`( user_id, airline_code )
 WHERE doc_type = 'airline-review'
 USING GSI
 ```

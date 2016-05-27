@@ -421,10 +421,10 @@ Lets say we wanted to search on cities in an ISO country to find associated airp
 
 ##### Index
 
-[idx_airport_cities.n1ql](indexes/idx_airport_cities.n1ql)
+[idx_airports_cities.n1ql](indexes/idx_airports_cities.n1ql)
 
 ```sql
-CREATE INDEX idx_airport_cities ON `flight-data`( iso_country, municipality )
+CREATE INDEX idx_airports_cities ON `flight-data`( iso_country, municipality )
 WHERE doc_type = 'airport'
     AND iso_country IS NOT NULL
     AND municipality IS NOT NULL
@@ -553,7 +553,7 @@ Since we are going to be querying on the ISO Country, Latitude and Longitude of 
 
 ##### Index
 
-[idx_airports_distance](indexes/idx_airports_distance.md)
+[idx_airports_distance.sql](indexes/idx_airports_distance.sql)
 
 ```sql
 CREATE INDEX idx_airports_distance ON `flight-data`( iso_country, geo.latitude, geo.longitude )
@@ -644,7 +644,7 @@ Next we replace the tokens from our base radius query with the returned values.
 
 For our example we want to find any airports within 100 miles of "ICT". Our `{{distance_unit}}` is miles, this value needs to be `69` and our `{{radius}}` is `100`.  Replace the `{{source_latitude}}`, `{{source_longitude}}` and `{{iso_country}}` with the values from the previous query.
 
-[airports_near_ICT_by_miles.n1ql](queries/airports/airports_near_ICT_by_miles.n1ql)
+[airports_near_airport_by_miles.n1ql](queries/airports/airports_near_airport_by_miles.n1ql)
 
 ```sql
 SELECT results.airport_name, results.airport_code, ROUND( results.distance, 2 ) AS distance
@@ -759,7 +759,7 @@ LIMIT 1
 ```
 ##### Airports Near a Given Airport in Kilometers Query
 
-[airports_near_TXL_by_kilometers.n1ql](queries/airports/airports_near_TXL_by_kilometers.n1ql)
+[airports_near_airport_by_kilometers.n1ql](queries/airports/airports_near_airport_by_kilometers.n1ql)
 
 ```sql
 SELECT results.airport_name, results.airport_code, ROUND( results.distance, 2 ) AS distance
@@ -839,3 +839,104 @@ ORDER BY results.distance ASC
   }
 ]
 ```
+
+
+##### Airports Near a Given Airport in Miles with Source Airport Query
+
+Our previous examples have required us to perform a separate query to determine the source airport information.  We add the source airports information to the query by utilizing the `NEST` statement. For our example we want to find any airports within 100 miles of "ICT". Our `{{distance_unit}}` is miles, this value needs to be `69` and our `{{radius}}` is `100`.
+
+[airports_near_airport_by_miles_with_lookup.n1ql](queries/airports/airports_near_airport_by_miles_with_lookup.n1ql)
+
+```sql
+SELECT results.airport_name, results.airport_code, ROUND( results.distance, 2 ) AS distance
+FROM (
+    SELECT airports.airport_name,
+        IFNULL( airports.airport_iata, airports.airport_icao, airports.airport_ident ) AS airport_code,
+        69 * DEGREES(ACOS(COS(RADIANS( source_airport[0].geo.latitude ))
+        * COS(RADIANS( airports.geo.latitude ))
+        * COS(RADIANS( source_airport[0].geo.longitude ) - RADIANS( airports.geo.longitude ))
+        + SIN(RADIANS( source_airport[0].geo.latitude ))
+        * SIN(RADIANS( airports.geo.latitude )))) AS distance
+    FROM `flight-data` AS airports
+    INNER NEST `flight-data` AS source_airport ON KEYS (
+        ARRAY 'airport_' || TOSTRING(a.id) FOR a IN (
+            SELECT lookup_code.id
+            FROM `flight-data` AS lookup_code
+            USE KEYS 'airport_code_ICT'
+            LIMIT 1
+        ) END
+    )
+    WHERE airports.iso_country = source_airport[0].iso_country
+        AND airports.geo.latitude BETWEEN
+            source_airport[0].geo.latitude - ( 100 / 69 )
+            AND
+            source_airport[0].geo.latitude + ( 100 / 69 )
+        AND airports.geo.longitude BETWEEN
+            source_airport[0].geo.longitude - ( 100 / ( 69 * COS(RADIANS( source_airport[0].geo.latitude ))))
+            AND
+            source_airport[0].geo.longitude + ( 100 / ( 69 * COS(RADIANS( source_airport[0].geo.latitude ))))
+        AND airports.doc_type = 'airport'
+    ) AS results
+WHERE results.distance > 0
+    AND results.distance <= 100
+ORDER BY results.distance ASC
+```
+
+##### Airports Near a Given Airport in Miles Results
+
+```json
+[
+  {
+    "airport_code": "IAB",
+    "airport_name": "Mc Connell Afb",
+    "distance": 9.21
+  },
+  {
+    "airport_code": "BEC",
+    "airport_name": "Beech Factory Airport",
+    "distance": 12.3
+  },
+  {
+    "airport_code": "EGT",
+    "airport_name": "Wellington Municipal",
+    "distance": 22.65
+  },
+  {
+    "airport_code": "EWK",
+    "airport_name": "Newton City-County Airport",
+    "distance": 29.47
+  },
+  {
+    "airport_code": "HUT",
+    "airport_name": "Hutchinson Municipal Airport",
+    "distance": 36.94
+  },
+  {
+    "airport_code": "PNC",
+    "airport_name": "Ponca City Rgnl",
+    "distance": 65.93
+  },
+  {
+    "airport_code": "SLN",
+    "airport_name": "Salina Municipal Airport",
+    "distance": 79.63
+  },
+  {
+    "airport_code": "EMP",
+    "airport_name": "Emporia Municipal Airport",
+    "distance": 82.32
+  },
+  {
+    "airport_code": "GBD",
+    "airport_name": "Great Bend Municipal",
+    "distance": 91.15
+  },
+  {
+    "airport_code": "END",
+    "airport_name": "Vance Afb",
+    "distance": 94.28
+  }
+]
+```
+
+While this executes and we get the same results as before, it is exponentially slower because the `NEST` is happening on every record.  

@@ -55,22 +55,23 @@ Below is a variety of commands that can be used on this data model, all of the e
 
 ```bash
 [flight-data]$ fakeit -m models -i input -d couchbase -b flight-data
-Generating 5912 documents for Airlines model
 Generating 6922 documents for Airports model
 Generating 7 documents for Continents model
-Generating 247 documents for Countries model
-Generating 10314 documents for Navaids model
 Generating 17137 documents for Frequencies model
+Generating 10314 documents for Navaids model
 Generating 3999 documents for Regions model
-Generating 10000 documents for Users model
-Generating 67065 documents for Routes model
+Generating 247 documents for Countries model
 Generating 8813 documents for Runways model
-Generating 29560 documents for AirlinesReviews model
-Generating 6922 documents for AirportAirlines model
+Generating 67065 documents for Routes model
+Generating 10000 documents for Users model
+Generating 5911 documents for Airlines model
 Generating 6922 documents for AirportFrequencies model
+Generating 29555 documents for AirlineReviews model
+Generating 6922 documents for AirportAirlines model
 Generating 6922 documents for AirportNavaids model
 Generating 34610 documents for AirportReviews model
 Generating 6922 documents for AirportRunways model
+Generating 30419 documents for Codes model
 ```
 
 If you wanted to generated the models separately and add them to Couchbase use the following commands.  *Note some models may have to be generated more than once but can be excluded from output
