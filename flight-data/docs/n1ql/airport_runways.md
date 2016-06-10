@@ -128,7 +128,7 @@ Return just the low and high bearing runway identifiers.
 
 This query will find the available runways by the 3 character IATA / FAA code of the airport
 
-[aiport_runway_idents_by_iata_code.n1ql](queries/airport_runways/aiport_runway_idents_by_iata_code.n1ql)
+[airport_runway_idents_by_iata_code.n1ql](queries/airport_runways/airport_runway_idents_by_iata_code.n1ql)
 
 ```sql
 SELECT runways.low_bearing.ident || '/' || runways.high_bearing.ident AS runway
@@ -144,7 +144,7 @@ WHERE runways.closed = false
 
 This query will find the available runways and information by the 4 character ICAO code of the airport
 
-[aiport_runway_idents_by_icao_code.n1ql](queries/airport_runways/aiport_runway_idents_by_icao_code.n1ql)
+[airport_runway_idents_by_icao_code.n1ql](queries/airport_runways/airport_runway_idents_by_icao_code.n1ql)
 
 ```sql
 SELECT runways.low_bearing.ident || '/' || runways.high_bearing.ident AS runway
@@ -172,6 +172,88 @@ Both queries will yield the same exact result.
   },
   {
     "runway": "14/32"
+  }
+]
+```
+
+## Airport Information with Runways
+
+For this query we want to retrieve a single record with the airport information with a single attribute that is an array of each of the airports runway identifiers for active runways only.
+
+##### Query
+
+This query will find the available runways by the 3 character IATA / FAA code of the airport
+
+[airport_with_runway_idents_by_iata_code.n1ql](queries/airport_runways/airport_with_runway_idents_by_iata_code.n1ql)
+
+```sql
+SELECT airports.airport_id, airports.airport_name, airports.airport_type,
+    airports.iso_region, airports.municipality,
+    IFNULL( airports.airport_iata, airports.airport_icao, airports.airport_ident ) AS airport_code,
+    ARRAY
+        runway.low_bearing.ident || IFNULL('/' || runway.high_bearing.ident, '')
+        FOR runway IN IFMISSING(runways, [])
+        WHEN runway.closed = false
+    END AS runways
+FROM `flight-data` AS codes
+USE KEYS 'airport_code_ICT'
+INNER JOIN `flight-data` AS airports ON KEYS 'airport_' || TOSTRING( codes.id )
+LEFT NEST `flight-data` AS runways ON KEYS (
+    ARRAY runway.runway_id FOR runway IN (
+        SELECT 'runway_' || TOSTRING( runway_id ) AS runway_id
+        FROM `flight-data` AS runway_lookup
+        USE KEYS
+            'airport_' || TOSTRING(codes.id) || '_runways'
+        UNNEST runway_lookup.runways AS runway_id
+    ) END
+)
+```
+
+This query will find the available runways and information by the 4 character ICAO code of the airport
+
+[airport_with_runway_idents_by_icao_code.n1ql](queries/airport_runways/airport_with_runway_idents_by_icao_code.n1ql)
+
+```sql
+SELECT airports.airport_id, airports.airport_name, airports.airport_type,
+    airports.iso_region, airports.municipality,
+    IFNULL( airports.airport_iata, airports.airport_icao, airports.airport_ident ) AS airport_code,
+    ARRAY
+        runway.low_bearing.ident || IFNULL('/' || runway.high_bearing.ident, '')
+        FOR runway IN IFMISSING(runways, [])
+        WHEN runway.closed = false
+    END AS runways
+FROM `flight-data` AS codes
+USE KEYS 'airport_code_KICT'
+INNER JOIN `flight-data` AS airports ON KEYS 'airport_' || TOSTRING( codes.id )
+LEFT NEST `flight-data` AS runways ON KEYS (
+    ARRAY runway.runway_id FOR runway IN (
+        SELECT 'runway_' || TOSTRING( runway_id ) AS runway_id
+        FROM `flight-data` AS runway_lookup
+        USE KEYS
+            'airport_' || TOSTRING(codes.id) || '_runways'
+        UNNEST runway_lookup.runways AS runway_id
+    ) END
+)
+```
+
+Both queries will yield the same exact result.
+
+##### Result
+
+```json
+[
+  {
+    "airport_code": "ICT",
+    "airport_id": 3605,
+    "airport_name": "Wichita Dwight D. Eisenhower National Airport",
+    "airport_type": "large_airport",
+    "iso_region": "US-KS",
+    "municipality": "Wichita",
+    "runways": [
+      "01R/19L",
+      "14/32",
+      "01L/19R"
+    ]
   }
 ]
 ```
