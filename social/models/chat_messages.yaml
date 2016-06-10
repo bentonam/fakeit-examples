@@ -5,7 +5,7 @@ data:
   pre_run: >
     this.data.fixed = documents.Chats.length * 5;
   pre_build: >
-    globals.chat_id = documents.Chats[document_index] || documents.Chats[chance.integer({min: 0, max: documents.Chats.length - 1})];
+    globals.chat_id = documents.Chats[chance.integer({min: 0, max: documents.Chats.length - 1})].chat_id;
   dependencies:
     - Users
     - Chats
@@ -14,7 +14,7 @@ properties:
     type: string
     description: The document id
     data:
-      post_build: "return 'post_' + this.post_id;"
+      post_build: "return 'message_' + this.message_id;"
   doc_type:
     type: string
     description: The document type
@@ -42,6 +42,6 @@ properties:
       build: "return new Date(chance.bool({likelihood: 30}) ? faker.date.past() : faker.date.recent()).getTime()"
   message:
     type: string
-    description: The post content
+    description: The message content
     data:
       build: "return faker.lorem.sentences(chance.integer({min: 1, max: 2}))"

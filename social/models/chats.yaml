@@ -11,7 +11,7 @@ properties:
     type: string
     description: The document id
     data:
-      post_build: "return 'post_' + this.chat_id;"
+      post_build: "return 'chat_' + this.chat_id;"
   doc_type:
     type: string
     description: The document type
