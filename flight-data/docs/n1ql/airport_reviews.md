@@ -13,7 +13,7 @@ The following queries will return review related information for a given `airpor
 [idx_airports_reviews_airport_code.n1ql](indexes/idx_airports_reviews_airport_code.n1ql)
 
 ```sql
-CREATE INDEX idx_airports_reviews_airport_code ON `flight-data`( airport_code, rating )
+CREATE INDEX idx_airports_reviews_airport_code ON `flight-data`( airport_code, rating, doc_type )
 WHERE doc_type = 'airport-review'
 USING GSI
 ```
@@ -103,16 +103,16 @@ Both queries output the same exact results.
 ]
 ```
 
-### User Airport Reviews
+### User Airport Reviews by User ID
 
-The following indexes and queries show to retrieve which reviews for an airport a user has submitted.
+The following indexes and queries show to retrieve which reviews for an airport a user has submitted based on their `user_id`.
 
 ##### Index
 
 [idx_airports_reviews_user_id.n1ql](indexes/idx_airports_reviews_user_id.n1ql)
 
 ```sql
-CREATE INDEX idx_airports_reviews_user_id ON `flight-data`( user_id, airport_code )
+CREATE INDEX idx_airports_reviews_user_id ON `flight-data`( user_id, airport_code, doc_type )
 WHERE doc_type = 'airport-review'
 USING GSI
 ```

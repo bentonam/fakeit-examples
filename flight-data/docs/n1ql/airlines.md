@@ -88,9 +88,9 @@ The following index and queries allows for finding airlines based in a given cou
 [idx_airlines_iso_country.n1ql](indexes/idx_airlines_iso_country.n1ql)
 
 ```sql
-CREATE INDEX idx_airlines_iso_country ON `flight-data`( iso_country )
-WHERE doc_type = 'airline'
-    AND iso_country IS NOT NULL
+CREATE INDEX idx_airlines_iso_country ON `flight-data`( iso_country, doc_type )
+WHERE iso_country IS NOT NULL
+    AND doc_type = 'airline'
 USING GSI
 ```
 
@@ -221,8 +221,13 @@ Each Airline has 2 identifying codes a 2 character [IATA](http://www.iata.org/ab
 [idx_airlines_codes.n1ql](indexes/idx_airlines_codes.n1ql)
 
 ```sql
-CREATE INDEX idx_airlines_codes ON `flight-data`( airline_iata, airline_icao )
-WHERE doc_type = 'airline'
+CREATE INDEX idx_airlines_codes ON `flight-data`( airline_iata, airline_icao, doc_type )
+WHERE (
+        airline_iata IS NOT NULL
+        OR
+        airline_icao IS NOT NULL
+    )
+    AND doc_type = 'airline'
 USING GSI
 ```
 
@@ -237,14 +242,13 @@ FROM `flight-data` AS airlines
 WHERE (
         airlines.airline_iata = 'DL'
         OR (
-            airlines.airline_iata IS NOT MISSING
+            airlines.airline_iata <> 'DL'
             AND
             airlines.airline_icao = 'DL'
         )
     )
     AND airlines.doc_type = 'airline'
 LIMIT 1
-
 ```
 
 ##### Results
@@ -277,9 +281,9 @@ Create index for Airline IATA codes
 [idx_airlines_iata_codes.n1ql](indexes/idx_airlines_iata_codes.n1ql)
 
 ```sql
-CREATE INDEX idx_airlines_iata_codes ON `flight-data`( airline_iata )
-WHERE doc_type = 'airline'
-    AND airline_iata IS NOT NULL
+CREATE INDEX idx_airlines_iata_codes ON `flight-data`( airline_iata, doc_type )
+WHERE airline_iata IS NOT NULL
+    AND doc_type = 'airline'
 USING GSI
 ```
 
@@ -289,8 +293,8 @@ Create index for Airline ICAO codes
 
 ```sql
 CREATE INDEX idx_airlines_icao_codes ON `flight-data`( airline_icao )
-WHERE doc_type = 'airline'
-    AND airline_icao IS NOT NULL
+WHERE airline_icao IS NOT NULL
+    AND doc_type = 'airline'
 USING GSI
 ```
 
@@ -326,7 +330,7 @@ LIMIT 1
 ]
 ```
 
-This performs much better as we are now using 2 different indexes for the IATA and ICAO codes.  However, we can improve this query even more.  One of our data models [Codes](/flight-data/docs/models/codes.md) is a lookup document for Airline, Airport, and Navaid IATA, ICAO and Ident Codes.
+This performs much better as we are now using 2 different indexes for the IATA and ICAO codes.  However, we can improve this query even more.  One of our data models [Codes](/flight-data/docs/models/codes.md) is a lookup document for Airline, Airport, and Navaid IATA, ICAO and Ident Codes.  We can query the codes, then when a matching code is found join back to its parent document.
 
 ##### Index
 
@@ -349,7 +353,7 @@ Create a new index on the `code` and `designation` attributes where the `doc_typ
 [idx_codes.n1ql](indexes/idx_codes.n1ql)
 
 ```sql
-CREATE INDEX idx_codes ON `flight-data`( code, designation )
+CREATE INDEX idx_codes ON `flight-data`( code, designation, doc_type )
 WHERE doc_type = 'code'
 USING GSI
 ```
@@ -403,7 +407,7 @@ Both queries will yield the same exact result.
 ]
 ```
 
-Our [Codes](/flight-data/docs/models/codes.md) model is keyed by `{{designation}}_code_{{code}}` i.e. `airline_code_DL`.  Because of how these documents are keyed, we do not even need an index.  Using this predictive key pattern we use the code as part of the key name on the codes document.
+Our [Codes](/flight-data/docs/models/codes.md) model is keyed by `{{designation}}_code_{{code}}` i.e. `airline_code_DL`.  Because of how these documents are keyed, we do not even need an index.  Using this predictive key pattern the code is used as part of the key name on the codes document.  
 
 ##### Index
 
