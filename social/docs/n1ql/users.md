@@ -10,11 +10,11 @@ The following query will get an User by its Document ID.
 
 ##### Query
 
-[user_by_document_id.n1ql](queries/airlines/user_by_document_id.n1ql)
+[user_by_document_id.n1ql](queries/users/user_by_document_id.n1ql)
 
 ```sql
 SELECT users.*
-FROM users AS users
+FROM social AS users
 USE KEYS 'user_354'
 ```
 
@@ -39,11 +39,11 @@ The following query will retrieve multiple Users by their Document ID.
 
 ##### Query
 
-[users_by_document_id.n1ql](queries/airlines/users_by_document_id.n1ql)
+[users_by_document_id.n1ql](queries/users/users_by_document_id.n1ql)
 
 ```sql
 SELECT users.*
-FROM users AS users
+FROM social AS users
 USE KEYS [
     'user_453',
     'user_267',
@@ -96,6 +96,8 @@ We want to get the user information, with all of their phones returned (*if any*
 
 ##### Query
 
+[user_with_addresses_emails_phones.n1ql](queries/users/user_with_addresses_emails_phones.n1ql)
+
 ```sql
 SELECT u.user_id, u.first_name, u.last_name,
     ARRAY {
@@ -114,28 +116,28 @@ SELECT u.user_id, u.first_name, u.last_name,
         phone.phone_number || IFMISSINGORNULL(' x' || phone.extension, '')
         FOR phone IN IFMISSING(phones, [])
     END AS phones
-FROM users AS u
+FROM social AS u
 USE KEYS 'user_123'
-LEFT NEST users AS addresses ON KEYS (
+LEFT NEST social AS addresses ON KEYS (
     ARRAY a.address_id FOR a IN (
         SELECT 'address_' || address_id AS address_id
-        FROM users AS address_lookup
+        FROM social AS address_lookup
         USE KEYS 'user_' || TOSTRING(u.user_id) || '_addresses'
         UNNEST address_lookup.addresses AS address_id
     ) END
 )
-LEFT NEST users AS emails ON KEYS (
+LEFT NEST social AS emails ON KEYS (
     ARRAY a.email_id FOR a IN (
         SELECT 'email_' || email_id AS email_id
-        FROM users AS email_lookup
+        FROM social AS email_lookup
         USE KEYS 'user_' || TOSTRING(u.user_id) || '_emails'
         UNNEST email_lookup.emails AS email_id
     ) END
 )
-LEFT NEST users AS phones ON KEYS (
+LEFT NEST social AS phones ON KEYS (
     ARRAY a.phone_id FOR a IN (
         SELECT 'phone_' || phone_id AS phone_id
-        FROM users AS phone_lookup
+        FROM social AS phone_lookup
         USE KEYS 'user_' || TOSTRING(u.user_id) || '_phones'
         UNNEST phone_lookup.phones AS phone_id
     ) END

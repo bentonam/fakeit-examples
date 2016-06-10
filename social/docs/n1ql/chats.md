@@ -23,7 +23,7 @@ WHERE doc_type = 'chat'
 
 ##### Query
 
-[user_by_username.n1ql](queries/users/user_by_username.n1ql)
+[user_chats.n1ql](queries/chats/user_chats.n1ql)
 
 ```sql
 SELECT chats.chat_id, MILLIS_TO_STR(chats.created_on) AS created_on
@@ -63,6 +63,8 @@ ORDER BY chats.created_on DESC
 ##### Query
 
 Get all of the user chats with all of the users that are part of the chat.
+
+[user_chats_with_users.n1ql](queries/chats/user_chats_with_users.n1ql)
 
 ```sql
 SELECT chats.chat_id, MILLIS_TO_STR(chats.created_on) AS created_on,
@@ -174,6 +176,8 @@ ORDER BY chats.created_on DESC
 ##### Query
 
 Get all of the messages in a chat along with the users information.
+
+[chat_messages.n1ql](queries/chats/chat_messages.n1ql)
 
 ```sql
 SELECT messages.message_id, messages.message,

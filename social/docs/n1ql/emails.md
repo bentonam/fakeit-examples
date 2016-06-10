@@ -10,11 +10,11 @@ The following query will get an Email by its Document ID.
 
 ##### Query
 
-[email_by_document_id.n1ql](queries/airlines/email_by_document_id.n1ql)
+[email_by_document_id.n1ql](queries/emails/email_by_document_id.n1ql)
 
 ```sql
 SELECT emails.*
-FROM users AS emails
+FROM social AS emails
 USE KEYS 'email_3dffcff4-fd4f-5e92-8f97-ea8bd3d71a5b'
 ```
 
@@ -37,11 +37,11 @@ The following query will retrieve multiple Emails by their Document ID.
 
 ##### Query
 
-[emails_by_document_id.n1ql](queries/airlines/emails_by_document_id.n1ql)
+[emails_by_document_id.n1ql](queries/emails/emails_by_document_id.n1ql)
 
 ```sql
 SELECT emails.*
-FROM users AS emails
+FROM social AS emails
 USE KEYS [
     'email_3dffcff4-fd4f-5e92-8f97-ea8bd3d71a5b',
     'email_effa49ab-25e0-553a-a934-da5cc7654ef1',
@@ -97,13 +97,15 @@ Get all of the user emails and return them as individual records
 
 ##### Query
 
+[emails_flattended.n1ql](queries/emails/emails_flattended.n1ql)
+
 ```sql
 SELECT emails.*
-FROM users
+FROM social
 USE KEYS 'user_439'
-INNER JOIN users AS email_lookup ON KEYS 'user_' || TOSTRING(users.user_id) || '_emails'
+INNER JOIN social AS email_lookup ON KEYS 'user_' || TOSTRING(users.user_id) || '_emails'
 UNNEST email_lookup.emails AS email_id
-INNER JOIN users AS emails ON KEYS 'email_' || email_id
+INNER JOIN social AS emails ON KEYS 'email_' || email_id
 ```
 
 ##### Result
@@ -145,17 +147,19 @@ We want to get the user information, with all of their emails returned (*if any*
 
 ##### Query
 
+[emails_nested.n1ql](queries/emails/emails_nested.n1ql)
+
 ```sql
 SELECT u.user_id, u.first_name, u.last_name,
     ARRAY
         email.email_address FOR email IN IFMISSING(emails, [])
     END AS emails
-FROM users AS u
+FROM social AS u
 USE KEYS 'user_123'
-LEFT NEST users AS emails ON KEYS (
+LEFT NEST social AS emails ON KEYS (
     ARRAY a.email_id FOR a IN (
         SELECT 'email_' || email_id AS email_id
-        FROM users AS email_lookup
+        FROM social AS email_lookup
         USE KEYS 'user_' || TOSTRING(u.user_id) || '_emails'
         UNNEST email_lookup.emails AS email_id
     ) END

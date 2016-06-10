@@ -1,9 +1,15 @@
-# User Models
+# Social Models
 
-- [Addresses](/users/docs/models/addresses.md)
-- [Emails](/users/docs/models/emails.md)
-- [Phones](/users/docs/models/phones.md)
-- [User Addresses](/users/docs/models/user_addresses.md)
-- [User Emails](/users/docs/models/user_emails.md)
-- [User Phones](/users/docs/models/user_phones.md)
-- [Users](/users/docs/models/users.md)
+- [Addresses](/social/docs/models/addresses.md)
+- [Auth](/social/docs/models/auth.md)
+- [Chat Messages](/social/docs/models/chat_messages.md)
+- [Chats](/social/docs/models/chats.md)
+- [Emails](/social/docs/models/emails.md)
+- [Friends](/social/docs/models/friends.md)
+- [Likes](/social/docs/models/likes.md)
+- [Phones](/social/docs/models/phones.md)
+- [Posts](/social/docs/models/posts.md)
+- [User Addresses](/social/docs/models/user_addresses.md)
+- [User Emails](/social/docs/models/user_emails.md)
+- [User Phones](/social/docs/models/user_phones.md)
+- [Users](/social/docs/models/users.md)

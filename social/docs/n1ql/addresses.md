@@ -10,11 +10,11 @@ The following query will get an Address by its Document ID.
 
 ##### Query
 
-[address_by_document_id.n1ql](queries/airlines/address_by_document_id.n1ql)
+[address_by_document_id.n1ql](queries/addresses/address_by_document_id.n1ql)
 
 ```sql
 SELECT addresses.*
-FROM users AS addresses
+FROM social AS addresses
 USE KEYS 'address_00074370-4c19-5020-8437-c7d4301626fa'
 ```
 
@@ -42,11 +42,11 @@ The following query will retrieve multiple Addresses by their Document ID.
 
 ##### Query
 
-[addresses_by_document_id.n1ql](queries/airlines/addresses_by_document_id.n1ql)
+[addresses_by_document_ids.n1ql](queries/addresses/addresses_by_document_ids.n1ql)
 
 ```sql
 SELECT addresses.*
-FROM users AS addresses
+FROM social AS addresses
 USE KEYS [
     'address_675a5d4c-9e79-5a9f-a9c5-6c9b8cca7dbc',
     'address_bccbed78-04da-5485-8a95-1fd5f2d5c3d4',
@@ -108,13 +108,15 @@ Get all of the user addresses and return them as individual records
 
 ##### Query
 
+[user_addresses_flattended.n1ql](queries/addresses/user_addresses_flattended.n1ql)
+
 ```sql
 SELECT addresses.*
-FROM users
+FROM social
 USE KEYS 'user_123'
-INNER JOIN users AS address_lookup ON KEYS 'user_' || TOSTRING(users.user_id) || '_addresses'
+INNER JOIN social AS address_lookup ON KEYS 'user_' || TOSTRING(users.user_id) || '_addresses'
 UNNEST address_lookup.addresses AS address_id
-INNER JOIN users AS addresses ON KEYS 'address_' || address_id
+INNER JOIN social AS addresses ON KEYS 'address_' || address_id
 ```
 
 ##### Result
@@ -171,6 +173,8 @@ We want to get the user information, with all of their addresses returned (*if a
 
 ##### Query
 
+[user_addresses_nested.n1ql](queries/addresses/user_addresses_nested.n1ql)
+
 ```sql
 SELECT u.user_id, u.first_name, u.last_name,
     ARRAY {
@@ -182,12 +186,12 @@ SELECT u.user_id, u.first_name, u.last_name,
             "locality": address.locality
         } FOR address IN IFMISSING(addresses, [])
     END AS addresses
-FROM users AS u
+FROM social AS u
 USE KEYS 'user_123'
-LEFT NEST users AS addresses ON KEYS (
+LEFT NEST social AS addresses ON KEYS (
     ARRAY a.address_id FOR a IN (
         SELECT 'address_' || address_id AS address_id
-        FROM users AS address_lookup
+        FROM social AS address_lookup
         USE KEYS 'user_' || TOSTRING(u.user_id) || '_addresses'
         UNNEST address_lookup.addresses AS address_id
     ) END

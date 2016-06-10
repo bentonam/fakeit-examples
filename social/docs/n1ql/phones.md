@@ -10,11 +10,11 @@ The following query will get an Phone by its Document ID.
 
 ##### Query
 
-[phone_by_document_id.n1ql](queries/airlines/phone_by_document_id.n1ql)
+[phone_by_document_id.n1ql](queries/phones/phone_by_document_id.n1ql)
 
 ```sql
 SELECT phones.*
-FROM users AS phones
+FROM social AS phones
 USE KEYS 'phone_cd10cb46-6274-5d57-8411-ed4c32432f42'
 ```
 
@@ -38,11 +38,11 @@ The following query will retrieve multiple Phones by their Document ID.
 
 ##### Query
 
-[phones_by_document_id.n1ql](queries/airlines/phones_by_document_id.n1ql)
+[phones_by_document_id.n1ql](queries/phones/phones_by_document_id.n1ql)
 
 ```sql
 SELECT phones.*
-FROM users AS phones
+FROM social AS phones
 USE KEYS [
     'phone_cd10cb46-6274-5d57-8411-ed4c32432f42',
     'phone_898a93fa-a021-5335-be11-cd19dc49b9c2'
@@ -82,13 +82,15 @@ Get all of the user phones and return them as individual records
 
 ##### Query
 
+[user_phones_flattend.n1ql](queries/phones/phones_by_document_id.n1ql)
+
 ```sql
 SELECT phones.*
-FROM users
+FROM social
 USE KEYS 'user_439'
-INNER JOIN users AS phone_lookup ON KEYS 'user_' || TOSTRING(users.user_id) || '_phones'
+INNER JOIN social AS phone_lookup ON KEYS 'user_' || TOSTRING(users.user_id) || '_phones'
 UNNEST phone_lookup.phones AS phone_id
-INNER JOIN users AS phones ON KEYS 'phone_' || phone_id
+INNER JOIN social AS phones ON KEYS 'phone_' || phone_id
 ```
 
 ##### Result
@@ -133,18 +135,20 @@ We want to get the user information, with all of their phones returned (*if any*
 
 ##### Query
 
+[user_phones_nested.n1ql](queries/phones/user_phones_nested.n1ql)
+
 ```sql
 SELECT u.user_id, u.first_name, u.last_name,
     ARRAY
         phone.phone_number || IFNULL(' x' || phone.extension, '')
         FOR phone IN IFMISSING(phones, [])
     END AS phones
-FROM users AS u
+FROM social AS u
 USE KEYS 'user_419'
-LEFT NEST users AS phones ON KEYS (
+LEFT NEST social AS phones ON KEYS (
     ARRAY a.phone_id FOR a IN (
         SELECT 'phone_' || phone_id AS phone_id
-        FROM users AS phone_lookup
+        FROM social AS phone_lookup
         USE KEYS 'user_' || TOSTRING(u.user_id) || '_phones'
         UNNEST phone_lookup.phones AS phone_id
     ) END
