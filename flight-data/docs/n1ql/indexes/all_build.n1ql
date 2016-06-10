@@ -1,6 +1,5 @@
 BUILD INDEX
     ON `flight-data`(
-      idx_airlines_codes,
       idx_airlines_iso_country,
       idx_airlines_reviews_airline_code,
       idx_airlines_reviews_user_id,
