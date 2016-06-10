@@ -112,7 +112,7 @@ Get all of the user addresses and return them as individual records
 
 ```sql
 SELECT addresses.*
-FROM social
+FROM social AS users
 USE KEYS 'user_123'
 INNER JOIN social AS address_lookup ON KEYS 'user_' || TOSTRING(users.user_id) || '_addresses'
 UNNEST address_lookup.addresses AS address_id

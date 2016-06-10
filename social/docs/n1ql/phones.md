@@ -86,7 +86,7 @@ Get all of the user phones and return them as individual records
 
 ```sql
 SELECT phones.*
-FROM social
+FROM social AS users
 USE KEYS 'user_439'
 INNER JOIN social AS phone_lookup ON KEYS 'user_' || TOSTRING(users.user_id) || '_phones'
 UNNEST phone_lookup.phones AS phone_id
