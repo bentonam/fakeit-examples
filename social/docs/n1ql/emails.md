@@ -101,7 +101,7 @@ Get all of the user emails and return them as individual records
 
 ```sql
 SELECT emails.*
-FROM social
+FROM social AS users
 USE KEYS 'user_439'
 INNER JOIN social AS email_lookup ON KEYS 'user_' || TOSTRING(users.user_id) || '_emails'
 UNNEST email_lookup.emails AS email_id
