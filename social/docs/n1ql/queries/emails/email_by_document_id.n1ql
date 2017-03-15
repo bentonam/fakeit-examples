@@ -1,3 +1,0 @@
-SELECT emails.*
-FROM social AS emails
-USE KEYS 'email_3dffcff4-fd4f-5e92-8f97-ea8bd3d71a5b'

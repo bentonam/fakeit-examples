@@ -1,3 +1,0 @@
-SELECT countries.*
-FROM `flight-data` AS countries
-USE KEYS ['country_US', 'country_CA', 'country_MX']

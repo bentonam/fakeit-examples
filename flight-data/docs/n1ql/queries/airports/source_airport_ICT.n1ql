@@ -1,5 +1,0 @@
-SELECT airports.iso_country, airports.geo.latitude AS latitude, airports.geo.longitude AS longitude
-FROM `flight-data` AS codes
-USE KEYS 'airport_code_ICT'
-INNER JOIN `flight-data` AS airports ON KEYS 'airport_' || TOSTRING( codes.id )
-LIMIT 1

@@ -1,5 +1,0 @@
-SELECT auth.*
-FROM social AS auth
-WHERE username = 'Aaliyah_Orn23'
-    AND doc_type = 'user-auth'
-LIMIT 1

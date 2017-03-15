@@ -1,3 +1,0 @@
-SELECT navaids.*
-FROM `flight-data` AS navaids
-USE KEYS ['navaid_89137', 'navaid_88592']

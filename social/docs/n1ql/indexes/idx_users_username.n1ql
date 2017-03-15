@@ -1,3 +1,0 @@
-CREATE INDEX idx_users_username ON social( username, doc_type )
-WHERE doc_type = 'user-auth'
-USING GSI

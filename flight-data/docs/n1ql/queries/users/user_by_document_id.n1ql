@@ -1,3 +1,0 @@
-SELECT users.user_id, users.account.username, users.account.`password`
-FROM `flight-data` AS users
-USE KEYS 'user_197'

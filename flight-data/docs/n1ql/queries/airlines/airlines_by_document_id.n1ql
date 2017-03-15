@@ -1,3 +1,0 @@
-SELECT airlines.*
-FROM `flight-data` AS airlines
-USE KEYS ['airline_2009', 'airline_24']

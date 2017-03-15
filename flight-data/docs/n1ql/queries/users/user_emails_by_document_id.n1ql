@@ -1,3 +1,0 @@
-SELECT users.emails
-FROM `flight-data` AS users
-USE KEYS 'user_1997'

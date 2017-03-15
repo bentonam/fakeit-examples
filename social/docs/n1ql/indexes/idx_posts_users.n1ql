@@ -1,2 +1,0 @@
-CREATE INDEX idx_posts_users ON social( user_id, visibility, doc_type )
-WHERE doc_type = 'post'

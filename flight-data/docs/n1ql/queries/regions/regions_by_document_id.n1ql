@@ -1,3 +1,0 @@
-SELECT regions.*
-FROM `flight-data` AS regions
-USE KEYS ['region_US-KS', 'region_US-NC', 'region_US-MN']

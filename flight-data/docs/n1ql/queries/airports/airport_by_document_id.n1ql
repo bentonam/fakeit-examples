@@ -1,3 +1,0 @@
-SELECT airports.*
-FROM `flight-data` AS airports
-USE KEYS 'airport_3605'
